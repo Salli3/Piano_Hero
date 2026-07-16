@@ -6,6 +6,7 @@ public class Note : MonoBehaviour
 
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private Collider2D noteCollider;
+    [SerializeField] private Animator anim;
 
     private void Update()
     {
@@ -19,5 +20,18 @@ public class Note : MonoBehaviour
         noteSO = chosenNote;
         transform.position = spawnPoint.position;
         sr.color = noteSO.noteColor;
+        noteCollider.enabled = true;
+    }
+
+    public void OnNoteHit()
+    {
+        sr.color = Color.white;
+        noteCollider.enabled = false;
+        anim.Play("Fade");
+    }
+
+    public void DestroyNote()
+    {
+        Destroy(gameObject);
     }
 }

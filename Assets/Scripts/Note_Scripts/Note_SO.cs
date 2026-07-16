@@ -8,5 +8,5 @@ public class Note_SO : ScriptableObject
     public string noteName;
     public float noteSpeed;
     public bool isHostile;
-    public Color noteColor => isHostile ? Color.black : Color.white;
+    public Color noteColor => isHostile ? Color.red : Color.blue;
 }
