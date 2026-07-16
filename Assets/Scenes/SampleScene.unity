@@ -221,6 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   judgeBoxCollider: {fileID: 214418148}
+  sr: {fileID: 214418146}
   noteLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -773,6 +774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   judgeBoxCollider: {fileID: 676121759}
+  sr: {fileID: 676121757}
   noteLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -990,7 +992,7 @@ GameObject:
   - component: {fileID: 880397426}
   - component: {fileID: 880397425}
   m_Layer: 5
-  m_Name: Player_Canvas
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1010,7 +1012,7 @@ RectTransform:
   m_Children:
   - {fileID: 434724810}
   - {fileID: 2033719362}
-  m_Father: {fileID: 1966764893}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1266,6 +1268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   judgeBoxCollider: {fileID: 1143018504}
+  sr: {fileID: 1143018502}
   noteLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -1510,7 +1513,7 @@ GameObject:
   - component: {fileID: 1606295676}
   - component: {fileID: 1606295675}
   m_Layer: 5
-  m_Name: Enemy_Canvas
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1530,7 +1533,7 @@ RectTransform:
   m_Children:
   - {fileID: 693149111}
   - {fileID: 989546839}
-  m_Father: {fileID: 1966764893}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1765,6 +1768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   judgeBoxCollider: {fileID: 1860000912}
+  sr: {fileID: 1860000910}
   noteLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -1844,39 +1848,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1149875618}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1966764892
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1966764893}
-  m_Layer: 0
-  m_Name: UI
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1966764893
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1966764892}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 880397424}
-  - {fileID: 1606295674}
-  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1996734495
 GameObject:
@@ -2075,8 +2046,9 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 443195252}
   - {fileID: 717734309}
-  - {fileID: 253479620}
-  - {fileID: 1966764893}
+  - {fileID: 880397424}
+  - {fileID: 1606295674}
   - {fileID: 1149875618}
   - {fileID: 1791493073}
   - {fileID: 1437343561}
+  - {fileID: 253479620}
