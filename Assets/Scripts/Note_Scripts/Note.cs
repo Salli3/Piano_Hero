@@ -28,10 +28,6 @@ public class Note : MonoBehaviour
         sr.color = Color.white;
         noteCollider.enabled = false;
         anim.Play("Fade");
-    }
-
-    public void DestroyNote()
-    {
-        Destroy(gameObject);
+        Destroy(gameObject, 0.3f);
     }
 }

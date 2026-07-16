@@ -9,6 +9,8 @@ public class Judgement_Box : MonoBehaviour
     [SerializeField] private LayerMask noteLayer;
     public KeyCode triggerKey;
 
+    [SerializeField] private Player_HP playerHP;
+
     private void Awake()
     {
         judgeBoxCollider = GetComponent<BoxCollider2D>();
@@ -26,6 +28,7 @@ public class Judgement_Box : MonoBehaviour
         }
         else
         {
+            playerHP.ChangeHP(0);
             sr.color = Color.red;
         }
     }

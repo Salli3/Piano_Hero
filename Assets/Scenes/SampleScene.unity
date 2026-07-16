@@ -226,6 +226,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   triggerKey: 274
+  playerHP: {fileID: 880397429}
 --- !u!61 &214418148
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -779,6 +780,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   triggerKey: 276
+  playerHP: {fileID: 880397429}
 --- !u!61 &676121759
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -991,6 +993,7 @@ GameObject:
   - component: {fileID: 880397427}
   - component: {fileID: 880397426}
   - component: {fileID: 880397425}
+  - component: {fileID: 880397429}
   m_Layer: 5
   m_Name: Player
   m_TagString: Untagged
@@ -1094,6 +1097,23 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &880397429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880397423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98a49196a620a414ba40a41db098cc27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 519420031}
+  playerPosition: {fileID: 434724810}
+  playerImage: {fileID: 434724811}
+  duration: 0.2
+  magnitude: 0.2
 --- !u!1 &989546838
 GameObject:
   m_ObjectHideFlags: 0
@@ -1273,6 +1293,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   triggerKey: 273
+  playerHP: {fileID: 880397429}
 --- !u!61 &1143018504
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1439,6 +1460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ff227f15897a454f9942d5fb16e5b7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHP: {fileID: 880397429}
 --- !u!61 &1437343560
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1493,8 +1515,8 @@ Transform:
   m_GameObject: {fileID: 1437343558}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -10, z: 0}
-  m_LocalScale: {x: 8, y: 5, z: 1}
+  m_LocalPosition: {x: 0, y: -12.5, z: 0}
+  m_LocalScale: {x: 8, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1773,6 +1795,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   triggerKey: 275
+  playerHP: {fileID: 880397429}
 --- !u!61 &1860000912
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1928,7 +1951,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 8, y: 10, z: 1}
+  m_LocalScale: {x: 8, y: 15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 253479620}
