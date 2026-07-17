@@ -196,7 +196,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -238704863, guid: e19ef249b08ee35498ff62f9363fdd10, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -225,8 +225,6 @@ MonoBehaviour:
   noteLayer:
     serializedVersion: 2
     m_Bits: 8
-  triggerKey: 274
-  playerHP: {fileID: 880397429}
 --- !u!61 &214418148
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -750,7 +748,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 1550780285, guid: e19ef249b08ee35498ff62f9363fdd10, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -779,8 +777,6 @@ MonoBehaviour:
   noteLayer:
     serializedVersion: 2
     m_Bits: 8
-  triggerKey: 276
-  playerHP: {fileID: 880397429}
 --- !u!61 &676121759
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -933,6 +929,7 @@ MonoBehaviour:
   difficultylevel: 1
   difficultyMultiplier: 1.2
   currentEnemy: {fileID: 11400000, guid: d9775de95725ec44bb62a763550886a8, type: 2}
+  playerCombat: {fileID: 880397430}
   persistentObjects: []
 --- !u!4 &717734309
 Transform:
@@ -994,6 +991,7 @@ GameObject:
   - component: {fileID: 880397426}
   - component: {fileID: 880397425}
   - component: {fileID: 880397429}
+  - component: {fileID: 880397430}
   m_Layer: 5
   m_Name: Player
   m_TagString: Untagged
@@ -1114,6 +1112,20 @@ MonoBehaviour:
   playerImage: {fileID: 434724811}
   duration: 0.2
   magnitude: 0.2
+--- !u!114 &880397430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880397423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44f785c79595d1647a217735cb12b071, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackTypes:
+  - {fileID: 11400000, guid: 5bfcc0c4ab5798646b3a174c4e12d198, type: 2}
 --- !u!1 &989546838
 GameObject:
   m_ObjectHideFlags: 0
@@ -1263,7 +1275,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -222133603, guid: e19ef249b08ee35498ff62f9363fdd10, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1292,8 +1304,6 @@ MonoBehaviour:
   noteLayer:
     serializedVersion: 2
     m_Bits: 8
-  triggerKey: 273
-  playerHP: {fileID: 880397429}
 --- !u!61 &1143018504
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1460,7 +1470,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ff227f15897a454f9942d5fb16e5b7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHP: {fileID: 880397429}
 --- !u!61 &1437343560
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1691,6 +1700,7 @@ MonoBehaviour:
   - {fileID: 1143018503}
   - {fileID: 1860000911}
   - {fileID: 214418147}
+  triggerKeys: 14010000110100001301000012010000
 --- !u!1 &1860000908
 GameObject:
   m_ObjectHideFlags: 0
@@ -1765,7 +1775,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 635178720, guid: e19ef249b08ee35498ff62f9363fdd10, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1794,8 +1804,6 @@ MonoBehaviour:
   noteLayer:
     serializedVersion: 2
     m_Bits: 8
-  triggerKey: 275
-  playerHP: {fileID: 880397429}
 --- !u!61 &1860000912
 BoxCollider2D:
   m_ObjectHideFlags: 0

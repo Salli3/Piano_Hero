@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 public class Note_Spawner : MonoBehaviour
 {
     [SerializeField] private float width;

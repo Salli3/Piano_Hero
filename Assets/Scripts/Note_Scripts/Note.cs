@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Note : MonoBehaviour
 {
-    [SerializeField] private Note_SO noteSO;
+    public Note_SO noteSO;
 
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private Collider2D noteCollider;

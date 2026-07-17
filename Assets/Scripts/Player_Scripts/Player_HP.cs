@@ -16,13 +16,39 @@ public class Player_HP : MonoBehaviour
     private Vector3 originalCameraPosition;
     private Vector3 originalPlayerPosition;
 
+    private void OnEnable()
+    {
+        Combat_Events.OnNoteMiss += NoteMiss;
+        Combat_Events.OnNoteExit += NoteExit;
+        
+    }
+
+    private void OnDisable()
+    {
+        Combat_Events.OnNoteMiss -= NoteMiss;
+        Combat_Events.OnNoteExit -= NoteExit;
+    }
+
     private void Start()
     {
         originalCameraPosition = mainCamera.transform.position;
         originalPlayerPosition = playerPosition.position;
     }
 
-    public void ChangeHP(float amount)
+    private void NoteMiss()
+    {
+        ChangeHP(1);
+    }
+
+    private void NoteExit(Note_SO note)
+    {
+        if (note.isHostile)
+        {
+            ChangeHP(1);
+        }
+    }
+
+    private void ChangeHP(float amount)
     {
         Shake();
     }

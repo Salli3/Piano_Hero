@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,9 +8,6 @@ public class Judgement_Box : MonoBehaviour
     [SerializeField] private Collider2D judgeBoxCollider;
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private LayerMask noteLayer;
-    public KeyCode triggerKey;
-
-    [SerializeField] private Player_HP playerHP;
 
     private void Awake()
     {
@@ -17,7 +15,7 @@ public class Judgement_Box : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
     }
 
-    public void GetOverLappingNote()
+    public void TryHitNote()
     {
         StartCoroutine(hitRespond());
 
@@ -25,10 +23,11 @@ public class Judgement_Box : MonoBehaviour
         if (hits.Length > 0)
         {
             hits[0].GetComponent<Note>().OnNoteHit();
+            Combat_Events.NoteHit(hits[0].GetComponent<Note>().noteSO);
         }
         else
         {
-            playerHP.ChangeHP(0);
+            Combat_Events.NoteMiss();
             sr.color = Color.red;
         }
     }

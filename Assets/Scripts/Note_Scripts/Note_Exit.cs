@@ -5,12 +5,9 @@ using UnityEngine;
 
 public class Note_Exit : MonoBehaviour
 {
-    [SerializeField] private Player_HP playerHP;
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //collision.gameObject.SetActive(false);
-        playerHP.ChangeHP(0);
+        Combat_Events.NoteExit(collision.gameObject.GetComponent<Note>().noteSO);
         Destroy(collision.gameObject);
     }
     private void OnDrawGizmos()
