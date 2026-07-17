@@ -7,16 +7,17 @@ public class Enemy_Manager : MonoBehaviour
     [SerializeField] private Enemy_SO[] enemySOs;
     [SerializeField] private Enemy_HP enemyHP;
 
-    //private void OnEnable()
-    //{
-    //    Enemy_HP.OnEnemyDefeated += PickEnemy;
-    //}
+    private void OnEnable()
+    {
+        Enemy_HP.OnEnemyDefeated += PickEnemy;
+    }
 
-    //private void OnDisable()
-    //{
-    //    Enemy_HP.OnEnemyDefeated -= PickEnemy;
-    //}
+    private void OnDisable()
+    {
+        Enemy_HP.OnEnemyDefeated -= PickEnemy;
+    }
 
+    //Set enemy after Game_Manager wake up for Enemy_HP to take reference
     private void Start()
     {
         PickEnemy();
@@ -29,6 +30,5 @@ public class Enemy_Manager : MonoBehaviour
         {
             enemyHP.SetEnemy(Game_Manager.instance.currentEnemy);
         }
-        Game_Manager.instance.isCombatActive = true;
     }
 }

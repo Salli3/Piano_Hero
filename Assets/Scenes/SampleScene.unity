@@ -928,7 +928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   difficultylevel: 1
   difficultyMultiplier: 1.2
-  isCombatActive: 1
+  isCombatActive: 0
   currentEnemy: {fileID: 0}
   playerCombat: {fileID: 880397430}
   persistentObjects: []
@@ -1668,6 +1668,8 @@ MonoBehaviour:
   magnitude: 0.1
   enemySO: {fileID: 0}
   currentHP: 0
+  appearDuration: 1
+  appearSlideDistance: 200
   defeatShakeDuration: 3
   defeatShakeMagnitude: 0.2
   fallDistance: 200

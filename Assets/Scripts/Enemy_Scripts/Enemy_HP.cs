@@ -21,6 +21,10 @@ public class Enemy_HP : MonoBehaviour
     [SerializeField] private float currentHP;
     public static event Action OnEnemyDefeated;
 
+    [Header("Appear")]
+    [SerializeField] private float appearDuration;
+    [SerializeField] private float appearSlideDistance;
+
     [Header("Defeat")]
     [SerializeField] private float defeatShakeDuration;
     [SerializeField] private float defeatShakeMagnitude;
@@ -39,11 +43,10 @@ public class Enemy_HP : MonoBehaviour
     }
     #endregion
 
-    private void Start()
+    private void Awake()
     {
         originalCameraPosition = mainCamera.transform.position;
         originalEnemyPosition = enemyPosition.position;
-        SetEnemy(Game_Manager.instance.currentEnemy);
     }
 
     public void SetEnemy(Enemy_SO newEnemy)
@@ -51,7 +54,7 @@ public class Enemy_HP : MonoBehaviour
         enemySO = Game_Manager.instance.currentEnemy;
         currentHP = enemySO.enemyHP;
         enemyImage.sprite = enemySO.enemySprite;
-        enemyImage.color = new Color(1, 1, 1, 1);
+        StartCoroutine(EnemyAppear());
     }
 
     private void NoteHit(Note_SO note)
@@ -109,10 +112,35 @@ public class Enemy_HP : MonoBehaviour
     }
     #endregion
 
-    //private IEnumerator EnemyAppear()
-    //{
+    //TODO rework enemy appear animation
+    #region Enemy Appear and Defeat animation methods
+    private IEnumerator EnemyAppear()
+    {
+        float elapsed = 0f;
+        Color startColor = Color.white;
+        Vector3 startOffset = new Vector3(appearSlideDistance, 0f, 0f);
 
-    //}
+        enemyPosition.position = originalEnemyPosition + startOffset;
+        enemyImage.color = new Color(startColor.r, startColor.g, startColor.b, 0f);
+
+        while (elapsed < appearDuration)
+        {
+            float t = elapsed / appearDuration;
+
+            enemyPosition.position = Vector3.Lerp(originalEnemyPosition + startOffset, originalEnemyPosition, t);
+
+            //Fade in
+            float alpha = Mathf.Lerp(0f, 1f, t);
+            enemyImage.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
+
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        enemyPosition.position = originalEnemyPosition;
+        enemyImage.color = new Color(startColor.r, startColor.g, startColor.b, 1f);
+        Game_Manager.instance.isCombatActive = true;
+    }
 
     private IEnumerator EnemyDefeat()
     {
@@ -134,7 +162,7 @@ public class Enemy_HP : MonoBehaviour
 
             enemyPosition.position = fallPos + shakeOffset;
 
-            //Fade
+            //Fade out
             float alpha = Mathf.Lerp(1f, 0f, t);
             enemyImage.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
 
@@ -146,4 +174,5 @@ public class Enemy_HP : MonoBehaviour
         enemyImage.color = new Color(startColor.r, startColor.g, startColor.b, 0f);
         OnEnemyDefeated?.Invoke();
     }
+    #endregion
 }
