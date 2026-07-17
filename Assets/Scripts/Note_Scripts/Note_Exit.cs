@@ -7,7 +7,7 @@ public class Note_Exit : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //collision.gameObject.SetActive(false);
+        Combat_Events.NoteExit(collision.gameObject.GetComponent<Note>().noteSO);
         Destroy(collision.gameObject);
     }
     private void OnDrawGizmos()

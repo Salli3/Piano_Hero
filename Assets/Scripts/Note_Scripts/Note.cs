@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Note : MonoBehaviour
 {
-    [SerializeField] private Note_SO noteSO;
+    public Note_SO noteSO;
 
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private Collider2D noteCollider;
@@ -10,6 +10,7 @@ public class Note : MonoBehaviour
 
     private void Update()
     {
+        if (Game_Manager.instance.isCombatActive == false) Destroy(gameObject);
         if (noteSO == null) return;
 
         transform.position += Vector3.down * noteSO.noteSpeed * Game_Manager.instance.GetDifficultyLevel() * Time.deltaTime;
@@ -28,10 +29,6 @@ public class Note : MonoBehaviour
         sr.color = Color.white;
         noteCollider.enabled = false;
         anim.Play("Fade");
-    }
-
-    public void DestroyNote()
-    {
-        Destroy(gameObject);
+        Destroy(gameObject, 0.3f);
     }
 }

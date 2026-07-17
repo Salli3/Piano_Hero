@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 public class Note_Spawner : MonoBehaviour
 {
     [SerializeField] private float width;
@@ -23,6 +22,8 @@ public class Note_Spawner : MonoBehaviour
 
     private void Update()
     {
+        if (Game_Manager.instance.isCombatActive == false) return;
+
         timer += Time.deltaTime * Game_Manager.instance.GetDifficultyLevel();
         if (timer >= spawnInterval)
         {

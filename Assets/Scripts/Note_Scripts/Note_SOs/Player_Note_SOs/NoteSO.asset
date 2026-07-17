@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85eb7680f6a0dda4c961c0cc037e57d9, type: 3}
-  m_Name: EnemySO
+  m_Script: {fileID: 11500000, guid: 9d4fad53d7ff5ac4991db805b5e086b9, type: 3}
+  m_Name: NoteSO
   m_EditorClassIdentifier: 
-  attackTypes:
-  - {fileID: 11400000, guid: 641ddb472cf387b44b6c28989cd34b43, type: 2}
+  noteName: 
+  noteSpeed: 10
+  isHostile: 0
