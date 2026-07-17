@@ -928,7 +928,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   difficultylevel: 1
   difficultyMultiplier: 1.2
-  currentEnemy: {fileID: 11400000, guid: d9775de95725ec44bb62a763550886a8, type: 2}
+  isCombatActive: 1
+  currentEnemy: {fileID: 0}
   playerCombat: {fileID: 880397430}
   persistentObjects: []
 --- !u!4 &717734309
@@ -1544,6 +1545,7 @@ GameObject:
   - component: {fileID: 1606295676}
   - component: {fileID: 1606295675}
   - component: {fileID: 1606295679}
+  - component: {fileID: 1606295680}
   m_Layer: 5
   m_Name: Enemy
   m_TagString: Untagged
@@ -1664,6 +1666,27 @@ MonoBehaviour:
   enemyImage: {fileID: 693149112}
   duration: 0.1
   magnitude: 0.1
+  enemySO: {fileID: 0}
+  currentHP: 0
+  defeatShakeDuration: 3
+  defeatShakeMagnitude: 0.2
+  fallDistance: 200
+  slideDistance: 200
+--- !u!114 &1606295680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606295673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1aaab429a4eac645a6f38db46f7a003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemySOs:
+  - {fileID: 11400000, guid: d9775de95725ec44bb62a763550886a8, type: 2}
+  enemyHP: {fileID: 1606295679}
 --- !u!1 &1791493072
 GameObject:
   m_ObjectHideFlags: 0

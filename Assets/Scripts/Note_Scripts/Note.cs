@@ -10,6 +10,7 @@ public class Note : MonoBehaviour
 
     private void Update()
     {
+        if (Game_Manager.instance.isCombatActive == false) Destroy(gameObject);
         if (noteSO == null) return;
 
         transform.position += Vector3.down * noteSO.noteSpeed * Game_Manager.instance.GetDifficultyLevel() * Time.deltaTime;

@@ -10,16 +10,16 @@ public class Game_Manager : MonoBehaviour
     [SerializeField] private float difficultylevel = 1f;
     [SerializeField] private float difficultyMultiplier = 1.2f;
 
+    public bool isCombatActive;
     public Enemy_SO currentEnemy;
     public Player_Combat playerCombat;
     public Note_SO[] currentNotes
     => currentEnemy.attackTypes.Concat(playerCombat.attackTypes).ToArray();
 
-
-
     [Header("Persistent Objects")]
     public GameObject[] persistentObjects;
 
+    #region Persistent data marking and Singleton methods
     private void Awake()
     {
         if (instance == null)
@@ -57,6 +57,7 @@ public class Game_Manager : MonoBehaviour
         }
         Destroy(gameObject);
     }
+    #endregion
 
     public float GetDifficultyLevel()
     {
