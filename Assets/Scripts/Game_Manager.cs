@@ -14,7 +14,7 @@ public class Game_Manager : MonoBehaviour
     public Enemy_SO currentEnemy;
     public Player_Combat playerCombat;
     public Note_SO[] currentNotes
-    => currentEnemy.attackTypes.Concat(playerCombat.attackTypes).ToArray();
+    => currentEnemy.attackTypes.Concat(Stats_Manager.instance.attackTypes).ToArray();
 
     [Header("Persistent Objects")]
     public GameObject[] persistentObjects;

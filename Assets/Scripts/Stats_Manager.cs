@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class Stats_Manager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public static Stats_Manager instance;
 
-    // Update is called once per frame
-    void Update()
+    [Header("Player Stats")]
+    public float damage;
+    public float currentHP;
+    public float maxHP;
+    public Note_SO[] attackTypes;
+
+    private void Awake()
     {
-        
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

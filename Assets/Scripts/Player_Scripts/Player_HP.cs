@@ -16,6 +16,10 @@ public class Player_HP : MonoBehaviour
     private Vector3 originalCameraPosition;
     private Vector3 originalPlayerPosition;
 
+    [SerializeField] private TMP_Text hpText;
+    [SerializeField] private Slider hpBar;
+    [SerializeField] private Animator hpBarAnim;
+
     #region Events subscriber
     private void OnEnable()
     {
@@ -30,10 +34,11 @@ public class Player_HP : MonoBehaviour
     }
     #endregion
 
-    private void Start()
+    private void Awake()
     {
         originalCameraPosition = mainCamera.transform.position;
         originalPlayerPosition = playerPosition.position;
+        UpdateUI();
     }
 
     private void NoteMiss()
@@ -51,7 +56,21 @@ public class Player_HP : MonoBehaviour
 
     private void ChangeHP(float amount)
     {
+        Stats_Manager.instance.currentHP -= amount;
         Shake();
+        UpdateUI();
+        hpBarAnim.Play("HP_Decrease");
+        if (Stats_Manager.instance.currentHP <= 0)
+        {
+            Game_Manager.instance.isCombatActive = false;
+        }
+    }
+
+    private void UpdateUI()
+    {
+        hpText.text = Mathf.CeilToInt(Stats_Manager.instance.currentHP) + "/" + Mathf.CeilToInt(Stats_Manager.instance.maxHP);
+        hpBar.maxValue = Stats_Manager.instance.maxHP;
+        hpBar.value = Stats_Manager.instance.currentHP;
     }
 
     #region Camera shake methods

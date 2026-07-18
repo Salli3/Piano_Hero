@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using Unity.Mathematics;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +10,7 @@ public class Enemy_HP : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     [SerializeField] private RectTransform enemyPosition;
     [SerializeField] private Image enemyImage;
+    [SerializeField] private Animator hpBarAnim;
     [SerializeField] private float duration;
     [SerializeField] private float magnitude;
     private Coroutine shakeRoutine;
@@ -18,6 +19,8 @@ public class Enemy_HP : MonoBehaviour
 
     [Header("Enemy HP")]
     public Enemy_SO enemySO;
+    [SerializeField] private TMP_Text hpText;
+    [SerializeField] private Slider hpBar;
     [SerializeField] private float currentHP;
     public static event Action OnEnemyDefeated;
 
@@ -55,6 +58,7 @@ public class Enemy_HP : MonoBehaviour
         currentHP = enemySO.enemyHP;
         enemyImage.sprite = enemySO.enemySprite;
         StartCoroutine(EnemyAppear());
+        UpdateUI();
     }
 
     private void NoteHit(Note_SO note)
@@ -69,11 +73,20 @@ public class Enemy_HP : MonoBehaviour
     {
         currentHP -= amount;
         Shake();
+        UpdateUI();
+        hpBarAnim.Play("HP_Decrease");
         if (currentHP <= 0)
         {
             Game_Manager.instance.isCombatActive = false;
             StartCoroutine(EnemyDefeat());
         }
+    }
+
+    private void UpdateUI()
+    {
+        hpText.text = Mathf.CeilToInt(currentHP) + "/" + Mathf.CeilToInt(enemySO.enemyHP);
+        hpBar.maxValue = enemySO.enemyHP;
+        hpBar.value = currentHP;
     }
 
     #region Camera shake methods
