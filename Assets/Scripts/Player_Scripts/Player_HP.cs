@@ -20,20 +20,6 @@ public class Player_HP : MonoBehaviour
     [SerializeField] private Slider hpBar;
     [SerializeField] private Animator hpBarAnim;
 
-    #region Events subscriber
-    private void OnEnable()
-    {
-        Combat_Events.OnNoteMiss += NoteMiss;
-        Combat_Events.OnNoteExit += NoteExit;
-    }
-
-    private void OnDisable()
-    {
-        Combat_Events.OnNoteMiss -= NoteMiss;
-        Combat_Events.OnNoteExit -= NoteExit;
-    }
-    #endregion
-
     private void Awake()
     {
         originalCameraPosition = mainCamera.transform.position;
@@ -41,36 +27,23 @@ public class Player_HP : MonoBehaviour
         UpdateUI();
     }
 
-    private void NoteMiss()
+    public void ChangeHP(float amount)
     {
-        ChangeHP(1);
-    }
-
-    private void NoteExit(Note_SO note)
-    {
-        if (note.isHostile)
-        {
-            ChangeHP(1);
-        }
-    }
-
-    private void ChangeHP(float amount)
-    {
-        Stats_Manager.instance.currentHP -= amount;
+        Game_Manager.instance.statsManager.currentHP -= amount;
         Shake();
         UpdateUI();
         hpBarAnim.Play("HP_Decrease");
-        if (Stats_Manager.instance.currentHP <= 0)
+        if (Game_Manager.instance.statsManager.currentHP <= 0)
         {
-            Game_Manager.instance.isCombatActive = false;
+            Game_Manager.instance.combatManager.isCombatActive = false;
         }
     }
 
     private void UpdateUI()
     {
-        hpText.text = Mathf.CeilToInt(Stats_Manager.instance.currentHP) + "/" + Mathf.CeilToInt(Stats_Manager.instance.maxHP);
-        hpBar.maxValue = Stats_Manager.instance.maxHP;
-        hpBar.value = Stats_Manager.instance.currentHP;
+        hpText.text = Mathf.CeilToInt(Game_Manager.instance.statsManager.currentHP) + "/" + Mathf.CeilToInt(Game_Manager.instance.statsManager.maxHP);
+        hpBar.maxValue = Game_Manager.instance.statsManager.maxHP;
+        hpBar.value = Game_Manager.instance.statsManager.currentHP;
     }
 
     #region Camera shake methods

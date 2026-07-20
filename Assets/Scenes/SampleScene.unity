@@ -1266,6 +1266,8 @@ GameObject:
   m_Component:
   - component: {fileID: 717734309}
   - component: {fileID: 717734308}
+  - component: {fileID: 717734311}
+  - component: {fileID: 717734310}
   m_Layer: 0
   m_Name: Game_Manager
   m_TagString: Untagged
@@ -1285,11 +1287,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75dd0d50bb755814f8192717e8c98b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficultylevel: 1
-  difficultyMultiplier: 1.2
-  isCombatActive: 0
-  currentEnemy: {fileID: 0}
-  playerCombat: {fileID: 0}
+  combatManager: {fileID: 717734310}
+  statsManager: {fileID: 717734311}
   persistentObjects: []
 --- !u!4 &717734309
 Transform:
@@ -1306,6 +1305,46 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &717734310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717734307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61a2c93f26ba00f41aab967c0c24ea91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficultylevel: 1
+  difficultyMultiplier: 1.2
+  playerHP: {fileID: 880397429}
+  playerAttackTypes:
+  - {fileID: 11400000, guid: 5bfcc0c4ab5798646b3a174c4e12d198, type: 2}
+  - {fileID: 11400000, guid: 94de62c32f3278a4f8500b6ee1a0bcca, type: 2}
+  - {fileID: 11400000, guid: 41cf67b8ccd6b1a4896096141122342f, type: 2}
+  enemySOs:
+  - {fileID: 11400000, guid: d9775de95725ec44bb62a763550886a8, type: 2}
+  - {fileID: 11400000, guid: fd3660c20d2d6bb4fa23d442893aa2a3, type: 2}
+  enemyHP: {fileID: 1606295679}
+  currentEnemy: {fileID: 0}
+  isCombatActive: 0
+--- !u!114 &717734311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717734307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55a660bb7ec515d47a80173dae79a85c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  currentHP: 81.46
+  maxHP: 10
 --- !u!1 &729790557
 GameObject:
   m_ObjectHideFlags: 0
@@ -1507,55 +1546,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1149875618}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &798028504
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 798028506}
-  - component: {fileID: 798028505}
-  m_Layer: 0
-  m_Name: Stats_Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &798028505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 798028504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55a660bb7ec515d47a80173dae79a85c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
-  currentHP: 10
-  maxHP: 10
-  attackTypes:
-  - {fileID: 11400000, guid: 5bfcc0c4ab5798646b3a174c4e12d198, type: 2}
---- !u!4 &798028506
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 798028504}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1070.2234, y: 383.7726, z: -2.339499}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &810942938
 GameObject:
   m_ObjectHideFlags: 0
@@ -1634,7 +1624,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1018443116}
   m_HandleRect: {fileID: 0}
@@ -2648,7 +2638,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 878027756}
   m_HandleRect: {fileID: 0}
@@ -2760,7 +2750,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1557902588}
   m_HandleRect: {fileID: 0}
@@ -2897,7 +2887,6 @@ GameObject:
   - component: {fileID: 1606295676}
   - component: {fileID: 1606295675}
   - component: {fileID: 1606295679}
-  - component: {fileID: 1606295680}
   m_Layer: 5
   m_Name: Enemy
   m_TagString: Untagged
@@ -3029,21 +3018,6 @@ MonoBehaviour:
   defeatShakeMagnitude: 0.2
   fallDistance: 200
   slideDistance: 200
---- !u!114 &1606295680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1606295673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1aaab429a4eac645a6f38db46f7a003, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemySOs:
-  - {fileID: 11400000, guid: d9775de95725ec44bb62a763550886a8, type: 2}
-  enemyHP: {fileID: 1606295679}
 --- !u!1 &1648253036
 GameObject:
   m_ObjectHideFlags: 0
@@ -3829,7 +3803,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 103415072}
   m_HandleRect: {fileID: 0}
@@ -3848,7 +3822,6 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 443195252}
   - {fileID: 717734309}
-  - {fileID: 798028506}
   - {fileID: 880397424}
   - {fileID: 1606295674}
   - {fileID: 1149875618}

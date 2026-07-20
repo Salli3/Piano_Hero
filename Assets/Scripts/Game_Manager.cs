@@ -7,14 +7,8 @@ public class Game_Manager : MonoBehaviour
 {
     public static Game_Manager instance;
 
-    [SerializeField] private float difficultylevel = 1f;
-    [SerializeField] private float difficultyMultiplier = 1.2f;
-
-    public bool isCombatActive;
-    public Enemy_SO currentEnemy;
-    public Player_Combat playerCombat;
-    public Note_SO[] currentNotes
-    => currentEnemy.attackTypes.Concat(Stats_Manager.instance.attackTypes).ToArray();
+    public Combat_Manager combatManager;
+    public Stats_Manager statsManager;
 
     [Header("Persistent Objects")]
     public GameObject[] persistentObjects;
@@ -58,9 +52,4 @@ public class Game_Manager : MonoBehaviour
         Destroy(gameObject);
     }
     #endregion
-
-    public float GetDifficultyLevel()
-    {
-        return difficultylevel;
-    }
 }

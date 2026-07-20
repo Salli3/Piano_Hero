@@ -34,18 +34,6 @@ public class Enemy_HP : MonoBehaviour
     [SerializeField] private float fallDistance;
     [SerializeField] private float slideDistance;
 
-    #region Events subscriber
-    private void OnEnable()
-    {
-        Combat_Events.OnNoteHit += NoteHit;
-    }
-
-    private void OnDisable()
-    {
-        Combat_Events.OnNoteHit -= NoteHit;
-    }
-    #endregion
-
     private void Awake()
     {
         originalCameraPosition = mainCamera.transform.position;
@@ -54,31 +42,27 @@ public class Enemy_HP : MonoBehaviour
 
     public void SetEnemy(Enemy_SO newEnemy)
     {
-        enemySO = Game_Manager.instance.currentEnemy;
+        enemySO = newEnemy;
         currentHP = enemySO.enemyHP;
         enemyImage.sprite = enemySO.enemySprite;
         StartCoroutine(EnemyAppear());
         UpdateUI();
     }
 
-    private void NoteHit(Note_SO note)
+    public void ChangeHP(float amount)
     {
-        if (!note.isHostile)
-        {
-            ChangeHP(1);
-        }
-    }
-
-    private void ChangeHP(float amount)
-    {
-        currentHP -= amount;
-        Shake();
+        currentHP -= amount;        
         UpdateUI();
-        hpBarAnim.Play("HP_Decrease");
-        if (currentHP <= 0)
+
+        if (amount > 0)
         {
-            Game_Manager.instance.isCombatActive = false;
-            StartCoroutine(EnemyDefeat());
+            Shake();
+            hpBarAnim.Play("HP_Decrease");
+            if (currentHP <= 0)
+            {
+                Game_Manager.instance.combatManager.isCombatActive = false;
+                StartCoroutine(EnemyDefeat());
+            }
         }
     }
 
@@ -152,7 +136,7 @@ public class Enemy_HP : MonoBehaviour
 
         enemyPosition.position = originalEnemyPosition;
         enemyImage.color = new Color(startColor.r, startColor.g, startColor.b, 1f);
-        Game_Manager.instance.isCombatActive = true;
+        Game_Manager.instance.combatManager.isCombatActive = true;
     }
 
     private IEnumerator EnemyDefeat()
