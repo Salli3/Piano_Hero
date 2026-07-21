@@ -1343,8 +1343,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  currentHP: 81.46
-  maxHP: 10
+  currentHP: 100
+  maxHP: 100
 --- !u!1 &729790557
 GameObject:
   m_ObjectHideFlags: 0

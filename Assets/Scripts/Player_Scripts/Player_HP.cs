@@ -30,12 +30,16 @@ public class Player_HP : MonoBehaviour
     public void ChangeHP(float amount)
     {
         Game_Manager.instance.statsManager.currentHP -= amount;
-        Shake();
         UpdateUI();
-        hpBarAnim.Play("HP_Decrease");
-        if (Game_Manager.instance.statsManager.currentHP <= 0)
+
+        if (amount > 0)
         {
-            Game_Manager.instance.combatManager.isCombatActive = false;
+            Shake();
+            hpBarAnim.Play("HP_Decrease");
+            if (Game_Manager.instance.statsManager.currentHP <= 0)
+            {
+                Game_Manager.instance.combatManager.isCombatActive = false;
+            }
         }
     }
 

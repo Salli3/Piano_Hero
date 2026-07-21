@@ -58,7 +58,7 @@ public class Enemy_HP : MonoBehaviour
         {
             Shake();
             hpBarAnim.Play("HP_Decrease");
-            if (currentHP <= 0)
+            if (currentHP <= 0 && Game_Manager.instance.combatManager.isCombatActive == true)
             {
                 Game_Manager.instance.combatManager.isCombatActive = false;
                 StartCoroutine(EnemyDefeat());

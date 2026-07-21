@@ -82,11 +82,15 @@ public class Combat_Manager : MonoBehaviour
     {
         playerHP.ChangeHP(1);
     }
+
     private void OnNoteExit(Note_SO note)
     {
-        for (int i = 0; i < note.noteAttackTime; i++)
+        if (note.isHostile == true)
         {
-            playerHP.ChangeHP(note.noteDamage);
+            for (int i = 0; i < note.noteAttackTime; i++)
+            {
+                playerHP.ChangeHP(note.noteDamage);
+            }
         }
     }
 
