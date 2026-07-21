@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using Unity.Mathematics;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +10,7 @@ public class Enemy_HP : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     [SerializeField] private RectTransform enemyPosition;
     [SerializeField] private Image enemyImage;
+    [SerializeField] private Animator hpBarAnim;
     [SerializeField] private float duration;
     [SerializeField] private float magnitude;
     private Coroutine shakeRoutine;
@@ -18,6 +19,8 @@ public class Enemy_HP : MonoBehaviour
 
     [Header("Enemy HP")]
     public Enemy_SO enemySO;
+    [SerializeField] private TMP_Text hpText;
+    [SerializeField] private Slider hpBar;
     [SerializeField] private float currentHP;
     public static event Action OnEnemyDefeated;
 
@@ -31,18 +34,6 @@ public class Enemy_HP : MonoBehaviour
     [SerializeField] private float fallDistance;
     [SerializeField] private float slideDistance;
 
-    #region Events subscriber
-    private void OnEnable()
-    {
-        Combat_Events.OnNoteHit += NoteHit;
-    }
-
-    private void OnDisable()
-    {
-        Combat_Events.OnNoteHit -= NoteHit;
-    }
-    #endregion
-
     private void Awake()
     {
         originalCameraPosition = mainCamera.transform.position;
@@ -51,29 +42,35 @@ public class Enemy_HP : MonoBehaviour
 
     public void SetEnemy(Enemy_SO newEnemy)
     {
-        enemySO = Game_Manager.instance.currentEnemy;
+        enemySO = newEnemy;
         currentHP = enemySO.enemyHP;
         enemyImage.sprite = enemySO.enemySprite;
         StartCoroutine(EnemyAppear());
+        UpdateUI();
     }
 
-    private void NoteHit(Note_SO note)
+    public void ChangeHP(float amount)
     {
-        if (!note.isHostile)
+        currentHP -= amount;        
+        UpdateUI();
+
+        if (amount > 0)
         {
-            ChangeHP(1);
+            Shake();
+            hpBarAnim.Play("HP_Decrease");
+            if (currentHP <= 0 && Game_Manager.instance.combatManager.isCombatActive == true)
+            {
+                Game_Manager.instance.combatManager.isCombatActive = false;
+                StartCoroutine(EnemyDefeat());
+            }
         }
     }
 
-    private void ChangeHP(float amount)
+    private void UpdateUI()
     {
-        currentHP -= amount;
-        Shake();
-        if (currentHP <= 0)
-        {
-            Game_Manager.instance.isCombatActive = false;
-            StartCoroutine(EnemyDefeat());
-        }
+        hpText.text = Mathf.CeilToInt(currentHP) + "/" + Mathf.CeilToInt(enemySO.enemyHP);
+        hpBar.maxValue = enemySO.enemyHP;
+        hpBar.value = currentHP;
     }
 
     #region Camera shake methods
@@ -139,7 +136,7 @@ public class Enemy_HP : MonoBehaviour
 
         enemyPosition.position = originalEnemyPosition;
         enemyImage.color = new Color(startColor.r, startColor.g, startColor.b, 1f);
-        Game_Manager.instance.isCombatActive = true;
+        Game_Manager.instance.combatManager.isCombatActive = true;
     }
 
     private IEnumerator EnemyDefeat()

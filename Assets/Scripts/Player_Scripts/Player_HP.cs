@@ -16,42 +16,38 @@ public class Player_HP : MonoBehaviour
     private Vector3 originalCameraPosition;
     private Vector3 originalPlayerPosition;
 
-    #region Events subscriber
-    private void OnEnable()
-    {
-        Combat_Events.OnNoteMiss += NoteMiss;
-        Combat_Events.OnNoteExit += NoteExit;
-    }
+    [SerializeField] private TMP_Text hpText;
+    [SerializeField] private Slider hpBar;
+    [SerializeField] private Animator hpBarAnim;
 
-    private void OnDisable()
-    {
-        Combat_Events.OnNoteMiss -= NoteMiss;
-        Combat_Events.OnNoteExit -= NoteExit;
-    }
-    #endregion
-
-    private void Start()
+    private void Awake()
     {
         originalCameraPosition = mainCamera.transform.position;
         originalPlayerPosition = playerPosition.position;
+        UpdateUI();
     }
 
-    private void NoteMiss()
+    public void ChangeHP(float amount)
     {
-        ChangeHP(1);
-    }
+        Game_Manager.instance.statsManager.currentHP -= amount;
+        UpdateUI();
 
-    private void NoteExit(Note_SO note)
-    {
-        if (note.isHostile)
+        if (amount > 0)
         {
-            ChangeHP(1);
+            Shake();
+            hpBarAnim.Play("HP_Decrease");
+            if (Game_Manager.instance.statsManager.currentHP <= 0)
+            {
+                Game_Manager.instance.combatManager.isCombatActive = false;
+            }
         }
     }
 
-    private void ChangeHP(float amount)
+    private void UpdateUI()
     {
-        Shake();
+        hpText.text = Mathf.CeilToInt(Game_Manager.instance.statsManager.currentHP) + "/" + Mathf.CeilToInt(Game_Manager.instance.statsManager.maxHP);
+        hpBar.maxValue = Game_Manager.instance.statsManager.maxHP;
+        hpBar.value = Game_Manager.instance.statsManager.currentHP;
     }
 
     #region Camera shake methods

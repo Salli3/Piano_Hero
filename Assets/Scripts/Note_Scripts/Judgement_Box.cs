@@ -8,11 +8,13 @@ public class Judgement_Box : MonoBehaviour
     [SerializeField] private Collider2D judgeBoxCollider;
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private LayerMask noteLayer;
+    private Vector3 originalScale;
 
     private void Awake()
     {
         judgeBoxCollider = GetComponent<BoxCollider2D>();
         sr = GetComponent<SpriteRenderer>();
+        originalScale = transform.localScale;
     }
 
     public void TryHitNote()
@@ -34,7 +36,6 @@ public class Judgement_Box : MonoBehaviour
 
     private IEnumerator hitRespond()
     {
-        Vector3 originalScale = transform.localScale;
         transform.localScale = originalScale * 1.2f;
 
         yield return new WaitForSeconds(0.1f);

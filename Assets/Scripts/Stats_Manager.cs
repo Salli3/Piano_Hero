@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class Stats_Manager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [Header("Player Stats")]
+    public float damage;
+    public float currentHP;
+    public float maxHP;
 }
