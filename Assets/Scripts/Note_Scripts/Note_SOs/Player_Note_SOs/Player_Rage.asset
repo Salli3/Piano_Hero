@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d4fad53d7ff5ac4991db805b5e086b9, type: 3}
-  m_Name: Player_Enguard
+  m_Name: Player_Rage
   m_EditorClassIdentifier: 
-  noteName: Enguard
+  noteName: Rage
   noteSpeed: 10
   noteDamage: 0
-  noteAttackTime: 0
+  noteAttackTime: 1
   isHostile: 0
-  noteEffect: {fileID: 11400000, guid: f85a2e37b04a10b45894041431a85267, type: 2}
+  noteEffect: {fileID: 11400000, guid: 739fe974eea96a54cb22b5ebe98881f5, type: 2}
