@@ -23,6 +23,9 @@ public class Combat_Manager : MonoBehaviour
     public Note_SO[] currentNotes
     => playerAttackTypes.Concat(currentEnemy.attackTypes).ToArray();
 
+    [Header("Effect info")]
+    [SerializeField] private int block;
+
     #region Event subscribers
     private void OnEnable()
     {
@@ -56,6 +59,12 @@ public class Combat_Manager : MonoBehaviour
         }
     }
 
+    #region Note effect helper methods
+    public void SetBlockAttack(int num) => block = num;
+
+    #endregion
+
+    #region Combat methods
     private void OnNoteHit(Note_SO note)
     {
         if (note.isHostile == true)
@@ -65,6 +74,8 @@ public class Combat_Manager : MonoBehaviour
         }
         else
         {
+            note.noteEffect?.Apply(this, note);
+
             StartCoroutine(AttackInterval(note));
         }
     }
@@ -85,6 +96,12 @@ public class Combat_Manager : MonoBehaviour
 
     private void OnNoteExit(Note_SO note)
     {
+        if (block > 0)
+        {
+            block--;
+            return;
+        }
+
         if (note.isHostile == true)
         {
             for (int i = 0; i < note.noteAttackTime; i++)
@@ -93,6 +110,7 @@ public class Combat_Manager : MonoBehaviour
             }
         }
     }
+    #endregion
 
     #region Difficulty level setter/getter
     public float GetDifficultyLevel()

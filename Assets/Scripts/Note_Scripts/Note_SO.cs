@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NoteSO")]
+[CreateAssetMenu(fileName = "Notes/NoteSO")]
 public class Note_SO : ScriptableObject
 {
     public string noteName;
@@ -11,4 +11,7 @@ public class Note_SO : ScriptableObject
     public float noteAttackTime;
     public bool isHostile;
     public Color noteColor => isHostile ? Color.red : Color.blue;
+
+    public Note_Effect noteEffect;
 }
+

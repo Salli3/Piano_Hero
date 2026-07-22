@@ -1318,18 +1318,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficultylevel: 1
-  difficultyMultiplier: 1.2
+  difficultyMultiplier: 1.1
   playerHP: {fileID: 880397429}
   playerAttackTypes:
   - {fileID: 11400000, guid: 5bfcc0c4ab5798646b3a174c4e12d198, type: 2}
   - {fileID: 11400000, guid: 94de62c32f3278a4f8500b6ee1a0bcca, type: 2}
   - {fileID: 11400000, guid: 41cf67b8ccd6b1a4896096141122342f, type: 2}
+  - {fileID: 11400000, guid: 16794b889c2732a42b0fe1710562dc8e, type: 2}
   enemySOs:
   - {fileID: 11400000, guid: d9775de95725ec44bb62a763550886a8, type: 2}
   - {fileID: 11400000, guid: fd3660c20d2d6bb4fa23d442893aa2a3, type: 2}
   enemyHP: {fileID: 1606295679}
   currentEnemy: {fileID: 0}
   isCombatActive: 0
+  block: 0
 --- !u!114 &717734311
 MonoBehaviour:
   m_ObjectHideFlags: 0
