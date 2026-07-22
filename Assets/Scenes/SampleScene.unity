@@ -1318,18 +1318,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficultylevel: 1
-  difficultyMultiplier: 1.2
+  difficultyMultiplier: 1.1
   playerHP: {fileID: 880397429}
   playerAttackTypes:
-  - {fileID: 11400000, guid: 5bfcc0c4ab5798646b3a174c4e12d198, type: 2}
-  - {fileID: 11400000, guid: 94de62c32f3278a4f8500b6ee1a0bcca, type: 2}
-  - {fileID: 11400000, guid: 41cf67b8ccd6b1a4896096141122342f, type: 2}
+  - {fileID: 11400000, guid: 69b847ab97aff654886ec36a2d3f58e9, type: 2}
   enemySOs:
   - {fileID: 11400000, guid: d9775de95725ec44bb62a763550886a8, type: 2}
   - {fileID: 11400000, guid: fd3660c20d2d6bb4fa23d442893aa2a3, type: 2}
   enemyHP: {fileID: 1606295679}
   currentEnemy: {fileID: 0}
   isCombatActive: 0
+  damage: 0
+  block: 0
+  stackingDamage: 0
 --- !u!114 &717734311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2276,8 +2277,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 8
   height: 2
-  minInterval: 0.5
-  maxInterval: 1.5
+  minInterval: 0.1
+  maxInterval: 1
   timer: 0
   spawnInterval: 0
   notePrefab: {fileID: 528057367816239142, guid: 4a677fecf346aef4bb5df375b8673e19, type: 3}

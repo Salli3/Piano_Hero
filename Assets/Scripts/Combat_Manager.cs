@@ -23,6 +23,11 @@ public class Combat_Manager : MonoBehaviour
     public Note_SO[] currentNotes
     => playerAttackTypes.Concat(currentEnemy.attackTypes).ToArray();
 
+    [Header("Effect info")]
+    [SerializeField] private float damage;
+    [SerializeField] private int block;
+    [SerializeField] private int stackingDamage;
+
     #region Event subscribers
     private void OnEnable()
     {
@@ -56,6 +61,34 @@ public class Combat_Manager : MonoBehaviour
         }
     }
 
+    #region Note effect helper methods
+    public void SetBlockAttack(int num) => block = num;
+    public void SetStackingDamage(int num)
+    {
+        stackingDamage += num;
+        damage = stackingDamage;
+    }
+    public void SetNoteClear(int num)
+    {
+        Note[] allNotes = FindObjectsByType<Note>(FindObjectsSortMode.None);
+        int noteLayer = LayerMask.NameToLayer("Note");
+
+        int clearedCount = 0;
+
+        foreach (Note note in allNotes)
+        {
+            if (note.gameObject.layer == noteLayer && note.noteSO.isHostile)
+            {
+                clearedCount++;
+                Destroy(note.gameObject);
+            }
+        }
+
+        damage = clearedCount * num;
+    }
+    #endregion
+
+    #region Combat methods
     private void OnNoteHit(Note_SO note)
     {
         if (note.isHostile == true)
@@ -65,6 +98,9 @@ public class Combat_Manager : MonoBehaviour
         }
         else
         {
+            damage = note.noteDamage;
+            note.noteEffect?.Apply(this, note);
+
             StartCoroutine(AttackInterval(note));
         }
     }
@@ -73,18 +109,30 @@ public class Combat_Manager : MonoBehaviour
     {
         for (int i = 0; i < note.noteAttackTime; i++)
         {
-            enemyHP.ChangeHP(note.noteDamage);
+            enemyHP.ChangeHP(damage);
             yield return new WaitForSecondsRealtime(0.1f);
         }
     }
 
     private void OnNoteMiss()
     {
+        if (block > 0)
+        {
+            block--;
+            return;
+        }
+
         playerHP.ChangeHP(1);
     }
 
     private void OnNoteExit(Note_SO note)
     {
+        if (block > 0)
+        {
+            block--;
+            return;
+        }
+
         if (note.isHostile == true)
         {
             for (int i = 0; i < note.noteAttackTime; i++)
@@ -93,6 +141,7 @@ public class Combat_Manager : MonoBehaviour
             }
         }
     }
+    #endregion
 
     #region Difficulty level setter/getter
     public float GetDifficultyLevel()
