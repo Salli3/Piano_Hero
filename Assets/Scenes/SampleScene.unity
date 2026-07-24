@@ -406,7 +406,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -238704863, guid: e19ef249b08ee35498ff62f9363fdd10, type: 3}
+  m_Sprite: {fileID: 635178720, guid: e19ef249b08ee35498ff62f9363fdd10, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1321,7 +1321,11 @@ MonoBehaviour:
   difficultyMultiplier: 1.1
   playerHP: {fileID: 880397429}
   playerAttackTypes:
+  - {fileID: 11400000, guid: 2fb0fa3ae0c24c646a208f4eaa1feb9f, type: 2}
   - {fileID: 11400000, guid: 16794b889c2732a42b0fe1710562dc8e, type: 2}
+  - {fileID: 11400000, guid: 5bfcc0c4ab5798646b3a174c4e12d198, type: 2}
+  - {fileID: 11400000, guid: 69b847ab97aff654886ec36a2d3f58e9, type: 2}
+  - {fileID: 11400000, guid: 072a623d48de1d2498133c912f74ea36, type: 2}
   enemyHP: {fileID: 1606295679}
   currentEnemy: {fileID: 0}
   enemySOs:
@@ -1945,7 +1949,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 0a2dbacaf930bb449adc4e8b6ef647a3, type: 3}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1953,7 +1957,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.1
 --- !u!222 &897458166
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2187,7 +2191,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -222133603, guid: e19ef249b08ee35498ff62f9363fdd10, type: 3}
+  m_Sprite: {fileID: -238704863, guid: e19ef249b08ee35498ff62f9363fdd10, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3137,7 +3141,7 @@ MonoBehaviour:
   - {fileID: 1143018503}
   - {fileID: 1860000911}
   - {fileID: 214418147}
-  triggerKeys: 14010000110100001301000012010000
+  triggerKeys: 14010000120100001101000013010000
 --- !u!1 &1814976047
 GameObject:
   m_ObjectHideFlags: 0
@@ -3249,7 +3253,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 635178720, guid: e19ef249b08ee35498ff62f9363fdd10, type: 3}
+  m_Sprite: {fileID: -222133603, guid: e19ef249b08ee35498ff62f9363fdd10, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3706,7 +3710,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 0a2dbacaf930bb449adc4e8b6ef647a3, type: 3}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3714,7 +3718,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.1
 --- !u!222 &2033719364
 CanvasRenderer:
   m_ObjectHideFlags: 0
