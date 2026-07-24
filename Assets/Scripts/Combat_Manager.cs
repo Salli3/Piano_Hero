@@ -23,7 +23,6 @@ public class Combat_Manager : MonoBehaviour
     public Note_SO[] currentNotes
     => playerAttackTypes.Concat(currentEnemy.attackTypes).ToArray();
 
-    [Header("Effect info")]
     [SerializeField] private float damage;
     [SerializeField] private int block;
     [SerializeField] private int stackingDamage;
@@ -53,6 +52,7 @@ public class Combat_Manager : MonoBehaviour
 
     public void PickEnemy()
     {
+        stackingDamage = 0; //Reset stacking damage when pick new enemy
         currentEnemy = enemySOs[Random.Range(0, enemySOs.Length)];
         if (enemyHP != null)
         {
@@ -62,13 +62,9 @@ public class Combat_Manager : MonoBehaviour
     }
 
     #region Note effect helper methods
-    public void SetBlockAttack(int num) => block = num;
-    public void SetStackingDamage(int num)
-    {
-        stackingDamage += num;
-        damage = stackingDamage;
-    }
-    public void SetNoteClear(int num)
+    public void ApplyAttack(int num) => damage = num;
+    public void ApplyBlockAttack(int num) => block = num;
+    public void ApplyNoteClear(int num)
     {
         Note[] allNotes = FindObjectsByType<Note>(FindObjectsSortMode.None);
         int noteLayer = LayerMask.NameToLayer("Note");
@@ -86,6 +82,24 @@ public class Combat_Manager : MonoBehaviour
 
         damage = clearedCount * num;
     }
+    public void ApplyStackingDamage(int num)
+    {
+        stackingDamage += num;
+        damage = stackingDamage;
+    }
+    public void ApplyMultiHit(int damage, int hitTime)
+    {
+        this.damage = 0;
+        StartCoroutine(AttackInterval(damage, hitTime));
+    }
+    private IEnumerator AttackInterval(int damage, int hitTime)
+    {
+        for (int i = 0; i < hitTime; i++)
+        {
+            enemyHP.ChangeHP(damage);
+            yield return new WaitForSecondsRealtime(0.1f);
+        }
+    }
     #endregion
 
     #region Combat methods
@@ -98,24 +112,14 @@ public class Combat_Manager : MonoBehaviour
         }
         else
         {
-            damage = note.noteDamage;
-            note.noteEffect?.Apply(this, note);
-
-            StartCoroutine(AttackInterval(note));
-        }
-    }
-
-    private IEnumerator AttackInterval(Note_SO note)
-    {
-        for (int i = 0; i < note.noteAttackTime; i++)
-        {
+            note.Apply(this, note);
             enemyHP.ChangeHP(damage);
-            yield return new WaitForSecondsRealtime(0.1f);
         }
     }
 
     private void OnNoteMiss()
     {
+        if (isCombatActive == false) return;
         if (block > 0)
         {
             block--;
@@ -134,11 +138,8 @@ public class Combat_Manager : MonoBehaviour
         }
 
         if (note.isHostile == true)
-        {
-            for (int i = 0; i < note.noteAttackTime; i++)
-            {
-                playerHP.ChangeHP(note.noteDamage);
-            }
+        { 
+            playerHP.ChangeHP(1);
         }
     }
     #endregion

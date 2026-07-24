@@ -1321,7 +1321,7 @@ MonoBehaviour:
   difficultyMultiplier: 1.1
   playerHP: {fileID: 880397429}
   playerAttackTypes:
-  - {fileID: 11400000, guid: 69b847ab97aff654886ec36a2d3f58e9, type: 2}
+  - {fileID: 11400000, guid: 16794b889c2732a42b0fe1710562dc8e, type: 2}
   enemyHP: {fileID: 1606295679}
   currentEnemy: {fileID: 0}
   enemySOs:
