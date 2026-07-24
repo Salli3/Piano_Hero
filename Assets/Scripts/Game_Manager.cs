@@ -19,37 +19,37 @@ public class Game_Manager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
-            MarkPersistentObjects();
+            //DontDestroyOnLoad(gameObject);
+            //MarkPersistentObjects();
         }
         else
         {
-            CleanUpAndDestroy();
+            //CleanUpAndDestroy();
             return;
         }
     }
 
-    private void MarkPersistentObjects()
-    {
-        foreach (GameObject obj in persistentObjects)
-        {
-            if (obj != null)
-            {
-                DontDestroyOnLoad(obj);
-            }
-        }
-    }
+    //private void MarkPersistentObjects()
+    //{
+    //    foreach (GameObject obj in persistentObjects)
+    //    {
+    //        if (obj != null)
+    //        {
+    //            DontDestroyOnLoad(obj);
+    //        }
+    //    }
+    //}
 
-    private void CleanUpAndDestroy()
-    {
-        foreach (GameObject obj in persistentObjects)
-        {
-            if (obj != null)
-            {
-                Destroy(obj);
-            }
-        }
-        Destroy(gameObject);
-    }
+    //private void CleanUpAndDestroy()
+    //{
+    //    foreach (GameObject obj in persistentObjects)
+    //    {
+    //        if (obj != null)
+    //        {
+    //            Destroy(obj);
+    //        }
+    //    }
+    //    Destroy(gameObject);
+    //}
     #endregion
 }

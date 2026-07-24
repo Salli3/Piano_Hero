@@ -11,12 +11,12 @@ public class Combat_Manager : MonoBehaviour
 
     [Header("Player info")]
     [SerializeField] private Player_HP playerHP;
-    public Note_SO[] playerAttackTypes;
+    [SerializeField] private Note_SO[] playerAttackTypes;
 
     [Header("Enemy info")]
-    [SerializeField] private Enemy_SO[] enemySOs;
     [SerializeField] private Enemy_HP enemyHP;
-    public Enemy_SO currentEnemy;
+    [SerializeField] private Enemy_SO currentEnemy;
+    [SerializeField] private Enemy_SO[] enemySOs;
 
     [Header("Combat info")]
     public bool isCombatActive;
@@ -32,17 +32,17 @@ public class Combat_Manager : MonoBehaviour
     private void OnEnable()
     {
         Enemy_HP.OnEnemyDefeated += PickEnemy;
-        Combat_Events.OnNoteHit += OnNoteHit;
-        Combat_Events.OnNoteMiss += OnNoteMiss;
-        Combat_Events.OnNoteExit += OnNoteExit;
+        Judgement_Box.OnNoteHit += OnNoteHit;
+        Judgement_Box.OnNoteMiss += OnNoteMiss;
+        Note_Exit.OnNoteExit += OnNoteExit;
     }
 
     private void OnDisable()
     {
         Enemy_HP.OnEnemyDefeated -= PickEnemy;
-        Combat_Events.OnNoteHit -= OnNoteHit;
-        Combat_Events.OnNoteMiss -= OnNoteMiss;
-        Combat_Events.OnNoteExit -= OnNoteExit;
+        Judgement_Box.OnNoteHit -= OnNoteHit;
+        Judgement_Box.OnNoteMiss -= OnNoteMiss;
+        Note_Exit.OnNoteExit -= OnNoteExit;
     }
     #endregion
 
@@ -53,7 +53,7 @@ public class Combat_Manager : MonoBehaviour
 
     public void PickEnemy()
     {
-        Game_Manager.instance.combatManager.currentEnemy = enemySOs[Random.Range(0, enemySOs.Length)];
+        currentEnemy = enemySOs[Random.Range(0, enemySOs.Length)];
         if (enemyHP != null)
         {
             enemyHP.SetEnemy(currentEnemy);

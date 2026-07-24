@@ -10,6 +10,9 @@ public class Judgement_Box : MonoBehaviour
     [SerializeField] private LayerMask noteLayer;
     private Vector3 originalScale;
 
+    public static event Action<Note_SO> OnNoteHit;
+    public static event Action OnNoteMiss;
+
     private void Awake()
     {
         judgeBoxCollider = GetComponent<BoxCollider2D>();
@@ -25,11 +28,11 @@ public class Judgement_Box : MonoBehaviour
         if (hits.Length > 0)
         {
             hits[0].GetComponent<Note>().OnNoteHit();
-            Combat_Events.NoteHit(hits[0].GetComponent<Note>().noteSO);
+            OnNoteHit?.Invoke(hits[0].GetComponent<Note>().noteSO);
         }
         else
         {
-            Combat_Events.NoteMiss();
+            OnNoteMiss.Invoke();
             sr.color = Color.red;
         }
     }

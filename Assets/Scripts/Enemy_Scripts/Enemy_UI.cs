@@ -1,0 +1,152 @@
+using System.Collections;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class Enemy_UI : MonoBehaviour
+{
+    [Header("Hit respond")]
+    [SerializeField] private Camera mainCamera;
+    [SerializeField] private RectTransform enemyPosition;
+    [SerializeField] private Image enemyImage;
+    [SerializeField] private float duration;
+    [SerializeField] private float magnitude;
+    private Coroutine shakeRoutine;
+    private Vector3 originalCameraPosition;
+    private Vector3 originalEnemyPosition;
+
+    [SerializeField] private Animator hpBarAnim;
+    [SerializeField] private Slider hpBar;
+    [SerializeField] private TMP_Text hpText;
+
+    [Header("Appear")]
+    [SerializeField] private float appearDuration;
+    [SerializeField] private float appearSlideDistance;
+
+    [Header("Defeat")]
+    [SerializeField] private float defeatShakeDuration;
+    [SerializeField] private float defeatShakeMagnitude;
+    [SerializeField] private float fallDistance;
+    [SerializeField] private float slideDistance;
+
+    private void Awake()
+    {
+        originalCameraPosition = mainCamera.transform.position;
+        originalEnemyPosition = enemyPosition.position;
+    }
+
+    public void SetEnemyUI(Enemy_SO enemySO)
+    {
+        enemyImage.sprite = enemySO.enemySprite;
+        StartCoroutine(EnemyAppear());
+        UpdateUI(enemySO.enemyHP, enemySO.enemyHP);
+    }
+
+    public void UpdateUI(float currentHP, float maxHP)
+    {
+        hpText.text = Mathf.CeilToInt(currentHP) + "/" + Mathf.CeilToInt(maxHP);
+        hpBar.maxValue = maxHP;
+        hpBar.value = currentHP;
+    }
+
+    #region Camera shake methods
+    public void Shake()
+    {
+        hpBarAnim.Play("HP_Decrease");
+
+        if (shakeRoutine != null)
+        {
+            StopCoroutine(shakeRoutine);
+        }
+        shakeRoutine = StartCoroutine(DoShake());
+    }
+
+    private IEnumerator DoShake()
+    {
+        Time.timeScale = 0;
+        float elapsed = 0f;
+        enemyImage.color = Color.red;
+
+        while (elapsed < duration)
+        {
+            float x = Random.Range(-1f, 1f) * magnitude;
+            float y = Random.Range(-1f, 1f) * magnitude;
+
+            mainCamera.transform.position = originalCameraPosition + new Vector3(x, y, 0f);
+            enemyPosition.position = originalEnemyPosition + new Vector3(y * 100, x * 100, 0f);
+
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        mainCamera.transform.position = originalCameraPosition;
+        enemyPosition.position = originalEnemyPosition;
+        shakeRoutine = null;
+        enemyImage.color = Color.white;
+        Time.timeScale = 1;
+    }
+    #endregion
+
+    //TODO rework enemy appear animation
+    #region Enemy Appear and Defeat animation methods
+    private IEnumerator EnemyAppear()
+    {
+        float elapsed = 0f;
+        Color startColor = Color.white;
+        Vector3 startOffset = new Vector3(appearSlideDistance, 0f, 0f);
+
+        enemyPosition.position = originalEnemyPosition + startOffset;
+        enemyImage.color = new Color(startColor.r, startColor.g, startColor.b, 0f);
+
+        while (elapsed < appearDuration)
+        {
+            float t = elapsed / appearDuration;
+
+            enemyPosition.position = Vector3.Lerp(originalEnemyPosition + startOffset, originalEnemyPosition, t);
+
+            //Fade in
+            float alpha = Mathf.Lerp(0f, 1f, t);
+            enemyImage.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
+
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        enemyPosition.position = originalEnemyPosition;
+        enemyImage.color = new Color(startColor.r, startColor.g, startColor.b, 1f);
+        Game_Manager.instance.combatManager.isCombatActive = true;
+    }
+
+    public IEnumerator EnemyDefeat()
+    {
+        float elapsed = 0f;
+        Color startColor = Color.white;
+        Vector3 targetOffset = new Vector3(slideDistance, -fallDistance, 0f);
+
+        while (elapsed < defeatShakeDuration)
+        {
+            float t = elapsed / defeatShakeDuration;
+
+            //Slide
+            Vector3 fallPos = originalEnemyPosition + targetOffset * t;
+
+            //Shake
+            float x = Random.Range(-1f, 1f) * defeatShakeMagnitude;
+            float y = Random.Range(-1f, 1f) * defeatShakeMagnitude;
+            Vector3 shakeOffset = new Vector3(x * 100, y * 100, 0f);
+
+            enemyPosition.position = fallPos + shakeOffset;
+
+            //Fade out
+            float alpha = Mathf.Lerp(1f, 0f, t);
+            enemyImage.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
+
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        enemyPosition.position = originalEnemyPosition;
+        enemyImage.color = new Color(startColor.r, startColor.g, startColor.b, 0f);
+    }
+    #endregion
+}

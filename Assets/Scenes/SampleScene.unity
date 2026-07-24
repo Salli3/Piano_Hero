@@ -1322,11 +1322,11 @@ MonoBehaviour:
   playerHP: {fileID: 880397429}
   playerAttackTypes:
   - {fileID: 11400000, guid: 69b847ab97aff654886ec36a2d3f58e9, type: 2}
+  enemyHP: {fileID: 1606295679}
+  currentEnemy: {fileID: 0}
   enemySOs:
   - {fileID: 11400000, guid: d9775de95725ec44bb62a763550886a8, type: 2}
   - {fileID: 11400000, guid: fd3660c20d2d6bb4fa23d442893aa2a3, type: 2}
-  enemyHP: {fileID: 1606295679}
-  currentEnemy: {fileID: 0}
   isCombatActive: 0
   damage: 0
   block: 0
@@ -1748,6 +1748,7 @@ GameObject:
   - component: {fileID: 880397426}
   - component: {fileID: 880397425}
   - component: {fileID: 880397429}
+  - component: {fileID: 880397430}
   m_Layer: 5
   m_Name: Player
   m_TagString: Untagged
@@ -1863,14 +1864,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98a49196a620a414ba40a41db098cc27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerUI: {fileID: 880397430}
+--- !u!114 &880397430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880397423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48be7393216177140925594fad612128, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   mainCamera: {fileID: 519420031}
   playerPosition: {fileID: 434724810}
   playerImage: {fileID: 434724811}
   duration: 0.2
-  magnitude: 0.2
-  hpText: {fileID: 1287022651}
-  hpBar: {fileID: 1539915642}
+  magnitude: 0.3
   hpBarAnim: {fileID: 1539915641}
+  hpBar: {fileID: 1539915642}
+  hpText: {fileID: 1287022651}
 --- !u!1 &897458163
 GameObject:
   m_ObjectHideFlags: 0
@@ -2888,6 +2902,7 @@ GameObject:
   - component: {fileID: 1606295676}
   - component: {fileID: 1606295675}
   - component: {fileID: 1606295679}
+  - component: {fileID: 1606295680}
   m_Layer: 5
   m_Name: Enemy
   m_TagString: Untagged
@@ -3003,16 +3018,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3873b9c7303194144bbaf410ced1224e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyUI: {fileID: 1606295680}
+  enemySO: {fileID: 0}
+  currentHP: 0
+--- !u!114 &1606295680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606295673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815ff2138f909b843b16c25258eb721b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   mainCamera: {fileID: 519420031}
   enemyPosition: {fileID: 693149111}
   enemyImage: {fileID: 693149112}
-  hpBarAnim: {fileID: 810942939}
   duration: 0.1
   magnitude: 0.1
-  enemySO: {fileID: 0}
-  hpText: {fileID: 729790559}
+  hpBarAnim: {fileID: 810942939}
   hpBar: {fileID: 810942940}
-  currentHP: 0
+  hpText: {fileID: 729790559}
   appearDuration: 1
   appearSlideDistance: 200
   defeatShakeDuration: 3
