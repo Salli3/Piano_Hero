@@ -13,6 +13,8 @@ public class Game_Manager : MonoBehaviour
 
     [Header("Combat info")]
     [SerializeField] private int enemyCounter = 0;
+    [SerializeField] private int enemyPerRound = 3;
+    [SerializeField] private bool roundEnded;
     public bool isCombatActive;
 
     private void Awake()
@@ -34,6 +36,7 @@ public class Game_Manager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name == "Shop")
         {
             SceneManager.LoadScene("Battle");
+            roundEnded = false;
         }
     }
 
@@ -47,15 +50,16 @@ public class Game_Manager : MonoBehaviour
     {
         enemyCounter++;
         IncreaseDifficultyLevel();
-        if (enemyCounter >= 3)
+        if (enemyCounter >= enemyPerRound)
         {
+            roundEnded = true;
             EndCombat();
         }
     }
 
-    public int GetEnemyCounter()
+    public bool IsRoundEnded()
     {
-        return enemyCounter;
+        return roundEnded;
     }
 
     private void EndCombat()

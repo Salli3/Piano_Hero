@@ -49,6 +49,9 @@ public class Enemy_HP : MonoBehaviour
     {
         yield return StartCoroutine(enemyUI.EnemyDefeat());
         Game_Manager.instance.IncreaseEnemyCounter();
-        OnEnemyDefeated?.Invoke();
+        if (Game_Manager.instance.IsRoundEnded() == false)
+        {
+            OnEnemyDefeated?.Invoke();
+        }
     }
 }
