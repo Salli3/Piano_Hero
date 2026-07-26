@@ -7,11 +7,9 @@ public class Combat_Manager : MonoBehaviour
     [SerializeField] private Note_Effect_Handler noteEffectHandler;
     [SerializeField] private Player_HP playerHP;
     [SerializeField] private Enemy_HP enemyHP;
-    [SerializeField] private Enemy_SO currentEnemy;
     [SerializeField] private Enemy_SO[] enemySOs;
 
-    public Note_SO[] currentNotes
-    => Game_Manager.instance.statsManager.playerAttackTypes.Concat(currentEnemy.attackTypes).ToArray();
+    public Enemy_SO currentEnemy;
 
     #region Event subscribers
     private void OnEnable()

@@ -8,8 +8,8 @@ public class Game_Manager : MonoBehaviour
     public Stats_Manager statsManager;
 
     [Header("Difficulty settings")]
-    [SerializeField] private float difficultylevel = 1f;
-    [SerializeField] private float difficultyMultiplier = 1.1f;
+    [SerializeField] private float difficultylevel;
+    [SerializeField] private float difficultyMultiplier;
 
     [Header("Combat info")]
     [SerializeField] private int enemyCounter = 0;
