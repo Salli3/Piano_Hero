@@ -8,4 +8,5 @@ public class Stats_Manager : MonoBehaviour
     public float damage;
     public float currentHP;
     public float maxHP;
+    public Note_SO[] playerAttackTypes;
 }

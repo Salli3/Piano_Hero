@@ -7,8 +7,8 @@ public class Note_E_Multi_Hit : Note_SO
 {
     [SerializeField] private int damage;
     [SerializeField] private int hitTime;
-    public override void Apply(Combat_Manager combatManager, Note_SO note)
+    public override void Apply(Note_Effect_Handler noteEffectHandler, Note_SO note)
     {
-        combatManager.ApplyMultiHit(damage, hitTime);
+        noteEffectHandler.RunMultiHit(note, damage, hitTime);
     }
 }

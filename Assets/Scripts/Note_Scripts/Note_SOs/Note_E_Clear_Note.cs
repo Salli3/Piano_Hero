@@ -6,8 +6,9 @@ using UnityEngine;
 public class Note_E_Clear_Note : Note_SO
 {
     [SerializeField] private float damage;
-    public override void Apply(Combat_Manager combatManager, Note_SO note)
+    public override void Apply(Note_Effect_Handler noteEffectHandler, Note_SO note)
     {
-        combatManager.ApplyNoteClear(damage + Game_Manager.instance.statsManager.damage);
+        int cleared = noteEffectHandler.ClearNote();
+        noteEffectHandler.DealDamage(note, cleared * damage);
     }
 }

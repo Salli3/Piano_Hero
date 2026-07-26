@@ -10,9 +10,9 @@ public class Note : MonoBehaviour
 
     private void Update()
     {
-        if (Game_Manager.instance.combatManager.isCombatActive == false) Destroy(gameObject);
+        if (Game_Manager.instance.isCombatActive == false) Destroy(gameObject);
         if (noteSO == null) return;
-        transform.position += Vector3.down * noteSO.noteSpeed * Game_Manager.instance.combatManager.GetDifficultyLevel() * Time.deltaTime;
+        transform.position += Vector3.down * noteSO.noteSpeed * Game_Manager.instance.GetDifficultyLevel() * Time.deltaTime;
     }
 
     public void Init(Note_SO chosenNote, Transform spawnPoint)

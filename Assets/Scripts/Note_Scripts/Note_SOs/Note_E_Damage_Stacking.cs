@@ -6,8 +6,9 @@ using UnityEngine;
 public class Note_E_Damage_Stacking : Note_SO
 {
     [SerializeField] private float damage;
-    public override void Apply(Combat_Manager combatManager, Note_SO note)
+    public override void Apply(Note_Effect_Handler noteEffectHandler, Note_SO note)
     {
-        combatManager.ApplyStackingDamage(damage);
+        float stackedDamage = noteEffectHandler.StackDamage(damage);
+        noteEffectHandler.DealDamage(note, stackedDamage);
     }
 }

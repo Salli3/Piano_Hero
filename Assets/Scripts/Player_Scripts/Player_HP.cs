@@ -8,11 +8,6 @@ public class Player_HP : MonoBehaviour
 {
     [SerializeField] private Player_UI playerUI;
 
-    private void Start()
-    {
-        Game_Manager.instance.combatManager.RegisterPlayerHP(this);
-    }
-
     public void ChangeHP(float amount)
     {
         Game_Manager.instance.statsManager.currentHP -= amount;
@@ -23,7 +18,7 @@ public class Player_HP : MonoBehaviour
             playerUI.Shake();
             if (Game_Manager.instance.statsManager.currentHP <= 0)
             {
-                Game_Manager.instance.combatManager.isCombatActive = false;
+                Game_Manager.instance.isCombatActive = false;
             }
         }
     }

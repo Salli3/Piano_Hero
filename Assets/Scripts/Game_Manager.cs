@@ -5,10 +5,15 @@ public class Game_Manager : MonoBehaviour
 {
     public static Game_Manager instance;
 
-    public Combat_Manager combatManager;
     public Stats_Manager statsManager;
 
+    [Header("Difficulty settings")]
+    [SerializeField] private float difficultylevel = 1f;
+    [SerializeField] private float difficultyMultiplier = 1.1f;
+
+    [Header("Combat info")]
     [SerializeField] private int enemyCounter = 0;
+    public bool isCombatActive;
 
     private void Awake()
     {
@@ -20,6 +25,7 @@ public class Game_Manager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
     }
 
@@ -31,19 +37,32 @@ public class Game_Manager : MonoBehaviour
         }
     }
 
+    #region Difficulty level setter/getter
+    public float GetDifficultyLevel() => difficultylevel;
+    private void IncreaseDifficultyLevel() => difficultylevel *= difficultyMultiplier;
+    #endregion
+
+    #region Combat round management
     public void IncreaseEnemyCounter()
     {
         enemyCounter++;
+        IncreaseDifficultyLevel();
         if (enemyCounter >= 3)
         {
             EndCombat();
         }
     }
 
+    public int GetEnemyCounter()
+    {
+        return enemyCounter;
+    }
+
     private void EndCombat()
     {
         enemyCounter = 0;
-        combatManager.isCombatActive = false;
+        isCombatActive = false;
         SceneManager.LoadScene("Shop");
     }
+    #endregion
 }

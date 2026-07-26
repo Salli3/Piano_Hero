@@ -35,11 +35,10 @@ public class Enemy_UI : MonoBehaviour
         originalEnemyPosition = enemyPosition.position;
     }
 
-    public void SetEnemyUI(Enemy_SO enemySO)
+    public void SetEnemyUI(Enemy_SO enemySO, float currentHP, float maxHP)
     {
         enemyImage.sprite = enemySO.enemySprite;
-        StartCoroutine(EnemyAppear());
-        UpdateUI(enemySO.enemyHP, enemySO.enemyHP);
+        UpdateUI(currentHP, maxHP);
     }
 
     public void UpdateUI(float currentHP, float maxHP)
@@ -89,7 +88,7 @@ public class Enemy_UI : MonoBehaviour
 
     //TODO rework enemy appear animation
     #region Enemy Appear and Defeat animation methods
-    private IEnumerator EnemyAppear()
+    public IEnumerator EnemyAppear()
     {
         float elapsed = 0f;
         Color startColor = Color.white;
@@ -114,7 +113,6 @@ public class Enemy_UI : MonoBehaviour
 
         enemyPosition.position = originalEnemyPosition;
         enemyImage.color = new Color(startColor.r, startColor.g, startColor.b, 1f);
-        Game_Manager.instance.combatManager.isCombatActive = true;
     }
 
     public IEnumerator EnemyDefeat()
@@ -147,8 +145,6 @@ public class Enemy_UI : MonoBehaviour
 
         enemyPosition.position = originalEnemyPosition;
         enemyImage.color = new Color(startColor.r, startColor.g, startColor.b, 0f);
-
-        Game_Manager.instance.IncreaseEnemyCounter();
     }
     #endregion
 }
