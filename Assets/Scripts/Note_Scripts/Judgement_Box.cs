@@ -41,7 +41,7 @@ public class Judgement_Box : MonoBehaviour
     {
         transform.localScale = originalScale * 1.2f;
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSecondsRealtime(0.1f);
 
         transform.localScale = originalScale;
         sr.color = Color.white;

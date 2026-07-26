@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08221a141cbeee942935066122f60c6b, type: 3}
   m_Name: Player_Rage
   m_EditorClassIdentifier: 
-  noteName: Range
+  noteName: Rage
   noteSpeed: 10
   isHostile: 0
   stackingDamage: 1

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -45,8 +44,15 @@ public class Combat_Manager : MonoBehaviour
     }
     #endregion
 
-    private void Start()
+    public void RegisterEnemyHP(Enemy_HP hp)
     {
+        enemyHP = hp;
+        PickEnemy();
+    }
+
+    public void RegisterPlayerHP(Player_HP hp)
+    {
+        playerHP = hp;
         PickEnemy();
     }
 
@@ -113,7 +119,7 @@ public class Combat_Manager : MonoBehaviour
         else
         {
             note.Apply(this, note);
-            enemyHP.ChangeHP(damage);
+            enemyHP.ChangeHP(damage + Game_Manager.instance.statsManager.damage);
         }
     }
 

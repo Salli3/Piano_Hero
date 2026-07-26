@@ -147,6 +147,8 @@ public class Enemy_UI : MonoBehaviour
 
         enemyPosition.position = originalEnemyPosition;
         enemyImage.color = new Color(startColor.r, startColor.g, startColor.b, 0f);
+
+        Game_Manager.instance.IncreaseEnemyCounter();
     }
     #endregion
 }

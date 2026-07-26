@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Game_Manager : MonoBehaviour
 {
@@ -10,46 +8,42 @@ public class Game_Manager : MonoBehaviour
     public Combat_Manager combatManager;
     public Stats_Manager statsManager;
 
-    [Header("Persistent Objects")]
-    public GameObject[] persistentObjects;
+    [SerializeField] private int enemyCounter = 0;
 
-    #region Persistent data marking and Singleton methods
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            //DontDestroyOnLoad(gameObject);
-            //MarkPersistentObjects();
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            //CleanUpAndDestroy();
-            return;
+            Destroy(gameObject);
         }
     }
 
-    //private void MarkPersistentObjects()
-    //{
-    //    foreach (GameObject obj in persistentObjects)
-    //    {
-    //        if (obj != null)
-    //        {
-    //            DontDestroyOnLoad(obj);
-    //        }
-    //    }
-    //}
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name == "Shop")
+        {
+            SceneManager.LoadScene("Battle");
+        }
+    }
 
-    //private void CleanUpAndDestroy()
-    //{
-    //    foreach (GameObject obj in persistentObjects)
-    //    {
-    //        if (obj != null)
-    //        {
-    //            Destroy(obj);
-    //        }
-    //    }
-    //    Destroy(gameObject);
-    //}
-    #endregion
+    public void IncreaseEnemyCounter()
+    {
+        enemyCounter++;
+        if (enemyCounter >= 3)
+        {
+            EndCombat();
+        }
+    }
+
+    private void EndCombat()
+    {
+        enemyCounter = 0;
+        combatManager.isCombatActive = false;
+        SceneManager.LoadScene("Shop");
+    }
 }

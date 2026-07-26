@@ -10,6 +10,11 @@ public class Enemy_HP : MonoBehaviour
 
     public static event Action OnEnemyDefeated;
 
+    private void Start()
+    {
+        Game_Manager.instance.combatManager.RegisterEnemyHP(this);
+    }
+
     public void SetEnemy(Enemy_SO newEnemy)
     {
         enemySO = newEnemy;
