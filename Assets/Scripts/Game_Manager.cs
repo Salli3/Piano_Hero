@@ -1,55 +1,68 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Game_Manager : MonoBehaviour
 {
     public static Game_Manager instance;
 
-    public Combat_Manager combatManager;
     public Stats_Manager statsManager;
 
-    [Header("Persistent Objects")]
-    public GameObject[] persistentObjects;
+    [Header("Difficulty settings")]
+    [SerializeField] private float difficultylevel = 1f;
+    [SerializeField] private float difficultyMultiplier = 1.1f;
 
-    #region Persistent data marking and Singleton methods
+    [Header("Combat info")]
+    [SerializeField] private int enemyCounter = 0;
+    public bool isCombatActive;
+
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            MarkPersistentObjects();
         }
         else
         {
-            CleanUpAndDestroy();
+            Destroy(gameObject);
             return;
         }
     }
 
-    private void MarkPersistentObjects()
+    private void Update()
     {
-        foreach (GameObject obj in persistentObjects)
+        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name == "Shop")
         {
-            if (obj != null)
-            {
-                DontDestroyOnLoad(obj);
-            }
+            SceneManager.LoadScene("Battle");
         }
     }
 
-    private void CleanUpAndDestroy()
+    #region Difficulty level setter/getter
+    public float GetDifficultyLevel() => difficultylevel;
+    private void IncreaseDifficultyLevel() => difficultylevel *= difficultyMultiplier;
+    #endregion
+
+    #region Combat round management
+    public void IncreaseEnemyCounter()
     {
-        foreach (GameObject obj in persistentObjects)
+        enemyCounter++;
+        IncreaseDifficultyLevel();
+        if (enemyCounter >= 3)
         {
-            if (obj != null)
-            {
-                Destroy(obj);
-            }
+            EndCombat();
         }
-        Destroy(gameObject);
+    }
+
+    public int GetEnemyCounter()
+    {
+        return enemyCounter;
+    }
+
+    private void EndCombat()
+    {
+        enemyCounter = 0;
+        isCombatActive = false;
+        SceneManager.LoadScene("Shop");
     }
     #endregion
 }

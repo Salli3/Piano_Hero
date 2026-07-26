@@ -12,6 +12,7 @@ public class Note_Spawner : MonoBehaviour
     [SerializeField] private float spawnInterval;
 
     [Header("References")]
+    [SerializeField] private Combat_Manager combatManager;
     [SerializeField] private GameObject notePrefab;
     [SerializeField] private Transform[] spawnPoints;
 
@@ -22,9 +23,9 @@ public class Note_Spawner : MonoBehaviour
 
     private void Update()
     {
-        if (Game_Manager.instance.combatManager.isCombatActive == false) return;
+        if (Game_Manager.instance.isCombatActive == false) return;
 
-        timer += Time.deltaTime * Game_Manager.instance.combatManager.GetDifficultyLevel();
+        timer += Time.deltaTime * Game_Manager.instance.GetDifficultyLevel();
         if (timer >= spawnInterval)
         {
             timer = 0;
@@ -35,7 +36,7 @@ public class Note_Spawner : MonoBehaviour
 
     private void SpawnRandomNote()
     {
-        Note_SO chosenNote = Game_Manager.instance.combatManager.currentNotes[Random.Range(0, Game_Manager.instance.combatManager.currentNotes.Length)];
+        Note_SO chosenNote = combatManager.currentNotes[Random.Range(0, combatManager.currentNotes.Length)];
 
         Note note = Instantiate(notePrefab).GetComponent<Note>();
         note.Init(chosenNote, spawnPoints[Random.Range(0, spawnPoints.Length)]);
