@@ -5,14 +5,11 @@ using UnityEngine.UI;
 
 public class Enemy_UI : MonoBehaviour
 {
-    [Header("Hit respond")]
-    [SerializeField] private Camera mainCamera;
+    [SerializeField] private Camera_Shake cameraShake;
     [SerializeField] private RectTransform enemyPosition;
     [SerializeField] private Image enemyImage;
     [SerializeField] private float duration;
     [SerializeField] private float magnitude;
-    private Coroutine shakeRoutine;
-    private Vector3 originalCameraPosition;
     private Vector3 originalEnemyPosition;
 
     [SerializeField] private Animator hpBarAnim;
@@ -31,7 +28,6 @@ public class Enemy_UI : MonoBehaviour
 
     private void Awake()
     {
-        originalCameraPosition = mainCamera.transform.position;
         originalEnemyPosition = enemyPosition.position;
     }
 
@@ -48,43 +44,11 @@ public class Enemy_UI : MonoBehaviour
         hpBar.value = currentHP;
     }
 
-    #region Camera shake methods
-    public void Shake()
+    public void HitRespond()
     {
         hpBarAnim.Play("HP_Decrease");
-
-        if (shakeRoutine != null)
-        {
-            StopCoroutine(shakeRoutine);
-        }
-        shakeRoutine = StartCoroutine(DoShake());
+        cameraShake.Shake(duration, magnitude);
     }
-
-    private IEnumerator DoShake()
-    {
-        Time.timeScale = 0;
-        float elapsed = 0f;
-        enemyImage.color = Color.red;
-
-        while (elapsed < duration)
-        {
-            float x = Random.Range(-1f, 1f) * magnitude;
-            float y = Random.Range(-1f, 1f) * magnitude;
-
-            mainCamera.transform.position = originalCameraPosition + new Vector3(x, y, 0f);
-            enemyPosition.position = originalEnemyPosition + new Vector3(y * 100, x * 100, 0f);
-
-            elapsed += Time.unscaledDeltaTime;
-            yield return null;
-        }
-
-        mainCamera.transform.position = originalCameraPosition;
-        enemyPosition.position = originalEnemyPosition;
-        shakeRoutine = null;
-        enemyImage.color = Color.white;
-        Time.timeScale = 1;
-    }
-    #endregion
 
     //TODO rework enemy appear animation
     #region Enemy Appear and Defeat animation methods

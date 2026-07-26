@@ -15,4 +15,4 @@ MonoBehaviour:
   noteName: Counter
   noteSpeed: 10
   isHostile: 0
-  damage: 1
+  damage: 10

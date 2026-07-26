@@ -28,7 +28,7 @@ public class Enemy_HP : MonoBehaviour
 
         if (amount > 0)
         {
-            enemyUI.Shake();
+            enemyUI.HitRespond();
             
             if (currentHP <= 0 && Game_Manager.instance.isCombatActive == true)
             {

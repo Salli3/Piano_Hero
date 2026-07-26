@@ -15,7 +15,7 @@ public class Player_HP : MonoBehaviour
 
         if (amount > 0)
         {
-            playerUI.Shake();
+            playerUI.HitRespond();
             if (Game_Manager.instance.statsManager.currentHP <= 0)
             {
                 Game_Manager.instance.isCombatActive = false;
