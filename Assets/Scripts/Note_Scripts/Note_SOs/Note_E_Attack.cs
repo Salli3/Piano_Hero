@@ -5,9 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Notes/Attack")]
 public class Note_E_Attack : Note_SO
 {
-    [SerializeField] private int damage;
+    [SerializeField] private float damage;
     public override void Apply(Combat_Manager combatManager, Note_SO note)
     {
-        combatManager.ApplyAttack(damage);
+        combatManager.ApplyAttack(damage + Game_Manager.instance.statsManager.damage);
     }
 }

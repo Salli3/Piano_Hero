@@ -24,7 +24,7 @@ public class Combat_Manager : MonoBehaviour
 
     [SerializeField] private float damage;
     [SerializeField] private int block;
-    [SerializeField] private int stackingDamage;
+    [SerializeField] private float stackingDamage;
 
     #region Event subscribers
     private void OnEnable()
@@ -53,7 +53,6 @@ public class Combat_Manager : MonoBehaviour
     public void RegisterPlayerHP(Player_HP hp)
     {
         playerHP = hp;
-        PickEnemy();
     }
 
     public void PickEnemy()
@@ -68,9 +67,9 @@ public class Combat_Manager : MonoBehaviour
     }
 
     #region Note effect helper methods
-    public void ApplyAttack(int num) => damage = num;
+    public void ApplyAttack(float num) => damage = num;
     public void ApplyBlockAttack(int num) => block = num;
-    public void ApplyNoteClear(int num)
+    public void ApplyNoteClear(float num)
     {
         Note[] allNotes = FindObjectsByType<Note>(FindObjectsSortMode.None);
         int noteLayer = LayerMask.NameToLayer("Note");
@@ -88,17 +87,16 @@ public class Combat_Manager : MonoBehaviour
 
         damage = clearedCount * num;
     }
-    public void ApplyStackingDamage(int num)
+    public void ApplyStackingDamage(float num)
     {
         stackingDamage += num;
-        damage = stackingDamage;
+        damage = stackingDamage + Game_Manager.instance.statsManager.damage;
     }
-    public void ApplyMultiHit(int damage, int hitTime)
+    public void ApplyMultiHit(float damage, int hitTime)
     {
-        this.damage = 0;
         StartCoroutine(AttackInterval(damage, hitTime));
     }
-    private IEnumerator AttackInterval(int damage, int hitTime)
+    private IEnumerator AttackInterval(float damage, int hitTime)
     {
         for (int i = 0; i < hitTime; i++)
         {
@@ -118,8 +116,9 @@ public class Combat_Manager : MonoBehaviour
         }
         else
         {
+            damage = 0;
             note.Apply(this, note);
-            enemyHP.ChangeHP(damage + Game_Manager.instance.statsManager.damage);
+            enemyHP.ChangeHP(damage);
         }
     }
 
