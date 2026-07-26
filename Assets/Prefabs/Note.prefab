@@ -215,7 +215,7 @@ MonoBehaviour:
   nameText: {fileID: 3306038393052161628}
   noteData: {fileID: 0}
   sortingLayer: Default
-  sortingOrder: 100
+  sortingOrder: 2
 --- !u!1 &8731334262356338714
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,7 +293,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 2
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &3306038393052161628
 MonoBehaviour:
