@@ -9,8 +9,6 @@ public class Player_UI : MonoBehaviour
     [SerializeField] private Animator hpBarAnim;
     [SerializeField] private Slider hpBar;
     [SerializeField] private TMP_Text hpText;
-    [SerializeField] private float duration;
-    [SerializeField] private float magnitude;
 
     private void Start()
     {
@@ -27,6 +25,6 @@ public class Player_UI : MonoBehaviour
     public void HitRespond()
     {
         hpBarAnim.Play("HP_Decrease");
-        cameraShake.Shake(duration, magnitude);
+        cameraShake.Shake();
     }
 }

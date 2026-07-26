@@ -8,8 +8,6 @@ public class Enemy_UI : MonoBehaviour
     [SerializeField] private Camera_Shake cameraShake;
     [SerializeField] private RectTransform enemyPosition;
     [SerializeField] private Image enemyImage;
-    [SerializeField] private float duration;
-    [SerializeField] private float magnitude;
     private Vector3 originalEnemyPosition;
 
     [SerializeField] private Animator hpBarAnim;
@@ -47,7 +45,7 @@ public class Enemy_UI : MonoBehaviour
     public void HitRespond()
     {
         hpBarAnim.Play("HP_Decrease");
-        cameraShake.Shake(duration, magnitude);
+        cameraShake.Shake();
     }
 
     //TODO rework enemy appear animation

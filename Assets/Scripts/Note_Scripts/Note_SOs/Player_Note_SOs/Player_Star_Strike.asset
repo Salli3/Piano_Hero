@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Player_Star_Strike
   m_EditorClassIdentifier: 
   noteName: Star Strike
+  noteDescription: Attack 10 times, deal 1 damage each
   noteSpeed: 10
   isHostile: 0
   damage: 1

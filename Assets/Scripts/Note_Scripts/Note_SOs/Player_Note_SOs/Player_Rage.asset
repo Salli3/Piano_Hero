@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Player_Rage
   m_EditorClassIdentifier: 
   noteName: Rage
+  noteDescription: Deal 1 more damage each time you use it, reset at shop
   noteSpeed: 10
   isHostile: 0
   damage: 1

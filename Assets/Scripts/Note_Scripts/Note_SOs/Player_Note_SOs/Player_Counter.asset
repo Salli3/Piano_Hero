@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Player_Counter
   m_EditorClassIdentifier: 
   noteName: Counter
+  noteDescription: Clear all enemy notes, deal 10 damage for each note cleared
   noteSpeed: 10
   isHostile: 0
   damage: 10

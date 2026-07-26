@@ -31,13 +31,10 @@ public class Game_Manager : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void StartCombat()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name == "Shop")
-        {
-            SceneManager.LoadScene("Battle");
-            roundEnded = false;
-        }
+        SceneManager.LoadScene("Battle");
+        roundEnded = false;
     }
 
     #region Difficulty level setter/getter

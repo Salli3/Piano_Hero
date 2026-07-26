@@ -8,6 +8,8 @@ public class Camera_Shake : MonoBehaviour
     [SerializeField] private RectTransform targetPosition;
     [SerializeField] private Image targetImage;
     [SerializeField] private bool freezeTimeScale;
+    [SerializeField] private float duration;
+    [SerializeField] private float magnitude;
 
     private Coroutine shakeRoutine;
     private Vector3 originalCameraPosition;
@@ -19,16 +21,16 @@ public class Camera_Shake : MonoBehaviour
         originalTargetPosition = targetPosition.position;
     }
 
-    public void Shake(float duration, float magnitude)
+    public void Shake()
     {
         if (shakeRoutine != null)
         {
             StopCoroutine(shakeRoutine);
         }
-        shakeRoutine = StartCoroutine(DoShake(duration, magnitude));
+        shakeRoutine = StartCoroutine(DoShake());
     }
 
-    private IEnumerator DoShake(float duration, float magnitude)
+    private IEnumerator DoShake()
     {
         if (freezeTimeScale) Time.timeScale = 0;
 
