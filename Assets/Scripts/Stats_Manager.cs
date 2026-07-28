@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Stats_Manager : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class Stats_Manager : MonoBehaviour
     public int money;
     [SerializeField] private List<Note_SO> playerAttackTypes;
 
-    private Dictionary<Note_SO, int> noteStackCounts = new Dictionary<Note_SO, int>();
+    private Dictionary<Note_SO, int> noteStackCounts = new Dictionary<Note_SO, int>();  
 
     private void Start()
     {
