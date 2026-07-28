@@ -46,10 +46,10 @@ public class Game_Manager : MonoBehaviour
     public void IncreaseEnemyCounter()
     {
         enemyCounter++;
-        IncreaseDifficultyLevel();
         if (enemyCounter >= enemyPerRound)
         {
             roundEnded = true;
+            IncreaseDifficultyLevel();
             EndCombat();
         }
     }

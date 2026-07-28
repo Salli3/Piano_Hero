@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7147021065696356871}
   - component: {fileID: 5235612190202730359}
   - component: {fileID: 3676541394701215262}
-  - component: {fileID: 6090564851485289278}
+  - component: {fileID: -1418780284217008527}
   - component: {fileID: 1698208452145428465}
   - component: {fileID: 634657866974976358}
   - component: {fileID: 3690948151548721530}
@@ -135,7 +135,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!50 &6090564851485289278
+--- !u!50 &-1418780284217008527
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -143,7 +143,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 528057367816239142}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -160,7 +160,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!95 &1698208452145428465
 Animator:
@@ -197,6 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noteSO: {fileID: 0}
   sr: {fileID: 5235612190202730359}
+  rb: {fileID: -1418780284217008527}
   noteCollider: {fileID: 3676541394701215262}
   anim: {fileID: 1698208452145428465}
   noteDisplay: {fileID: 3690948151548721530}
