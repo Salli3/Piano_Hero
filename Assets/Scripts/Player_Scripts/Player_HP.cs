@@ -8,14 +8,14 @@ public class Player_HP : MonoBehaviour
 {
     [SerializeField] private Player_UI playerUI;
 
-    public void ChangeHP(float amount)
+    public void ChangeHP(int amount)
     {
         Game_Manager.instance.statsManager.currentHP -= amount;
         playerUI.UpdateUI();
 
         if (amount > 0)
         {
-            playerUI.Shake();
+            playerUI.HitRespond();
             if (Game_Manager.instance.statsManager.currentHP <= 0)
             {
                 Game_Manager.instance.isCombatActive = false;

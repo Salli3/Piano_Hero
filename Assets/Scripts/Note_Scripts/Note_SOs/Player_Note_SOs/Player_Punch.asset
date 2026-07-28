@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Player_Punch
   m_EditorClassIdentifier: 
   noteName: Punch
+  noteDescription: Basic attack, deal 5 damage
+  noteUpgradeDescription: Deal 5 more damage
   noteSpeed: 10
   isHostile: 0
   damage: 5
+  upgradeDamage: 5

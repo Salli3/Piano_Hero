@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08221a141cbeee942935066122f60c6b, type: 3}
-  m_Name: Player_Rage
+  m_Script: {fileID: 11500000, guid: 87aa5e2b132d7e044b337a87ae5e2e54, type: 3}
+  m_Name: Player_Riposte
   m_EditorClassIdentifier: 
-  noteName: Rage
-  noteDescription: Deal 1 more damage each time you use it, reset at shop
-  noteUpgradeDescription: Deal 1 more damage each time you use it
+  noteName: Riposte
+  noteDescription: Clear all enemy notes, deal 10 damage for each note cleared
+  noteUpgradeDescription: Deal 10 more damage for each note cleared
   noteSpeed: 10
   isHostile: 0
-  damage: 1
-  upgradeDamage: 1
+  damage: 10
+  upgradeDamage: 10

@@ -7,6 +7,7 @@ public class Enemy_SO : ScriptableObject
 {
     public string enemyName;
     public Sprite enemySprite;
-    public float enemyHP;
+    public int enemyHP;
+    public int enemyDamage;
     public Note_SO[] attackTypes;
 }

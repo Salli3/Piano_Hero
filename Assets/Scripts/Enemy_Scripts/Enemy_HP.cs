@@ -6,8 +6,9 @@ public class Enemy_HP : MonoBehaviour
 {
     [SerializeField] private Enemy_UI enemyUI;
     [SerializeField] private Enemy_SO enemySO;
-    [SerializeField] private float currentHP;
-    [SerializeField] private float maxHP;
+    [SerializeField] private int currentHP;
+    [SerializeField] private int maxHP;
+    [SerializeField] private int moneyReward;
 
     public static event Action OnEnemyDefeated;
 
@@ -16,10 +17,11 @@ public class Enemy_HP : MonoBehaviour
         enemySO = newEnemy;
         maxHP = enemySO.enemyHP;
         currentHP = maxHP;
+        enemyUI.SetEnemyUI(enemySO, currentHP, maxHP);
         StartCoroutine(EnemyAppear());
     }
 
-    public void ChangeHP(float amount)
+    public void ChangeHP(int amount)
     {
         if (enemySO == null) return;
 
@@ -28,11 +30,12 @@ public class Enemy_HP : MonoBehaviour
 
         if (amount > 0)
         {
-            enemyUI.Shake();
+            enemyUI.HitRespond();
             
             if (currentHP <= 0 && Game_Manager.instance.isCombatActive == true)
             {
                 Game_Manager.instance.isCombatActive = false;
+                Game_Manager.instance.statsManager.money += moneyReward;
                 StartCoroutine(EnemyDefeat());
             }
         }
@@ -40,7 +43,6 @@ public class Enemy_HP : MonoBehaviour
 
     private IEnumerator EnemyAppear()
     {
-        enemyUI.SetEnemyUI(enemySO, currentHP, maxHP);
         yield return StartCoroutine(enemyUI.EnemyAppear());
         Game_Manager.instance.isCombatActive = true;
     }
@@ -49,6 +51,9 @@ public class Enemy_HP : MonoBehaviour
     {
         yield return StartCoroutine(enemyUI.EnemyDefeat());
         Game_Manager.instance.IncreaseEnemyCounter();
-        OnEnemyDefeated?.Invoke();
+        if (Game_Manager.instance.IsRoundEnded() == false)
+        {
+            OnEnemyDefeated?.Invoke();
+        }
     }
 }

@@ -8,11 +8,13 @@ public class Game_Manager : MonoBehaviour
     public Stats_Manager statsManager;
 
     [Header("Difficulty settings")]
-    [SerializeField] private float difficultylevel = 1f;
-    [SerializeField] private float difficultyMultiplier = 1.1f;
+    [SerializeField] private float difficultylevel;
+    [SerializeField] private float difficultyMultiplier;
 
     [Header("Combat info")]
     [SerializeField] private int enemyCounter = 0;
+    [SerializeField] private int enemyPerRound = 3;
+    [SerializeField] private bool roundEnded;
     public bool isCombatActive;
 
     private void Awake()
@@ -29,33 +31,32 @@ public class Game_Manager : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void StartCombat()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name == "Shop")
-        {
-            SceneManager.LoadScene("Battle");
-        }
+        SceneManager.LoadScene("Battle");
+        roundEnded = false;
     }
 
     #region Difficulty level setter/getter
     public float GetDifficultyLevel() => difficultylevel;
-    private void IncreaseDifficultyLevel() => difficultylevel *= difficultyMultiplier;
+    private void IncreaseDifficultyLevel() => difficultylevel += difficultyMultiplier;
     #endregion
 
     #region Combat round management
     public void IncreaseEnemyCounter()
     {
         enemyCounter++;
-        IncreaseDifficultyLevel();
-        if (enemyCounter >= 3)
+        if (enemyCounter >= enemyPerRound)
         {
+            roundEnded = true;
+            IncreaseDifficultyLevel();
             EndCombat();
         }
     }
 
-    public int GetEnemyCounter()
+    public bool IsRoundEnded()
     {
-        return enemyCounter;
+        return roundEnded;
     }
 
     private void EndCombat()
