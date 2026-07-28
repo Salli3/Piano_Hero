@@ -29,15 +29,15 @@ public class Enemy_UI : MonoBehaviour
         originalEnemyPosition = enemyPosition.position;
     }
 
-    public void SetEnemyUI(Enemy_SO enemySO, float currentHP, float maxHP)
+    public void SetEnemyUI(Enemy_SO enemySO, int currentHP, int maxHP)
     {
         enemyImage.sprite = enemySO.enemySprite;
         UpdateUI(currentHP, maxHP);
     }
 
-    public void UpdateUI(float currentHP, float maxHP)
+    public void UpdateUI(int currentHP, int maxHP)
     {
-        hpText.text = Mathf.CeilToInt(currentHP) + "/" + Mathf.CeilToInt(maxHP);
+        hpText.text = currentHP + "/" + maxHP;
         hpBar.maxValue = maxHP;
         hpBar.value = currentHP;
     }

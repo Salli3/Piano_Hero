@@ -60,7 +60,7 @@ public class Combat_Manager : MonoBehaviour
         if (Game_Manager.instance.isCombatActive == false) return;
         if (noteEffectHandler.Block()) return;
 
-        playerHP.ChangeHP(1);
+        playerHP.ChangeHP(currentEnemy.enemyDamage);
     }
 
     private void OnNoteExit(Note_SO note)

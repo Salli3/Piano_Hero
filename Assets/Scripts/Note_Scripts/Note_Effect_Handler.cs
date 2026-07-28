@@ -8,10 +8,11 @@ public class Note_Effect_Handler : MonoBehaviour
     [SerializeField] private Enemy_HP enemyHP;
 
     [SerializeField] private int block;
-    [SerializeField] private float stackingDamage;
+    [SerializeField] private int stackingDamage;
+    [SerializeField] private int enemyStackingDamage;
 
     //Deal Damage
-    public void DealDamage(Note_SO note, float damage)
+    public void DealDamage(Note_SO note, int damage)
     {
         if (note.isHostile)
         {
@@ -22,8 +23,8 @@ public class Note_Effect_Handler : MonoBehaviour
             DamageEnemy(damage);
         }
     }
-    private void DamagePlayer(float amount) => playerHP.ChangeHP(amount);
-    private void DamageEnemy(float amount) => enemyHP.ChangeHP(amount + Game_Manager.instance.statsManager.damage);
+    private void DamagePlayer(int amount) => playerHP.ChangeHP(amount);
+    private void DamageEnemy(int amount) => enemyHP.ChangeHP(amount + Game_Manager.instance.statsManager.damage);
 
     //Block
     public void SetBlock(int amount) => block = amount;
@@ -59,14 +60,24 @@ public class Note_Effect_Handler : MonoBehaviour
     }
 
     //Stack damage
-    public float StackDamage(float amount) => stackingDamage += amount;
+    public int StackDamage(int amount, Note_SO note) 
+    {
+        if (note.isHostile)
+        {
+            return enemyStackingDamage += amount;
+        }
+        else
+        {
+            return stackingDamage += amount;
+        }
+    }
 
     //Multi hit
-    public void RunMultiHit(Note_SO note, float damage, int hitTime)
+    public void RunMultiHit(Note_SO note, int damage, int hitTime)
     {
         StartCoroutine(AttackInterval(note, damage, hitTime));
     }
-    private IEnumerator AttackInterval(Note_SO note, float damage, int hitTime)
+    private IEnumerator AttackInterval(Note_SO note, int damage, int hitTime)
     {
         for (int i = 0; i < hitTime; i++)
         {

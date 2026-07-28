@@ -25,6 +25,6 @@ public abstract class Note_SO : ScriptableObject
         }
     }
 
-    public abstract float GetTotalStat(int ownedCount);
+    public abstract int GetTotalStat(int ownedCount);
 }
 

@@ -16,7 +16,7 @@ public class Shop_Manager : MonoBehaviour
     [SerializeField] private int rerollCost;
     [SerializeField] private int healCost;
     [SerializeField] private int inflation;
-    [SerializeField] private float healAmount = 1f;
+    [SerializeField] private int healAmount = 1;
 
     private void Start()
     {

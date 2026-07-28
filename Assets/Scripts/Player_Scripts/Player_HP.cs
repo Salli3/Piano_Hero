@@ -8,7 +8,7 @@ public class Player_HP : MonoBehaviour
 {
     [SerializeField] private Player_UI playerUI;
 
-    public void ChangeHP(float amount)
+    public void ChangeHP(int amount)
     {
         Game_Manager.instance.statsManager.currentHP -= amount;
         playerUI.UpdateUI();

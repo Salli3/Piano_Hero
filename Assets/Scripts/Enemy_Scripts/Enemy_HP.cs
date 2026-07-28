@@ -6,8 +6,8 @@ public class Enemy_HP : MonoBehaviour
 {
     [SerializeField] private Enemy_UI enemyUI;
     [SerializeField] private Enemy_SO enemySO;
-    [SerializeField] private float currentHP;
-    [SerializeField] private float maxHP;
+    [SerializeField] private int currentHP;
+    [SerializeField] private int maxHP;
     [SerializeField] private int moneyReward;
 
     public static event Action OnEnemyDefeated;
@@ -21,7 +21,7 @@ public class Enemy_HP : MonoBehaviour
         StartCoroutine(EnemyAppear());
     }
 
-    public void ChangeHP(float amount)
+    public void ChangeHP(int amount)
     {
         if (enemySO == null) return;
 

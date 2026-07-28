@@ -7,9 +7,9 @@ using static UnityEditor.Progress;
 public class Stats_Manager : MonoBehaviour
 {
     [Header("Player Stats")]
-    public float damage;
-    public float currentHP;
-    public float maxHP;
+    public int damage;
+    public int currentHP;
+    public int maxHP;
     public int money;
     [SerializeField] private List<Note_SO> playerAttackTypes;
 
@@ -23,7 +23,7 @@ public class Stats_Manager : MonoBehaviour
         }
     }
 
-    public void UpdateCurrentHP(float amount)
+    public void UpdateCurrentHP(int amount)
     {
         currentHP += amount;
         if (currentHP >= maxHP)
