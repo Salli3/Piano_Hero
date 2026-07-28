@@ -14,6 +14,7 @@ public class Note : MonoBehaviour
         if (Game_Manager.instance.isCombatActive == false)
         {
             Destroy(gameObject);
+            enabled = false;
             return;
         }
         if (noteSO == null) return;

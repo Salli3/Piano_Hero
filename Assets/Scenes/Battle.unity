@@ -3956,7 +3956,11 @@ MonoBehaviour:
   - {fileID: 1143018503}
   - {fileID: 1860000911}
   - {fileID: 214418147}
-  triggerKeys: 14010000120100001101000013010000
+  triggerKeys:
+  - q
+  - w
+  - e
+  - r
 --- !u!1 &1860000908
 GameObject:
   m_ObjectHideFlags: 0
