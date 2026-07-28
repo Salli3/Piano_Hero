@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noteName: Enguard
   noteDescription: Block next 2 attack/whiff (do not stack)
+  noteUpgradeDescription: Block 1 more time
   noteSpeed: 10
   isHostile: 0
   blockTime: 2
+  upgradeBlockTime: 1

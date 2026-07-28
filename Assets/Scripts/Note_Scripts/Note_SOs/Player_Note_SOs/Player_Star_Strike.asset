@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noteName: Star Strike
   noteDescription: Attack 10 times, deal 1 damage each
+  noteUpgradeDescription: Attack 2 more times
   noteSpeed: 10
   isHostile: 0
   damage: 1
   hitTime: 10
+  upgradeHitTime: 2

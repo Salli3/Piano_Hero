@@ -52,7 +52,7 @@ public class Note_Effect_Handler : MonoBehaviour
             if (note.gameObject.layer == noteLayer && note.noteSO.isHostile)
             {
                 clearedCount++;
-                Destroy(note.gameObject);
+                note.OnNoteHit();
             }
         }
         return clearedCount;

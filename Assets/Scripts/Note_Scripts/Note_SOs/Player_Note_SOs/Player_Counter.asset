@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noteName: Counter
   noteDescription: Clear all enemy notes, deal 10 damage for each note cleared
+  noteUpgradeDescription: Deal 10 more damage for each note cleared
   noteSpeed: 10
   isHostile: 0
   damage: 10
+  upgradeDamage: 10

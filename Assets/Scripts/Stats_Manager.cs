@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Stats_Manager : MonoBehaviour
@@ -9,7 +10,17 @@ public class Stats_Manager : MonoBehaviour
     public float currentHP;
     public float maxHP;
     public int money;
-    public List<Note_SO> playerAttackTypes;
+    [SerializeField] private List<Note_SO> playerAttackTypes;
+
+    private Dictionary<Note_SO, int> noteStackCounts = new Dictionary<Note_SO, int>();
+
+    private void Start()
+    {
+        foreach (var note in playerAttackTypes)
+        {
+            noteStackCounts[note] = 1;
+        }
+    }
 
     public void UpdateCurrentHP(float amount)
     {
@@ -18,5 +29,22 @@ public class Stats_Manager : MonoBehaviour
         {
             currentHP = maxHP;
         }
+    }
+
+    public void PurchaseNote(Note_SO note)
+    {
+        if (playerAttackTypes.Contains(note) == false) playerAttackTypes.Add(note);
+
+        noteStackCounts[note] = GetStackCount(note) + 1;
+    }
+
+    public Note_SO[] GetNote()
+    {
+        return playerAttackTypes.ToArray();
+    }
+
+    public int GetStackCount(Note_SO note)
+    {
+        return noteStackCounts.TryGetValue(note, out int count) ? count : 0;
     }
 }

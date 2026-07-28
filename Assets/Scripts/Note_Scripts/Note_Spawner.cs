@@ -43,7 +43,7 @@ public class Note_Spawner : MonoBehaviour
 
         if (Random.value < playerNoteChance)
         {
-            Note_SO[] playerNotes = Game_Manager.instance.statsManager.playerAttackTypes.ToArray();
+            Note_SO[] playerNotes = Game_Manager.instance.statsManager.GetNote();
             chosenNote = playerNotes[Random.Range(0, playerNotes.Length)];
         }
         else

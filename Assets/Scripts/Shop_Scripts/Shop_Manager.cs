@@ -30,18 +30,18 @@ public class Shop_Manager : MonoBehaviour
             currentItem = Items[Random.Range(0, Items.Length)];
             shopUI.ShowItemInfo(currentItem);
         }
-        else
-        {
-            shopUI.ShowItemInfo(empty);
-        }
         UpdateUI();
     }
 
     //Update resources and show available button
     private void UpdateUI()
     {
+        if (Game_Manager.instance.statsManager.money < buyCost)
+        {
+            shopUI.ShowItemInfo(empty);
+        }
         shopUI.UpdateResources();
-        shopUI.UpdateCost(buyCost,rerollCost, healCost);
+        shopUI.UpdateCost(buyCost, rerollCost, healCost);
         shopUI.ShowButton(
             canBuy: Game_Manager.instance.statsManager.money >= buyCost,
             canReroll: Game_Manager.instance.statsManager.money >= rerollCost + buyCost,
@@ -53,7 +53,7 @@ public class Shop_Manager : MonoBehaviour
     #region Button press methods
     public void OnBuyButtonPressed()
     {
-        Game_Manager.instance.statsManager.playerAttackTypes.Add(currentItem);
+        Game_Manager.instance.statsManager.PurchaseNote(currentItem);
         Game_Manager.instance.statsManager.money -= buyCost;
         GetNewItem();
     }
