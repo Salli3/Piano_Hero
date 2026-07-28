@@ -28,7 +28,7 @@ public class Player_UI : MonoBehaviour
 
     public void UpdateUI()
     {
-        moneyText.text = "Money: " + Game_Manager.instance.statsManager.money;
+        moneyText.text = "Money: " + Game_Manager.instance.statsManager.money + "$";
         hpText.text = Game_Manager.instance.statsManager.currentHP + "/" + Game_Manager.instance.statsManager.maxHP;
         hpBar.maxValue = Game_Manager.instance.statsManager.maxHP;
         hpBar.value = Game_Manager.instance.statsManager.currentHP;

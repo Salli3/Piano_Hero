@@ -33,17 +33,17 @@ public class Shop_UI : MonoBehaviour
 
     public void UpdateResources()
     {
-        moneyText.text = "Money: " + Game_Manager.instance.statsManager.money;
+        moneyText.text = "Money: " + Game_Manager.instance.statsManager.money + "$";
         hpText.text = Mathf.CeilToInt(Game_Manager.instance.statsManager.currentHP) + "/" + Mathf.CeilToInt(Game_Manager.instance.statsManager.maxHP);
         hpBar.maxValue = Game_Manager.instance.statsManager.maxHP;
         hpBar.value = Game_Manager.instance.statsManager.currentHP;
     }
 
-    public void UpdateCost(int buyCost, int rerollCost, int healCost)
+    public void UpdateCost(int buyCost, int rerollCost, int healCost, int healAmount)
     {
-        buyButton.GetComponentInChildren<TMP_Text>().text = "Buy\n" + buyCost;
-        rerollButton.GetComponentInChildren<TMP_Text>().text = "Reroll\n" + rerollCost;
-        healButton.GetComponentInChildren<TMP_Text>().text = "Heal\n" + healCost;
+        buyButton.GetComponentInChildren<TMP_Text>().text = $"Buy\n{buyCost}$";
+        rerollButton.GetComponentInChildren<TMP_Text>().text = $"Reroll\n{rerollCost}$";
+        healButton.GetComponentInChildren<TMP_Text>().text = $"Heal {healAmount}HP\n{healCost}$";
     }
 
     public void ShowButton(bool canBuy, bool canReroll, bool canHeal)

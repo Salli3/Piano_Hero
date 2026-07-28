@@ -47,7 +47,7 @@ public class Shop_Manager : MonoBehaviour
             shopUI.ShowItemInfo(empty);
         }
         shopUI.UpdateResources();
-        shopUI.UpdateCost(buyCost, rerollCost, healCost);
+        shopUI.UpdateCost(buyCost, rerollCost, healCost, healAmount);
         shopUI.ShowButton(
             canBuy: Game_Manager.instance.statsManager.money >= buyCost,
             canReroll: Game_Manager.instance.statsManager.money >= rerollCost + buyCost,
