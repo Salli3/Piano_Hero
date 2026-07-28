@@ -15,6 +15,6 @@ public class Note_E_Damage_Stacking : Note_SO
 
     public override float GetTotalStat(int ownedCount)
     {
-        return damage + upgradeDamage * ownedCount;
+        return damage + upgradeDamage * (ownedCount - 1);
     }
 }

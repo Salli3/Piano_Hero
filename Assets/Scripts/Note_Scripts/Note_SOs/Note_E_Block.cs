@@ -14,6 +14,6 @@ public class Note_E_Block : Note_SO
 
     public override float GetTotalStat(int ownedCount)
     {
-        return blockTime + upgradeBlockTime * ownedCount;
+        return blockTime + upgradeBlockTime * (ownedCount - 1);
     }
 }

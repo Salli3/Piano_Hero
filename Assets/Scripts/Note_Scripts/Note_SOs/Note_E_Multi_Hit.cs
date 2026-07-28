@@ -17,6 +17,6 @@ public class Note_E_Multi_Hit : Note_SO
 
     public override float GetTotalStat(int ownedCount)
     {
-        return hitTime + upgradeHitTime * ownedCount;
+        return hitTime + upgradeHitTime * (ownedCount - 1);
     }
 }

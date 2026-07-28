@@ -1440,7 +1440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a660bb7ec515d47a80173dae79a85c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 0
   currentHP: 100
   maxHP: 100
   money: 0
@@ -2303,7 +2303,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.719
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

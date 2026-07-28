@@ -14,6 +14,6 @@ public class Note_E_Attack : Note_SO
 
     public override float GetTotalStat(int ownedCount)
     {
-        return damage + upgradeDamage * ownedCount;
+        return damage + upgradeDamage * (ownedCount - 1);
     }
 }
