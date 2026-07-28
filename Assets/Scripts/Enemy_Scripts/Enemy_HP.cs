@@ -8,6 +8,7 @@ public class Enemy_HP : MonoBehaviour
     [SerializeField] private Enemy_SO enemySO;
     [SerializeField] private float currentHP;
     [SerializeField] private float maxHP;
+    [SerializeField] private int moneyReward;
 
     public static event Action OnEnemyDefeated;
 
@@ -16,6 +17,7 @@ public class Enemy_HP : MonoBehaviour
         enemySO = newEnemy;
         maxHP = enemySO.enemyHP;
         currentHP = maxHP;
+        enemyUI.SetEnemyUI(enemySO, currentHP, maxHP);
         StartCoroutine(EnemyAppear());
     }
 
@@ -33,6 +35,7 @@ public class Enemy_HP : MonoBehaviour
             if (currentHP <= 0 && Game_Manager.instance.isCombatActive == true)
             {
                 Game_Manager.instance.isCombatActive = false;
+                Game_Manager.instance.statsManager.money += moneyReward;
                 StartCoroutine(EnemyDefeat());
             }
         }
@@ -40,7 +43,6 @@ public class Enemy_HP : MonoBehaviour
 
     private IEnumerator EnemyAppear()
     {
-        enemyUI.SetEnemyUI(enemySO, currentHP, maxHP);
         yield return StartCoroutine(enemyUI.EnemyAppear());
         Game_Manager.instance.isCombatActive = true;
     }
