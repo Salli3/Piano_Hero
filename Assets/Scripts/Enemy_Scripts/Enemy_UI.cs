@@ -39,7 +39,7 @@ public class Enemy_UI : MonoBehaviour
 
     public void UpdateUI(int currentHP, int maxHP)
     {
-        hpText.text = currentHP + "/" + maxHP;
+        hpText.text = "HP: " + currentHP + "/" + maxHP;
         hpBar.maxValue = maxHP;
         hpBar.value = currentHP;
     }

@@ -851,7 +851,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statsManager: {fileID: 807230607}
   difficultylevel: 1
-  difficultyMultiplier: 1.1
+  difficultyMultiplier: 0.1
   enemyCounter: 0
   enemyPerRound: 3
   roundEnded: 0

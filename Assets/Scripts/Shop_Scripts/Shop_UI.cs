@@ -28,13 +28,12 @@ public class Shop_UI : MonoBehaviour
     {
         itemName.text = note.noteName + new string('+', Game_Manager.instance.statsManager.GetStackCount(note));
         itemDescription.text = note.GetDescription(Game_Manager.instance.statsManager.GetStackCount(note));
-        Debug.Log($"note: {note.noteName}, owned: {Game_Manager.instance.statsManager.GetStackCount(note)}");
     }
 
     public void UpdateResources()
     {
         moneyText.text = "Money: " + Game_Manager.instance.statsManager.money + "$";
-        hpText.text = Mathf.CeilToInt(Game_Manager.instance.statsManager.currentHP) + "/" + Mathf.CeilToInt(Game_Manager.instance.statsManager.maxHP);
+        hpText.text = "HP: " + Game_Manager.instance.statsManager.currentHP + "/" + Game_Manager.instance.statsManager.maxHP;
         hpBar.maxValue = Game_Manager.instance.statsManager.maxHP;
         hpBar.value = Game_Manager.instance.statsManager.currentHP;
     }
