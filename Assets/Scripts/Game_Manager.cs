@@ -39,7 +39,7 @@ public class Game_Manager : MonoBehaviour
 
     #region Difficulty level setter/getter
     public float GetDifficultyLevel() => difficultylevel;
-    private void IncreaseDifficultyLevel() => difficultylevel *= difficultyMultiplier;
+    private void IncreaseDifficultyLevel() => difficultylevel += difficultyMultiplier;
     #endregion
 
     #region Combat round management

@@ -13,6 +13,7 @@ public class Enemy_UI : MonoBehaviour
     [SerializeField] private Animator hpBarAnim;
     [SerializeField] private Slider hpBar;
     [SerializeField] private TMP_Text hpText;
+    [SerializeField] private TMP_Text nameText;
 
     [Header("Appear")]
     [SerializeField] private float appearDuration;
@@ -32,6 +33,7 @@ public class Enemy_UI : MonoBehaviour
     public void SetEnemyUI(Enemy_SO enemySO, int currentHP, int maxHP)
     {
         enemyImage.sprite = enemySO.enemySprite;
+        nameText.text = enemySO.enemyName;
         UpdateUI(currentHP, maxHP);
     }
 
