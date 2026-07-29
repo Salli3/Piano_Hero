@@ -25,13 +25,14 @@ public class Enemy_HP : MonoBehaviour
     {
         if (enemySO == null) return;
 
-        currentHP -= amount;        
+        currentHP -= amount;
         enemyUI.UpdateUI(currentHP, maxHP);
 
         if (amount > 0)
         {
             enemyUI.HitRespond();
-            
+            enemyUI.ShowHitNumber(amount);
+
             if (currentHP <= 0 && Game_Manager.instance.isCombatActive == true)
             {
                 Game_Manager.instance.isCombatActive = false;

@@ -16,10 +16,17 @@ public class Player_HP : MonoBehaviour
         if (amount > 0)
         {
             playerUI.HitRespond();
+            playerUI.ShowHitNumber(amount);
+
             if (Game_Manager.instance.statsManager.currentHP <= 0)
             {
                 Game_Manager.instance.isCombatActive = false;
             }
         }
+    }
+
+    public void Block()
+    {
+        playerUI.ShowHitNumber(0, true);
     }
 }

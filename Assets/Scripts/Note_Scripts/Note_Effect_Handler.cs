@@ -33,6 +33,7 @@ public class Note_Effect_Handler : MonoBehaviour
         if (block > 0)
         {
             block--;
+            playerHP.Block();
             return true;
         }
         else

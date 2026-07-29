@@ -52,7 +52,7 @@ public class Note_Spawner : MonoBehaviour
             chosenNote = enemyNotes[Random.Range(0, enemyNotes.Length)];
         }
 
-        Note note = Instantiate(notePrefab).GetComponent<Note>();
+        Note note = Instantiate(notePrefab, transform).GetComponent<Note>();
         note.Init(chosenNote, spawnPoints[Random.Range(0, spawnPoints.Length)]);
     }
 

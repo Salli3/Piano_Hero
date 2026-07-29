@@ -15,6 +15,13 @@ public class Enemy_UI : MonoBehaviour
     [SerializeField] private TMP_Text hpText;
     [SerializeField] private TMP_Text nameText;
 
+    [Header("Hit number")]
+    [SerializeField] private Hit_Number_Pool hitNumberPool;
+    [SerializeField] private Transform hitNumberPosition;
+    [SerializeField] private float hitNumberPositionOffset;
+    [SerializeField] private float hitNumberAppearWidth;
+    [SerializeField] private float hitNumberAppearHeigh;
+
     [Header("Appear")]
     [SerializeField] private float appearDuration;
     [SerializeField] private float appearSlideDistance;
@@ -44,11 +51,34 @@ public class Enemy_UI : MonoBehaviour
         hpBar.value = currentHP;
     }
 
+    #region Hit respond
     public void HitRespond()
     {
         hpBarAnim.Play("HP_Decrease");
         cameraShake.Shake();
     }
+
+    public void ShowHitNumber(int damage, bool isBlocked = false)
+    {
+        float randomWidth = Random.Range(-hitNumberAppearWidth * 0.5f, hitNumberAppearWidth * 0.5f);
+        float randomHeigh = Random.Range(-hitNumberAppearHeigh * 0.5f, hitNumberAppearHeigh * 0.5f);
+
+        Vector3 randomOffset = new Vector3(randomWidth, randomHeigh, 0);
+        Vector3 baseOffset = new Vector3(hitNumberPositionOffset, 0, 0);
+
+        Vector3 spawnPosition = hitNumberPosition.position + baseOffset + randomOffset;
+
+        hitNumberPool.GetHitNumber().ShowHitNumber(damage, spawnPosition, hitNumberPool, isBlocked);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Vector3 baseOffset = new Vector3(hitNumberPositionOffset, 0, 0);
+        Gizmos.DrawWireCube(hitNumberPosition.position + baseOffset, new Vector3(hitNumberAppearWidth, hitNumberAppearHeigh, 0));
+    }
+
+    #endregion
 
     //TODO rework enemy appear animation
     #region Enemy Appear and Defeat animation methods
