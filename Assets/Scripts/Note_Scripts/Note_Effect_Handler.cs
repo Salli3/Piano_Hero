@@ -11,6 +11,17 @@ public class Note_Effect_Handler : MonoBehaviour
     [SerializeField] private int stackingDamage;
     [SerializeField] private int enemyStackingDamage;
 
+    private void Start()
+    {
+        UpdateCombatStatus();
+    }
+
+    //Combat Status
+    private void UpdateCombatStatus()
+    {
+        playerHP.UpdateCombatStatus(block, stackingDamage, enemyStackingDamage);
+    }
+
     //Deal Damage
     public void DealDamage(Note_SO note, int damage)
     {
@@ -22,18 +33,24 @@ public class Note_Effect_Handler : MonoBehaviour
         {
             DamageEnemy(damage);
         }
+        UpdateCombatStatus();
     }
     private void DamagePlayer(int amount) => playerHP.ChangeHP(amount);
     private void DamageEnemy(int amount) => enemyHP.ChangeHP(amount + Game_Manager.instance.statsManager.damage);
 
     //Block
-    public void SetBlock(int amount) => block = amount;
+    public void SetBlock(int amount)
+    {
+        block = amount;
+        UpdateCombatStatus();
+    }
     public bool Block()
     {
         if (block > 0)
         {
             block--;
             playerHP.Block();
+            UpdateCombatStatus();
             return true;
         }
         else

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -29,4 +30,10 @@ public class Player_HP : MonoBehaviour
     {
         playerUI.ShowHitNumber(0, true);
     }
+
+    public void UpdateCombatStatus(int block, int stackingDamage, int curse)
+    {
+        playerUI.UpdateCombatStatus(block, stackingDamage, curse);
+    }
+
 }

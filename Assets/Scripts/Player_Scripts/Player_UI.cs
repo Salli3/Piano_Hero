@@ -24,6 +24,8 @@ public class Player_UI : MonoBehaviour
     [SerializeField] private float hitNumberAppearWidth;
     [SerializeField] private float hitNumberAppearHeigh;
 
+    [SerializeField] private Status playerStatus;
+
     private void OnEnable()
     {
         Enemy_HP.OnEnemyDefeated += UpdateUI;
@@ -51,6 +53,11 @@ public class Player_UI : MonoBehaviour
     {
         hpBarAnim.Play("HP_Decrease");
         cameraShake.Shake();
+    }
+
+    public void UpdateCombatStatus(int block, int stackingDamage, int curse)
+    {
+        playerStatus.UpdateCombatStatus(block, stackingDamage, curse);
     }
 
     public void ShowHitNumber(int damage, bool isBlocked = false)
