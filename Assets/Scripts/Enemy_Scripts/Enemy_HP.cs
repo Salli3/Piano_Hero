@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy_HP : MonoBehaviour
 {
     [SerializeField] private Enemy_UI enemyUI;
-    [SerializeField] private Enemy_SO enemySO;
+    [SerializeField] private Enemy_SO currentEnemy;
     [SerializeField] private int currentHP;
     [SerializeField] private int maxHP;
     [SerializeField] private int moneyReward;
@@ -14,23 +14,21 @@ public class Enemy_HP : MonoBehaviour
 
     public void SetEnemy(Enemy_SO newEnemy)
     {
-        enemySO = newEnemy;
-        maxHP = enemySO.enemyHP;
+        currentEnemy = newEnemy;
+        maxHP = currentEnemy.enemyHP;
         currentHP = maxHP;
-        enemyUI.SetEnemyUI(enemySO, currentHP, maxHP);
+        enemyUI.SetEnemyUI(currentEnemy, currentHP, maxHP);
         StartCoroutine(EnemyAppear());
     }
 
     public void ChangeHP(int amount)
     {
-        if (enemySO == null) return;
-
+        if (currentEnemy == null) return;
         currentHP -= amount;
-        enemyUI.UpdateUI(currentHP, maxHP);
 
-        if (amount > 0)
+        if (amount != 0)
         {
-            enemyUI.HitRespond();
+            enemyUI.UpdateHPBar(currentHP, currentHP, amount);
             enemyUI.ShowHitNumber(amount);
 
             if (currentHP <= 0 && Game_Manager.instance.isCombatActive == true)

@@ -1,14 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class Note_Effect_Handler : MonoBehaviour
+public class Combat_Handler : MonoBehaviour
 {
     [SerializeField] private Player_HP playerHP;
+    [SerializeField] private Player_UI playerUI;
     [SerializeField] private Enemy_HP enemyHP;
+    [SerializeField] private Enemy_UI enemyUI;
 
-    [SerializeField] private int block;
-    [SerializeField] private int stackingDamage;
+    [SerializeField] private int playerBlock;
+    [SerializeField] private int playerStackingDamage;
+
+    [SerializeField] private int enemyBlock;
     [SerializeField] private int enemyStackingDamage;
 
     private void Start()
@@ -16,10 +22,10 @@ public class Note_Effect_Handler : MonoBehaviour
         UpdateCombatStatus();
     }
 
-    //Combat Status
     private void UpdateCombatStatus()
     {
-        playerHP.UpdateCombatStatus(block, stackingDamage, enemyStackingDamage);
+        playerUI.UpdateCombatStatus(playerBlock, playerStackingDamage);
+        enemyUI.UpdateCombatStatus(enemyBlock, enemyStackingDamage);
     }
 
     //Deal Damage
@@ -27,36 +33,45 @@ public class Note_Effect_Handler : MonoBehaviour
     {
         if (note.isHostile)
         {
-            DamagePlayer(damage);
+            playerHP.ChangeHP(damage);
         }
         else
         {
-            DamageEnemy(damage);
+            enemyHP.ChangeHP(damage + Game_Manager.instance.statsManager.damage);
         }
-        UpdateCombatStatus();
     }
-    private void DamagePlayer(int amount) => playerHP.ChangeHP(amount);
-    private void DamageEnemy(int amount) => enemyHP.ChangeHP(amount + Game_Manager.instance.statsManager.damage);
 
     //Block
-    public void SetBlock(int amount)
+    public void SetBlock(Note_SO note, int amount)
     {
-        block = amount;
-        UpdateCombatStatus();
-    }
-    public bool Block()
-    {
-        if (block > 0)
+        if (note.isHostile)
         {
-            block--;
-            playerHP.Block();
-            UpdateCombatStatus();
-            return true;
+            enemyBlock = amount;
         }
         else
         {
-            return false;
+            playerBlock = amount;
         }
+        UpdateCombatStatus();
+    }
+    public bool Block(bool isHostile)
+    {
+        int currentBlock = isHostile ? playerBlock : enemyBlock;
+
+        if (currentBlock <= 0) return false;
+
+        if (isHostile)
+        {
+            playerBlock--;
+            playerUI.ShowHitNumber(0, true);
+        }
+        else
+        {
+            enemyBlock--;
+            enemyUI.ShowHitNumber(0, true);
+        }
+        UpdateCombatStatus();
+        return true;
     }
 
     //Clear note
@@ -78,15 +93,19 @@ public class Note_Effect_Handler : MonoBehaviour
     }
 
     //Stack damage
-    public int StackDamage(int amount, Note_SO note) 
+    public int StackDamage(Note_SO note, int amount)
     {
         if (note.isHostile)
         {
-            return enemyStackingDamage += amount;
+            enemyStackingDamage += amount;
+            UpdateCombatStatus();
+            return enemyStackingDamage;
         }
         else
         {
-            return stackingDamage += amount;
+            playerStackingDamage += amount;
+            UpdateCombatStatus();
+            return playerStackingDamage;
         }
     }
 

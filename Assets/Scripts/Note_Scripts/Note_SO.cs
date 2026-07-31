@@ -11,7 +11,7 @@ public abstract class Note_SO : ScriptableObject
     public bool isHostile;
     public Color noteColor => isHostile ? Color.red : Color.blue;
 
-    public abstract void Apply(Note_Effect_Handler noteEffectHandler, Note_SO note);
+    public abstract void Apply(Combat_Handler combatHandler, Note_SO note);
 
     public string GetDescription(int ownedCount)
     {

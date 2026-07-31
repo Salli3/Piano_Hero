@@ -12,11 +12,10 @@ public class Player_HP : MonoBehaviour
     public void ChangeHP(int amount)
     {
         Game_Manager.instance.statsManager.currentHP -= amount;
-        playerUI.UpdateUI();
 
-        if (amount > 0)
+        if (amount != 0)
         {
-            playerUI.HitRespond();
+            playerUI.UpdateHPBar(amount);
             playerUI.ShowHitNumber(amount);
 
             if (Game_Manager.instance.statsManager.currentHP <= 0)
@@ -25,15 +24,4 @@ public class Player_HP : MonoBehaviour
             }
         }
     }
-
-    public void Block()
-    {
-        playerUI.ShowHitNumber(0, true);
-    }
-
-    public void UpdateCombatStatus(int block, int stackingDamage, int curse)
-    {
-        playerUI.UpdateCombatStatus(block, stackingDamage, curse);
-    }
-
 }

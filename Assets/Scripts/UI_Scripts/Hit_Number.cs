@@ -12,18 +12,30 @@ public class Hit_Number : MonoBehaviour
     [SerializeField] private float floatSpeed;
     [SerializeField] private float lifeTime;
     [SerializeField] private Color damageColor = Color.red;
+    [SerializeField] private Color healColor = Color.green;
     [SerializeField] private Color blockedColor = Color.white;
 
     private Hit_Number_Pool hitNumberPool;
     private Coroutine activeRoutine;
 
-    public void ShowHitNumber(int damage, Vector3 worldPosition, Hit_Number_Pool pool, bool isBlocked)
+    public void Show(int damage, Vector3 worldPosition, Hit_Number_Pool pool, bool isBlocked)
     {
         hitNumberPool = pool;
         transform.position = worldPosition;
-        hitText.text = isBlocked ? "Block" : $"-{damage}";
-        hitImage.sprite = isBlocked ? blockImage : damageImage;
-        hitImage.color = isBlocked ? blockedColor : damageColor;
+
+        if (isBlocked)
+        {
+            hitText.text = "Block";
+            hitImage.sprite = blockImage;
+            hitImage.color = blockedColor;
+        }
+        else
+        {
+            hitText.text = damage > 0 ? $"-{damage}" : $"+{-damage}";
+            hitImage.sprite = damageImage;
+            hitImage.color = damage > 0 ? damageColor : healColor;
+        }
+        
         gameObject.SetActive(true);
 
         if (activeRoutine != null) StopCoroutine(activeRoutine);

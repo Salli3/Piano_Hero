@@ -1,7 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Status : MonoBehaviour
+public class UI_Status : MonoBehaviour
 {
     [SerializeField] private GameObject blockStatus;
     [SerializeField] private TMP_Text blockText;
@@ -9,14 +11,10 @@ public class Status : MonoBehaviour
     [SerializeField] private GameObject stackingDamageStatus;
     [SerializeField] private TMP_Text stackingDamageText;
 
-    [SerializeField] private GameObject curseStatus;
-    [SerializeField] private TMP_Text curseText;
-
-    public void UpdateCombatStatus(int blockNumber, int stackingDamageNumber, int curseNumber)
+    public void UpdateCombatStatus(int blockNumber, int stackingDamageNumber)
     {
         UpdateStatus(blockStatus, blockText, blockNumber);
         UpdateStatus(stackingDamageStatus, stackingDamageText, stackingDamageNumber);
-        UpdateStatus(curseStatus, curseText, curseNumber);
     }
 
     private void UpdateStatus(GameObject status, TMP_Text text, int num)
