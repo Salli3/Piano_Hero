@@ -17,6 +17,15 @@ public class Combat_Handler : MonoBehaviour
     [SerializeField] private int enemyBlock;
     [SerializeField] private int enemyStackingDamage;
 
+    private void OnEnable()
+    {
+        Enemy_HP.OnEnemyDefeated += RefreshEnemyStatus;
+    }
+    private void OnDisable()
+    {
+        Enemy_HP.OnEnemyDefeated -= RefreshEnemyStatus;
+    }
+
     private void Start()
     {
         UpdateCombatStatus();
@@ -24,8 +33,15 @@ public class Combat_Handler : MonoBehaviour
 
     private void UpdateCombatStatus()
     {
-        playerUI.UpdateCombatStatus(playerBlock, playerStackingDamage);
-        enemyUI.UpdateCombatStatus(enemyBlock, enemyStackingDamage);
+        playerUI.UpdateCombatStatusUI(playerBlock, playerStackingDamage);
+        enemyUI.UpdateCombatStatusUI(enemyBlock, enemyStackingDamage);
+    }
+
+    private void RefreshEnemyStatus(Enemy_SO _)
+    {
+        enemyBlock = 0;
+        enemyStackingDamage = 0;
+        UpdateCombatStatus();
     }
 
     //Deal Damage
@@ -33,12 +49,28 @@ public class Combat_Handler : MonoBehaviour
     {
         if (note.isHostile)
         {
+            if (Block(note.isHostile))
+            {
+                StopAllCoroutines();
+                return;
+            }
             playerHP.ChangeHP(damage);
         }
         else
         {
-            enemyHP.ChangeHP(damage + Game_Manager.instance.statsManager.damage);
+            if (Block(note.isHostile))
+            {
+                StopAllCoroutines();
+                return;
+            }
+            enemyHP.ChangeHP(damage + Game_Manager.instance.statsManager.Damage);
         }
+    }
+
+    //Heal
+    public void Heal(Note_SO note, int damage)
+    {
+        (note.isHostile ? (IHealth)enemyHP : playerHP).ChangeHP(-damage);
     }
 
     //Block

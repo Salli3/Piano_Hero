@@ -33,14 +33,14 @@ public class Enemy_UI : MonoBehaviour
     {
         enemyImage.sprite = enemySO.enemySprite;
         nameText.text = enemySO.enemyName;
-        UpdateHPBar(currentHP, maxHP);
+        UpdateHPUI(currentHP, maxHP);
     }
 
-    public void UpdateHPBar(int currentHP, int maxHP, int amount = 0) => uiHP.UpdateHP(currentHP, maxHP, amount);
+    public void UpdateHPUI(int currentHP, int maxHP, int amount = 0) => uiHP.UpdateHP(currentHP, maxHP, amount);
 
     public void ShowHitNumber(int damage, bool isBlocked = false) => hitNumberPool.ShowHitNumber(damage, isBlocked);
 
-    public void UpdateCombatStatus(int block, int stackingDamage) => uiStatus.UpdateCombatStatus(block, stackingDamage);
+    public void UpdateCombatStatusUI(int block, int stackingDamage) => uiStatus.UpdateCombatStatus(block, stackingDamage);
 
     //TODO rework enemy appear animation
     #region Enemy Appear and Defeat animation methods

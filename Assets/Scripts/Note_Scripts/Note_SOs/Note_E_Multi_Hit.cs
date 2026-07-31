@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Notes/Multi_Hit")]
@@ -17,6 +14,6 @@ public class Note_E_Multi_Hit : Note_SO
 
     public override int GetTotalStat(int ownedCount)
     {
-        return hitTime + upgradeHitTime * (ownedCount - 1);
+        return hitTime + upgradeHitTime * Mathf.Max(0, ownedCount - 1);
     }
 }

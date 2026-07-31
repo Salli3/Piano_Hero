@@ -14,7 +14,7 @@ public class UI_HP : MonoBehaviour
         if (amount > 0)
         {
             hpBarAnim.Play("HP_Decrease");
-            cameraShake.Shake();
+            if (cameraShake != null) cameraShake.Shake();
         }
         else if (amount < 0)
         {

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Notes/Clear_Note")]
@@ -15,6 +13,6 @@ public class Note_E_Clear_Note : Note_SO
 
     public override int GetTotalStat(int ownedCount)
     {
-        return damage + upgradeDamage * (ownedCount - 1);
+        return damage + upgradeDamage * Mathf.Max(0, ownedCount - 1);
     }
 }

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Enemy_HP : MonoBehaviour
+public class Enemy_HP : MonoBehaviour, IHealth
 {
     [SerializeField] private Enemy_UI enemyUI;
     [SerializeField] private Enemy_SO currentEnemy;
@@ -10,7 +10,7 @@ public class Enemy_HP : MonoBehaviour
     [SerializeField] private int maxHP;
     [SerializeField] private int moneyReward;
 
-    public static event Action OnEnemyDefeated;
+    public static event Action<Enemy_SO> OnEnemyDefeated;
 
     public void SetEnemy(Enemy_SO newEnemy)
     {
@@ -28,13 +28,13 @@ public class Enemy_HP : MonoBehaviour
 
         if (amount != 0)
         {
-            enemyUI.UpdateHPBar(currentHP, currentHP, amount);
+            enemyUI.UpdateHPUI(currentHP, maxHP, amount);
             enemyUI.ShowHitNumber(amount);
 
             if (currentHP <= 0 && Game_Manager.instance.isCombatActive == true)
             {
                 Game_Manager.instance.isCombatActive = false;
-                Game_Manager.instance.statsManager.money += moneyReward;
+                Game_Manager.instance.statsManager.UpdateCurrentMoney(-currentEnemy.enemyMoneyReward);
                 StartCoroutine(EnemyDefeat());
             }
         }
@@ -52,7 +52,7 @@ public class Enemy_HP : MonoBehaviour
         Game_Manager.instance.IncreaseEnemyCounter();
         if (Game_Manager.instance.IsRoundEnded() == false)
         {
-            OnEnemyDefeated?.Invoke();
+            OnEnemyDefeated?.Invoke(currentEnemy);
         }
     }
 }

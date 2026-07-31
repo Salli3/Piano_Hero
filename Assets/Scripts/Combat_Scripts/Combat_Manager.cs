@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Combat_Manager : MonoBehaviour
@@ -34,9 +35,22 @@ public class Combat_Manager : MonoBehaviour
         PickEnemy();
     }
 
-    private void PickEnemy()
+    private void PickEnemy(Enemy_SO enemySO = null)
     {
-        currentEnemy = enemySOs[Random.Range(0, enemySOs.Length)];
+        Enemy_SO[] enemyPool = enemySOs;
+
+        if (enemySO != null)
+        {
+            enemyPool = enemySOs.Where(e => e != enemySO).ToArray();
+        }
+
+        if (enemyPool.Length == 0)
+        {
+            enemyPool = enemySOs;
+        }
+
+        currentEnemy = enemyPool[Random.Range(0, enemyPool.Length)];
+
         if (enemyHP != null)
         {
             enemyHP.SetEnemy(currentEnemy);
@@ -53,7 +67,6 @@ public class Combat_Manager : MonoBehaviour
         }
         else
         {
-            if (combatHandler.Block(false)) return;
             note.Apply(combatHandler, note);
         }
     }
@@ -70,7 +83,6 @@ public class Combat_Manager : MonoBehaviour
     {
         if (note.isHostile == true)
         {
-            if (combatHandler.Block(true)) return;
             note.Apply(combatHandler, note);
         }
     }

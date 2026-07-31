@@ -2194,13 +2194,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a660bb7ec515d47a80173dae79a85c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 1
   currentHP: 9999
   maxHP: 100
   money: 0
   playerAttackTypes:
-  - {fileID: 11400000, guid: 69b847ab97aff654886ec36a2d3f58e9, type: 2}
   - {fileID: 11400000, guid: 16794b889c2732a42b0fe1710562dc8e, type: 2}
+  - {fileID: 11400000, guid: 072a623d48de1d2498133c912f74ea36, type: 2}
+  - {fileID: 11400000, guid: da19c976b26df39409493ea4f7962dd6, type: 2}
 --- !u!1 &727377955
 GameObject:
   m_ObjectHideFlags: 0
@@ -2740,6 +2741,7 @@ GameObject:
   - component: {fileID: 880397429}
   - component: {fileID: 880397430}
   - component: {fileID: 880397434}
+  - component: {fileID: 880397435}
   - component: {fileID: 880397433}
   - component: {fileID: 880397432}
   m_Layer: 5
@@ -2872,6 +2874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiHP: {fileID: 880397434}
+  uiMoney: {fileID: 880397435}
   uiStatus: {fileID: 880397433}
   moneyText: {fileID: 1776045605}
   hitNumberPool: {fileID: 880397432}
@@ -2943,6 +2946,23 @@ MonoBehaviour:
   hpBarAnim: {fileID: 1539915641}
   hpBar: {fileID: 1539915642}
   hpText: {fileID: 1287022651}
+--- !u!114 &880397435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880397423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41cdb561760204448a03f4a7a6cf5259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyText: {fileID: 1776045605}
+  moneyNumberPrefab: {fileID: 1908450938278161185, guid: fa203b8fc128e4b4e9b875dbb6277761, type: 3}
+  spawnPoint: {fileID: 1342760691}
+  xOffset: 75
+  yOffset: -75
 --- !u!1 &897243478
 GameObject:
   m_ObjectHideFlags: 0
@@ -2977,7 +2997,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -2.4999542}
+  m_AnchoredPosition: {x: 0, y: -2.5}
   m_SizeDelta: {x: 0, y: -5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &897243480

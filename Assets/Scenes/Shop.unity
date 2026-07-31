@@ -132,6 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 71992935}
   - component: {fileID: 71992937}
+  - component: {fileID: 71992938}
   m_Layer: 5
   m_Name: HP_Bar
   m_TagString: Untagged
@@ -212,6 +213,27 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &71992938
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71992934}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 37cd0ef527acbdc4f97a9ac8cd70a492, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &145471438
 GameObject:
   m_ObjectHideFlags: 0
@@ -832,8 +854,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a660bb7ec515d47a80173dae79a85c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
-  currentHP: 99
+  damage: 0
+  currentHP: 50
   maxHP: 100
   money: 9999
   playerAttackTypes: []
@@ -1880,6 +1902,8 @@ GameObject:
   - component: {fileID: 1648913250}
   - component: {fileID: 1648913249}
   - component: {fileID: 1648913248}
+  - component: {fileID: 1648913255}
+  - component: {fileID: 1648913254}
   - component: {fileID: 1648913252}
   - component: {fileID: 1648913253}
   m_Layer: 5
@@ -1989,9 +2013,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: {fileID: 1917584521}
   itemDescription: {fileID: 1301621305}
-  moneyText: {fileID: 1866733989}
-  hpText: {fileID: 1957104765}
-  hpBar: {fileID: 71992937}
+  uiMoney: {fileID: 1648913255}
+  uiHP: {fileID: 1648913254}
   buyButton: {fileID: 8504553853882708144}
   rerollButton: {fileID: 1366273220}
   healButton: {fileID: 2004308826}
@@ -2017,11 +2040,45 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5bfcc0c4ab5798646b3a174c4e12d198, type: 2}
   - {fileID: 11400000, guid: 69b847ab97aff654886ec36a2d3f58e9, type: 2}
   - {fileID: 11400000, guid: 072a623d48de1d2498133c912f74ea36, type: 2}
+  - {fileID: 11400000, guid: da19c976b26df39409493ea4f7962dd6, type: 2}
   buyCost: 150
   rerollCost: 20
   healCost: 50
   inflation: 10
   healAmount: 10
+--- !u!114 &1648913254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648913246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25484c812f77eb44092d02c2ba1a3373, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraShake: {fileID: 0}
+  hpBarAnim: {fileID: 71992938}
+  hpBar: {fileID: 71992937}
+  hpText: {fileID: 1957104765}
+--- !u!114 &1648913255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648913246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41cdb561760204448a03f4a7a6cf5259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyText: {fileID: 1866733989}
+  moneyNumberPrefab: {fileID: 1908450938278161185, guid: fa203b8fc128e4b4e9b875dbb6277761, type: 3}
+  spawnPoint: {fileID: 1947719310}
+  xOffset: 125
+  yOffset: -50
 --- !u!1 &1762074201
 GameObject:
   m_ObjectHideFlags: 0
@@ -2226,7 +2283,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Money: 00$'
+  m_text: 'Money: 999$'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 4fa011823ef05aa4cbb955e3d446efd9, type: 2}

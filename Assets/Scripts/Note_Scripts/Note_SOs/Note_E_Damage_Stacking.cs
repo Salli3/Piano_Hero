@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Notes/Damage_Stacking")]
@@ -15,6 +13,6 @@ public class Note_E_Damage_Stacking : Note_SO
 
     public override int GetTotalStat(int ownedCount)
     {
-        return damage + upgradeDamage * (ownedCount - 1);
+        return damage + upgradeDamage * Mathf.Max(0, ownedCount - 1);
     }
 }

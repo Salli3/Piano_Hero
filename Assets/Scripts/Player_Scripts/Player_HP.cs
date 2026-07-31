@@ -5,20 +5,20 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player_HP : MonoBehaviour
+public class Player_HP : MonoBehaviour, IHealth
 {
     [SerializeField] private Player_UI playerUI;
 
     public void ChangeHP(int amount)
     {
-        Game_Manager.instance.statsManager.currentHP -= amount;
+        Game_Manager.instance.statsManager.UpdateCurrentHP(amount);
 
         if (amount != 0)
         {
-            playerUI.UpdateHPBar(amount);
+            playerUI.UpdateHPUI(amount);
             playerUI.ShowHitNumber(amount);
 
-            if (Game_Manager.instance.statsManager.currentHP <= 0)
+            if (Game_Manager.instance.statsManager.CurrentHP <= 0)
             {
                 Game_Manager.instance.isCombatActive = false;
             }
