@@ -2041,6 +2041,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 69b847ab97aff654886ec36a2d3f58e9, type: 2}
   - {fileID: 11400000, guid: 072a623d48de1d2498133c912f74ea36, type: 2}
   - {fileID: 11400000, guid: da19c976b26df39409493ea4f7962dd6, type: 2}
+  - {fileID: 11400000, guid: c5452421284463f4f8e8411e66fbcc27, type: 2}
   buyCost: 150
   rerollCost: 20
   healCost: 50
