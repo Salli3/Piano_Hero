@@ -2,15 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class Stats_Manager : MonoBehaviour
 {
     [Header("Player Stats")]
-    public int damage;
-    public int currentHP;
-    public int maxHP;
-    public int money;
+    [SerializeField] private int damage;
+    [SerializeField] private int currentHP;
+    [SerializeField] private int maxHP;
+    [SerializeField] private int money;
+
+    public int Damage => damage;
+    public int CurrentHP => currentHP;
+    public int MaxHP => maxHP;
+    public int Money => money;
+
     [SerializeField] private List<Note_SO> playerAttackTypes;
 
     private Dictionary<Note_SO, int> noteStackCounts = new Dictionary<Note_SO, int>();  
@@ -25,13 +30,19 @@ public class Stats_Manager : MonoBehaviour
 
     public void UpdateCurrentHP(int amount)
     {
-        currentHP += amount;
+        currentHP -= amount;
         if (currentHP >= maxHP)
         {
             currentHP = maxHP;
         }
     }
 
+    public void UpdateCurrentMoney(int amount)
+    {
+        money -= amount;
+    }
+
+    #region Note level tracker
     public void PurchaseNote(Note_SO note)
     {
         if (playerAttackTypes.Contains(note) == false) playerAttackTypes.Add(note);
@@ -48,4 +59,5 @@ public class Stats_Manager : MonoBehaviour
     {
         return noteStackCounts.TryGetValue(note, out int count) ? count : 0;
     }
+    #endregion
 }

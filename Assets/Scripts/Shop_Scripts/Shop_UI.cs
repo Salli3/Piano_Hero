@@ -9,9 +9,8 @@ public class Shop_UI : MonoBehaviour
     [SerializeField] private TMP_Text itemDescription;
 
     [Header("Resources")]
-    [SerializeField] private TMP_Text moneyText;
-    [SerializeField] private TMP_Text hpText;
-    [SerializeField] private Slider hpBar;
+    [SerializeField] private UI_Money uiMoney;
+    [SerializeField] private UI_HP uiHP;
 
     [Header("Buttons")]
     [SerializeField] private Button buyButton;
@@ -30,12 +29,10 @@ public class Shop_UI : MonoBehaviour
         itemDescription.text = note.GetDescription(Game_Manager.instance.statsManager.GetStackCount(note));
     }
 
-    public void UpdateResources()
+    public void UpdateResources(int money = 0, int hp = 0)
     {
-        moneyText.text = "Money: " + Game_Manager.instance.statsManager.money + "$";
-        hpText.text = "HP: " + Game_Manager.instance.statsManager.currentHP + "/" + Game_Manager.instance.statsManager.maxHP;
-        hpBar.maxValue = Game_Manager.instance.statsManager.maxHP;
-        hpBar.value = Game_Manager.instance.statsManager.currentHP;
+        uiMoney.UpdateMoney(money);
+        uiHP.UpdateHP(Game_Manager.instance.statsManager.CurrentHP, Game_Manager.instance.statsManager.MaxHP, -hp);
     }
 
     public void UpdateCost(int buyCost, int rerollCost, int healCost, int healAmount)

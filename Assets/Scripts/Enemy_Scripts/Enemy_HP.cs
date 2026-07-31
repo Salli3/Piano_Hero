@@ -2,40 +2,39 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Enemy_HP : MonoBehaviour
+public class Enemy_HP : MonoBehaviour, IHealth
 {
     [SerializeField] private Enemy_UI enemyUI;
-    [SerializeField] private Enemy_SO enemySO;
+    [SerializeField] private Enemy_SO currentEnemy;
     [SerializeField] private int currentHP;
     [SerializeField] private int maxHP;
     [SerializeField] private int moneyReward;
 
-    public static event Action OnEnemyDefeated;
+    public static event Action<Enemy_SO> OnEnemyDefeated;
 
     public void SetEnemy(Enemy_SO newEnemy)
     {
-        enemySO = newEnemy;
-        maxHP = enemySO.enemyHP;
+        currentEnemy = newEnemy;
+        maxHP = currentEnemy.enemyHP;
         currentHP = maxHP;
-        enemyUI.SetEnemyUI(enemySO, currentHP, maxHP);
+        enemyUI.SetEnemyUI(currentEnemy, currentHP, maxHP);
         StartCoroutine(EnemyAppear());
     }
 
     public void ChangeHP(int amount)
     {
-        if (enemySO == null) return;
+        if (currentEnemy == null) return;
+        currentHP -= amount;
 
-        currentHP -= amount;        
-        enemyUI.UpdateUI(currentHP, maxHP);
-
-        if (amount > 0)
+        if (amount != 0)
         {
-            enemyUI.HitRespond();
-            
+            enemyUI.UpdateHPUI(currentHP, maxHP, amount);
+            enemyUI.ShowHitNumber(amount);
+
             if (currentHP <= 0 && Game_Manager.instance.isCombatActive == true)
             {
                 Game_Manager.instance.isCombatActive = false;
-                Game_Manager.instance.statsManager.money += moneyReward;
+                Game_Manager.instance.statsManager.UpdateCurrentMoney(-currentEnemy.enemyMoneyReward);
                 StartCoroutine(EnemyDefeat());
             }
         }
@@ -53,7 +52,7 @@ public class Enemy_HP : MonoBehaviour
         Game_Manager.instance.IncreaseEnemyCounter();
         if (Game_Manager.instance.IsRoundEnded() == false)
         {
-            OnEnemyDefeated?.Invoke();
+            OnEnemyDefeated?.Invoke(currentEnemy);
         }
     }
 }

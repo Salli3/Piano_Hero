@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Note_SO : ScriptableObject
@@ -11,18 +9,12 @@ public abstract class Note_SO : ScriptableObject
     public bool isHostile;
     public Color noteColor => isHostile ? Color.red : Color.blue;
 
-    public abstract void Apply(Note_Effect_Handler noteEffectHandler, Note_SO note);
+    public abstract void Apply(Combat_Handler combatHandler, Note_SO note);
 
-    public string GetDescription(int ownedCount)
+    public virtual string GetDescription(int ownedCount)
     {
-        if (ownedCount <= 0)
-        {
-            return noteDescription;
-        }
-        else
-        {
-            return $"{noteUpgradeDescription} (total: {GetTotalStat(ownedCount + 1)})";
-        }
+        if (ownedCount <= 0) return noteDescription;
+        return $"{noteUpgradeDescription} (total: {GetTotalStat(ownedCount + 1)})";
     }
 
     public abstract int GetTotalStat(int ownedCount);

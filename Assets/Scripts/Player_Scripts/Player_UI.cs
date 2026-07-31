@@ -1,42 +1,38 @@
 using System.Collections;
+using System.Runtime.Serialization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Player_UI : MonoBehaviour
 {
-    [SerializeField] private Camera_Shake cameraShake;
-    [SerializeField] private Animator hpBarAnim;
-    [SerializeField] private Slider hpBar;
-    [SerializeField] private TMP_Text hpText;
+    [SerializeField] private UI_HP uiHP;
+    [SerializeField] private UI_Money uiMoney;
+    [SerializeField] private UI_Status uiStatus;
     [SerializeField] private TMP_Text moneyText;
+    [SerializeField] private Hit_Number_Pool hitNumberPool;
 
     private void OnEnable()
     {
-        Enemy_HP.OnEnemyDefeated += UpdateUI;
+        Enemy_HP.OnEnemyDefeated += UpdateMoneyUI;
     }
 
     private void OnDisable()
     {
-        Enemy_HP.OnEnemyDefeated -= UpdateUI;
+        Enemy_HP.OnEnemyDefeated -= UpdateMoneyUI;
     }
 
     private void Start()
     {
-        UpdateUI();
+        UpdateHPUI();
+        uiMoney.UpdateMoney();
     }
 
-    public void UpdateUI()
-    {
-        moneyText.text = "Money: " + Game_Manager.instance.statsManager.money + "$";
-        hpText.text = "HP: " + Game_Manager.instance.statsManager.currentHP + "/" + Game_Manager.instance.statsManager.maxHP;
-        hpBar.maxValue = Game_Manager.instance.statsManager.maxHP;
-        hpBar.value = Game_Manager.instance.statsManager.currentHP;
-    }
+    private void UpdateMoneyUI(Enemy_SO enemySO) => uiMoney.UpdateMoney(-enemySO.enemyMoneyReward);
 
-    public void HitRespond()
-    {
-        hpBarAnim.Play("HP_Decrease");
-        cameraShake.Shake();
-    }
+    public void UpdateHPUI(int amount = 0) => uiHP.UpdateHP(Game_Manager.instance.statsManager.CurrentHP, Game_Manager.instance.statsManager.MaxHP, amount);  
+
+    public void ShowHitNumber(int damage, bool isBlocked = false) => hitNumberPool.ShowHitNumber(damage, isBlocked);
+
+    public void UpdateCombatStatusUI(int block, int stackingDamage) => uiStatus.UpdateCombatStatus(block, stackingDamage);
 }

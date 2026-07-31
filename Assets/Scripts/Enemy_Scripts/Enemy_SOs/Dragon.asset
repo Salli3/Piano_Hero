@@ -16,6 +16,7 @@ MonoBehaviour:
   enemySprite: {fileID: 21300000, guid: 800607afddc7be8488faef19629689fe, type: 3}
   enemyHP: 100
   enemyDamage: 10
+  enemyMoneyReward: 200
   attackTypes:
   - {fileID: 11400000, guid: 282540b0146e4d4428339c3b8cdf5209, type: 2}
   - {fileID: 11400000, guid: 17d551ee079fa114586c29dcbc50329c, type: 2}

@@ -25,7 +25,7 @@ public class Shop_Manager : MonoBehaviour
 
     private void GetNewItem()
     {
-        if (Game_Manager.instance.statsManager.money >= buyCost)
+        if (Game_Manager.instance.statsManager.Money >= buyCost)
         {
             List<Note_SO> availableItems = new List<Note_SO>(Items);
             if (currentItem != null)
@@ -42,17 +42,17 @@ public class Shop_Manager : MonoBehaviour
     //Update resources and show available button, hide item if not able to buy
     private void UpdateUI()
     {
-        if (Game_Manager.instance.statsManager.money < buyCost)
+        if (Game_Manager.instance.statsManager.Money < buyCost)
         {
             shopUI.ShowItemInfo(empty);
         }
         shopUI.UpdateResources();
         shopUI.UpdateCost(buyCost, rerollCost, healCost, healAmount);
         shopUI.ShowButton(
-            canBuy: Game_Manager.instance.statsManager.money >= buyCost,
-            canReroll: Game_Manager.instance.statsManager.money >= rerollCost + buyCost,
-            canHeal: Game_Manager.instance.statsManager.money >= healCost
-            && Game_Manager.instance.statsManager.maxHP > Game_Manager.instance.statsManager.currentHP
+            canBuy: Game_Manager.instance.statsManager.Money >= buyCost,
+            canReroll: Game_Manager.instance.statsManager.Money >= rerollCost + buyCost,
+            canHeal: Game_Manager.instance.statsManager.Money >= healCost
+            && Game_Manager.instance.statsManager.MaxHP > Game_Manager.instance.statsManager.CurrentHP
             );
     }
 
@@ -60,22 +60,25 @@ public class Shop_Manager : MonoBehaviour
     public void OnBuyButtonPressed()
     {
         Game_Manager.instance.statsManager.PurchaseNote(currentItem);
-        Game_Manager.instance.statsManager.money -= buyCost;
+        Game_Manager.instance.statsManager.UpdateCurrentMoney(buyCost);
+        shopUI.UpdateResources(buyCost);
         currentItem = null;
         GetNewItem();
     }
 
     public void OnRerollButtonPressed()
     {
-        Game_Manager.instance.statsManager.money -= rerollCost;
+        Game_Manager.instance.statsManager.UpdateCurrentMoney(rerollCost);
+        shopUI.UpdateResources(rerollCost);
         rerollCost += inflation;
         GetNewItem();
     }
 
     public void OnHealButtonPressed()
     {
-        Game_Manager.instance.statsManager.UpdateCurrentHP(healAmount);
-        Game_Manager.instance.statsManager.money -= healCost;
+        Game_Manager.instance.statsManager.UpdateCurrentHP(-healAmount);
+        Game_Manager.instance.statsManager.UpdateCurrentMoney(healCost);
+        shopUI.UpdateResources(healCost, healAmount);
         healCost += inflation;
         UpdateUI();
     }

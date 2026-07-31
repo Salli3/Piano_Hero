@@ -1,8 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Combat_Manager : MonoBehaviour
 {
-    [SerializeField] private Note_Effect_Handler noteEffectHandler;
+    [SerializeField] private Combat_Handler combatHandler;
     [SerializeField] private Player_HP playerHP;
     [SerializeField] private Enemy_HP enemyHP;
     [SerializeField] private Enemy_SO[] enemySOs;
@@ -32,9 +35,22 @@ public class Combat_Manager : MonoBehaviour
         PickEnemy();
     }
 
-    private void PickEnemy()
+    private void PickEnemy(Enemy_SO enemySO = null)
     {
-        currentEnemy = enemySOs[Random.Range(0, enemySOs.Length)];
+        Enemy_SO[] enemyPool = enemySOs;
+
+        if (enemySO != null)
+        {
+            enemyPool = enemySOs.Where(e => e != enemySO).ToArray();
+        }
+
+        if (enemyPool.Length == 0)
+        {
+            enemyPool = enemySOs;
+        }
+
+        currentEnemy = enemyPool[Random.Range(0, enemyPool.Length)];
+
         if (enemyHP != null)
         {
             enemyHP.SetEnemy(currentEnemy);
@@ -51,14 +67,14 @@ public class Combat_Manager : MonoBehaviour
         }
         else
         {
-            note.Apply(noteEffectHandler, note);
+            note.Apply(combatHandler, note);
         }
     }
 
     private void OnNoteMiss()
     {
         if (Game_Manager.instance.isCombatActive == false) return;
-        if (noteEffectHandler.Block()) return;
+        if (combatHandler.Block(true)) return;
 
         playerHP.ChangeHP(currentEnemy.enemyDamage);
     }
@@ -67,9 +83,7 @@ public class Combat_Manager : MonoBehaviour
     {
         if (note.isHostile == true)
         {
-            if (noteEffectHandler.Block()) return;
-
-            note.Apply(noteEffectHandler, note);
+            note.Apply(combatHandler, note);
         }
     }
     #endregion

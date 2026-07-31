@@ -5,15 +5,14 @@ using UnityEngine.UI;
 
 public class Enemy_UI : MonoBehaviour
 {
-    [SerializeField] private Camera_Shake cameraShake;
+    [SerializeField] private UI_HP uiHP;
+    [SerializeField] private UI_Status uiStatus;
+    [SerializeField] private Hit_Number_Pool hitNumberPool;
+
     [SerializeField] private RectTransform enemyPosition;
+    [SerializeField] private TMP_Text nameText;
     [SerializeField] private Image enemyImage;
     private Vector3 originalEnemyPosition;
-
-    [SerializeField] private Animator hpBarAnim;
-    [SerializeField] private Slider hpBar;
-    [SerializeField] private TMP_Text hpText;
-    [SerializeField] private TMP_Text nameText;
 
     [Header("Appear")]
     [SerializeField] private float appearDuration;
@@ -34,21 +33,14 @@ public class Enemy_UI : MonoBehaviour
     {
         enemyImage.sprite = enemySO.enemySprite;
         nameText.text = enemySO.enemyName;
-        UpdateUI(currentHP, maxHP);
+        UpdateHPUI(currentHP, maxHP);
     }
 
-    public void UpdateUI(int currentHP, int maxHP)
-    {
-        hpText.text = "HP: " + currentHP + "/" + maxHP;
-        hpBar.maxValue = maxHP;
-        hpBar.value = currentHP;
-    }
+    public void UpdateHPUI(int currentHP, int maxHP, int amount = 0) => uiHP.UpdateHP(currentHP, maxHP, amount);
 
-    public void HitRespond()
-    {
-        hpBarAnim.Play("HP_Decrease");
-        cameraShake.Shake();
-    }
+    public void ShowHitNumber(int damage, bool isBlocked = false) => hitNumberPool.ShowHitNumber(damage, isBlocked);
+
+    public void UpdateCombatStatusUI(int block, int stackingDamage) => uiStatus.UpdateCombatStatus(block, stackingDamage);
 
     //TODO rework enemy appear animation
     #region Enemy Appear and Defeat animation methods
