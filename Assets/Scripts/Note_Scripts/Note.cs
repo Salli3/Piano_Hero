@@ -36,6 +36,12 @@ public class Note : MonoBehaviour
         sr.color = Color.white;
         noteCollider.enabled = false;
         anim.Play("Fade");
+
+        if (noteSO.hitSound != null)
+        {
+            AudioSource.PlayClipAtPoint(noteSO.hitSound, transform.position);
+        }
+
         Destroy(gameObject, 0.3f);
     }
 }
