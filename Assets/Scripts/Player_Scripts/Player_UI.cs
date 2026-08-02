@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player_UI : MonoBehaviour
+public class Player_UI : MonoBehaviour, IHitNumber
 {
     [SerializeField] private UI_HP uiHP;
     [SerializeField] private UI_Money uiMoney;

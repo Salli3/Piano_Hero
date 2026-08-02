@@ -74,6 +74,7 @@ public class Combat_Manager : MonoBehaviour
     private void OnNoteMiss()
     {
         if (Game_Manager.instance.isCombatActive == false) return;
+        //Target Player Block
         if (combatHandler.Block(true)) return;
 
         playerHP.ChangeHP(currentEnemy.enemyDamage);
