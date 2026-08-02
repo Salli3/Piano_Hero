@@ -17,5 +17,6 @@ MonoBehaviour:
   noteUpgradeDescription: Deal 1 more damage each time you use it
   noteSpeed: 10
   isHostile: 0
+  hitSound: {fileID: 8300000, guid: 2dc421449c921194eb1913744d1027af, type: 3}
   damage: 1
   upgradeDamage: 1

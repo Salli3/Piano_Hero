@@ -17,6 +17,6 @@ MonoBehaviour:
   noteUpgradeDescription: Block 1 more time
   noteSpeed: 10
   isHostile: 0
-  hitSound: {fileID: 8300000, guid: be107a58d21bf5349ab63d12eb5010fc, type: 3}
+  hitSound: {fileID: 8300000, guid: 71e1339e8fcd17845bf9ef0686365148, type: 3}
   blockTime: 2
   upgradeBlockTime: 1
