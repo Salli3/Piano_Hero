@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class Note : MonoBehaviour
@@ -7,7 +8,7 @@ public class Note : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Collider2D noteCollider;
     [SerializeField] private Animator anim;
-    [SerializeField] private Note_Display noteDisplay;
+    [SerializeField] private TMP_Text noteName;
 
     private void FixedUpdate()
     {
@@ -27,8 +28,7 @@ public class Note : MonoBehaviour
         transform.position = spawnPoint.position;
         sr.color = noteSO.noteColor;
         noteCollider.enabled = true;
-
-        noteDisplay.SetNote(noteSO);
+        noteName.text = noteSO.noteName;
     }
 
     public void OnNoteHit()
@@ -36,6 +36,12 @@ public class Note : MonoBehaviour
         sr.color = Color.white;
         noteCollider.enabled = false;
         anim.Play("Fade");
+
+        if (noteSO.hitSound != null)
+        {
+            AudioSource.PlayClipAtPoint(noteSO.hitSound, transform.position);
+        }
+
         Destroy(gameObject, 0.3f);
     }
 }

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Player_Recover
   m_EditorClassIdentifier: 
   noteName: Recover
-  noteDescription: Heal 1HP
-  noteUpgradeDescription: Heal 1 more HP
+  noteDescription: Heal 2HP
+  noteUpgradeDescription: Heal 2 more HP
   noteSpeed: 10
   isHostile: 0
-  healAmount: 1
-  upgradeHeal: 1
+  hitSound: {fileID: 8300000, guid: fec416284a1383e4d9d71f3b97d92ce5, type: 3}
+  healAmount: 2
+  upgradeHeal: 2

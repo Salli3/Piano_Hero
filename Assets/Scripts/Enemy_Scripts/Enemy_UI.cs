@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Enemy_UI : MonoBehaviour
+public class Enemy_UI : MonoBehaviour, IHitNumber
 {
     [SerializeField] private UI_HP uiHP;
     [SerializeField] private UI_Status uiStatus;

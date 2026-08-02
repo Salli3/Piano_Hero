@@ -17,6 +17,7 @@ MonoBehaviour:
   noteUpgradeDescription: 
   noteSpeed: 10
   isHostile: 1
+  hitSound: {fileID: 8300000, guid: 9f1ef1c9481032f489e1e485df5b5d1d, type: 3}
   healAmount: 10
   upgradeHeal: 0
   damage: 1

@@ -17,6 +17,9 @@ public class Combat_Handler : MonoBehaviour
     [SerializeField] private int enemyBlock;
     [SerializeField] private int enemyStackingDamage;
 
+    private IHealth GetTargetHP(bool isHostile) => isHostile ? playerHP : enemyHP;
+    private IHitNumber GetHitNumberUI(bool isHostile) => isHostile ? playerUI : enemyUI;
+
     private void OnEnable()
     {
         Enemy_HP.OnEnemyDefeated += RefreshEnemyStatus;
@@ -47,61 +50,36 @@ public class Combat_Handler : MonoBehaviour
     //Deal Damage
     public void DealDamage(Note_SO note, int damage)
     {
-        if (note.isHostile)
+        if (Block(note.isHostile))
         {
-            if (Block(note.isHostile))
-            {
-                StopAllCoroutines();
-                return;
-            }
-            playerHP.ChangeHP(damage);
+            StopAllCoroutines();
+            return;
         }
-        else
-        {
-            if (Block(note.isHostile))
-            {
-                StopAllCoroutines();
-                return;
-            }
-            enemyHP.ChangeHP(damage + Game_Manager.instance.statsManager.Damage);
-        }
+
+        int finalDamage = note.isHostile ? damage : damage + Game_Manager.instance.statsManager.Damage;
+        GetTargetHP(note.isHostile).ChangeHP(finalDamage);
     }
 
     //Heal
     public void Heal(Note_SO note, int damage)
     {
-        (note.isHostile ? (IHealth)enemyHP : playerHP).ChangeHP(-damage);
+        GetTargetHP(note.isHostile).ChangeHP(-damage);
     }
 
     //Block
     public void SetBlock(Note_SO note, int amount)
     {
-        if (note.isHostile)
-        {
-            enemyBlock = amount;
-        }
-        else
-        {
-            playerBlock = amount;
-        }
+        ref int block = ref (note.isHostile ? ref enemyBlock : ref playerBlock);
+        block = amount;
         UpdateCombatStatus();
     }
     public bool Block(bool isHostile)
     {
-        int currentBlock = isHostile ? playerBlock : enemyBlock;
+        ref int block = ref (isHostile ? ref playerBlock : ref enemyBlock);
+        if (block <= 0) return false;
 
-        if (currentBlock <= 0) return false;
-
-        if (isHostile)
-        {
-            playerBlock--;
-            playerUI.ShowHitNumber(0, true);
-        }
-        else
-        {
-            enemyBlock--;
-            enemyUI.ShowHitNumber(0, true);
-        }
+        block--;
+        GetHitNumberUI(isHostile).ShowHitNumber(0, true);
         UpdateCombatStatus();
         return true;
     }
@@ -127,18 +105,10 @@ public class Combat_Handler : MonoBehaviour
     //Stack damage
     public int StackDamage(Note_SO note, int amount)
     {
-        if (note.isHostile)
-        {
-            enemyStackingDamage += amount;
-            UpdateCombatStatus();
-            return enemyStackingDamage;
-        }
-        else
-        {
-            playerStackingDamage += amount;
-            UpdateCombatStatus();
-            return playerStackingDamage;
-        }
+        ref int stackingDamage = ref (note.isHostile ? ref enemyStackingDamage : ref playerStackingDamage);
+        stackingDamage += amount;
+        UpdateCombatStatus();
+        return stackingDamage;
     }
 
     //Multi hit

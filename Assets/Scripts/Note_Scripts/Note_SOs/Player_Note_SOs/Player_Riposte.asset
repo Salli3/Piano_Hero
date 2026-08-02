@@ -17,5 +17,6 @@ MonoBehaviour:
   noteUpgradeDescription: Deal 10 more damage for each note cleared
   noteSpeed: 10
   isHostile: 0
+  hitSound: {fileID: 8300000, guid: d9b1c92b23402d54dbb984b6e4e439a3, type: 3}
   damage: 10
   upgradeDamage: 10
