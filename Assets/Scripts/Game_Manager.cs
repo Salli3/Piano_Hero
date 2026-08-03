@@ -17,18 +17,51 @@ public class Game_Manager : MonoBehaviour
     [SerializeField] private bool roundEnded;
     public bool isCombatActive;
 
+    [Header("Persistent Objects")]
+    public GameObject[] persistentObjects;
+
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            MarkPersistentObjects();
         }
         else
         {
-            Destroy(gameObject);
+            CleanUpAndDestroy();
             return;
         }
+    }
+
+    private void MarkPersistentObjects()
+    {
+        foreach (GameObject obj in persistentObjects)
+        {
+            if (obj != null)
+            {
+                DontDestroyOnLoad(obj);
+            }
+        }
+    }
+
+    private void CleanUpAndDestroy()
+    {
+        foreach (GameObject obj in persistentObjects)
+        {
+            if (obj != null)
+            {
+                Destroy(obj);
+            }
+        }
+
+        Destroy(gameObject);
+    }
+
+    public void PickCharacter(Player_SO playerSO)
+    {
+        statsManager.Initialize(playerSO);
     }
 
     public void StartCombat()

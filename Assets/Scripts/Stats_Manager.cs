@@ -1,27 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Stats_Manager : MonoBehaviour
 {
+    [SerializeField] private Player_SO player;
+
     [Header("Player Stats")]
     [SerializeField] private int damage;
     [SerializeField] private int currentHP;
     [SerializeField] private int maxHP;
     [SerializeField] private int money;
 
+    public Player_SO Player => player;
     public int Damage => damage;
     public int CurrentHP => currentHP;
     public int MaxHP => maxHP;
     public int Money => money;
 
-    [SerializeField] private List<Note_SO> playerAttackTypes;
-
-    private Dictionary<Note_SO, int> noteStackCounts = new Dictionary<Note_SO, int>();  
+    [SerializeField] private List<Note_SO> playerAttackTypes = new List<Note_SO>();
+    private Dictionary<Note_SO, int> noteStackCounts = new Dictionary<Note_SO, int>();
 
     private void Start()
     {
+        //For developer convenience only, delete this when build
+        foreach (var note in playerAttackTypes)
+        {
+            noteStackCounts[note] = 1;
+        }
+    }
+
+    public void Initialize(Player_SO playerSO)
+    {
+        player = playerSO;
+        damage = playerSO.playerDamage;
+        maxHP = playerSO.playerHP;
+        currentHP = maxHP;
+        money = playerSO.startingMoney;
+
+        playerAttackTypes = playerSO.attackTypes.ToList();
+
+        noteStackCounts.Clear();
         foreach (var note in playerAttackTypes)
         {
             noteStackCounts[note] = 1;
