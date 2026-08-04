@@ -19,7 +19,7 @@ public class Note : MonoBehaviour
             return;
         }
         if (noteSO == null) return;
-        rb.velocity = Vector3.down * noteSO.noteSpeed * Game_Manager.instance.GetDifficultyLevel();
+        rb.velocity = Vector3.down * noteSO.noteSpeed * Game_Manager.instance.roundManager.DifficultyLevel;
     }
 
     public void Init(Note_SO chosenNote, Transform spawnPoint)

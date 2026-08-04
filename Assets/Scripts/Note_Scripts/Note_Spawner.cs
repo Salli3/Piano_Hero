@@ -15,7 +15,7 @@ public class Note_Spawner : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float playerNoteChance;
 
     [Header("References")]
-    [SerializeField] private Combat_Manager combatManager;
+    [SerializeField] private Enemy_HP enemyHP;
     [SerializeField] private GameObject notePrefab;
     [SerializeField] private Transform[] spawnPoints;
 
@@ -28,7 +28,7 @@ public class Note_Spawner : MonoBehaviour
     {
         if (Game_Manager.instance.isCombatActive == false) return;
 
-        timer += Time.deltaTime * Game_Manager.instance.GetDifficultyLevel();
+        timer += Time.deltaTime * Game_Manager.instance.roundManager.DifficultyLevel;
         if (timer >= spawnInterval)
         {
             timer = 0;
@@ -48,7 +48,7 @@ public class Note_Spawner : MonoBehaviour
         }
         else
         {
-            Note_SO[] enemyNotes = combatManager.currentEnemy.attackTypes;
+            Note_SO[] enemyNotes = enemyHP.CurrentEnemy.attackTypes;
             chosenNote = enemyNotes[Random.Range(0, enemyNotes.Length)];
         }
 

@@ -834,11 +834,6 @@ MonoBehaviour:
   combatHandler: {fileID: 310191694}
   playerHP: {fileID: 880397429}
   enemyHP: {fileID: 1606295679}
-  enemySOs:
-  - {fileID: 11400000, guid: fd3660c20d2d6bb4fa23d442893aa2a3, type: 2}
-  - {fileID: 11400000, guid: e055423a9f5f4cc49876a2240bc191ea, type: 2}
-  - {fileID: 11400000, guid: d9775de95725ec44bb62a763550886a8, type: 2}
-  currentEnemy: {fileID: 0}
 --- !u!1 &318924498
 GameObject:
   m_ObjectHideFlags: 0
@@ -2140,6 +2135,7 @@ GameObject:
   m_Component:
   - component: {fileID: 717734309}
   - component: {fileID: 717734308}
+  - component: {fileID: 717734310}
   m_Layer: 0
   m_Name: Game_Manager
   m_TagString: Untagged
@@ -2160,11 +2156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statsManager: {fileID: 778885092}
-  difficultylevel: 1
-  difficultyMultiplier: 0.1
-  enemyCounter: 0
-  enemyPerRound: 3
-  roundEnded: 0
+  roundManager: {fileID: 717734310}
   isCombatActive: 0
   persistentObjects:
   - {fileID: 778885091}
@@ -2183,6 +2175,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &717734310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717734307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46fdb92b430529247ac16c442df807f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficultyLevel: 1
+  difficultyMultiplier: 0.1
+  enemyCounter: 0
+  enemyPerRound: 3
+  isRoundEnded: 0
 --- !u!1 &727377955
 GameObject:
   m_ObjectHideFlags: 0
@@ -2489,7 +2498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: 61aafd30cd15bc64ea630c8e99e092c0, type: 2}
-  damage: 0
+  damage: 83
   currentHP: 9999
   maxHP: 9999
   money: 0
@@ -3796,7 +3805,7 @@ MonoBehaviour:
   timer: 0
   spawnInterval: 0
   playerNoteChance: 0.3
-  combatManager: {fileID: 310191697}
+  enemyHP: {fileID: 1606295679}
   notePrefab: {fileID: 7288376383600802434, guid: 4a677fecf346aef4bb5df375b8673e19, type: 3}
   spawnPoints:
   - {fileID: 1901266773}
@@ -4619,6 +4628,7 @@ GameObject:
   - component: {fileID: 1606295684}
   - component: {fileID: 1606295683}
   - component: {fileID: 1606295682}
+  - component: {fileID: 1606295685}
   m_Layer: 5
   m_Name: Enemy
   m_TagString: Untagged
@@ -4831,6 +4841,23 @@ MonoBehaviour:
   hpBarAnim: {fileID: 810942939}
   hpBar: {fileID: 810942940}
   hpText: {fileID: 729790559}
+--- !u!114 &1606295685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606295673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f74285d838e0c8b43b37622406a5d217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyHP: {fileID: 1606295679}
+  enemySOs:
+  - {fileID: 11400000, guid: fd3660c20d2d6bb4fa23d442893aa2a3, type: 2}
+  - {fileID: 11400000, guid: e055423a9f5f4cc49876a2240bc191ea, type: 2}
+  - {fileID: 11400000, guid: d9775de95725ec44bb62a763550886a8, type: 2}
 --- !u!1 &1622345018
 GameObject:
   m_ObjectHideFlags: 0

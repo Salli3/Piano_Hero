@@ -6,20 +6,14 @@ public class Game_Manager : MonoBehaviour
     public static Game_Manager instance;
 
     public Stats_Manager statsManager;
+    public Round_Manager roundManager;
 
-    [Header("Difficulty settings")]
-    [SerializeField] private float difficultylevel;
-    [SerializeField] private float difficultyMultiplier;
-
-    [Header("Combat info")]
-    [SerializeField] private int enemyCounter = 0;
-    [SerializeField] private int enemyPerRound = 3;
-    [SerializeField] private bool roundEnded;
     public bool isCombatActive;
 
     [Header("Persistent Objects")]
     public GameObject[] persistentObjects;
 
+    #region Data persistent
     private void Awake()
     {
         if (instance == null)
@@ -55,48 +49,25 @@ public class Game_Manager : MonoBehaviour
                 Destroy(obj);
             }
         }
-
         Destroy(gameObject);
     }
+    #endregion
 
     public void PickCharacter(Player_SO playerSO)
     {
         statsManager.Initialize(playerSO);
     }
 
-    public void StartCombat()
+    public void StartCombatScene()
     {
+        roundManager.StartNewRound();
         SceneManager.LoadScene("Battle");
-        roundEnded = false;
     }
 
-    #region Difficulty level setter/getter
-    public float GetDifficultyLevel() => difficultylevel;
-    private void IncreaseDifficultyLevel() => difficultylevel += difficultyMultiplier;
-    #endregion
-
-    #region Combat round management
-    public void IncreaseEnemyCounter()
+    public void StartShopScene()
     {
-        enemyCounter++;
-        if (enemyCounter >= enemyPerRound)
-        {
-            roundEnded = true;
-            IncreaseDifficultyLevel();
-            EndCombat();
-        }
-    }
-
-    public bool IsRoundEnded()
-    {
-        return roundEnded;
-    }
-
-    private void EndCombat()
-    {
-        enemyCounter = 0;
         isCombatActive = false;
+        roundManager.IncreaseDifficulty();
         SceneManager.LoadScene("Shop");
     }
-    #endregion
 }
