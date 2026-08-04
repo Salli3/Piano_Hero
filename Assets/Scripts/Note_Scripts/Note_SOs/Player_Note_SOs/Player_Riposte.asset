@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Player_Riposte
   m_EditorClassIdentifier: 
   noteName: Riposte
-  noteDescription: Clear all enemy notes, deal 10 damage for each note cleared
-  noteUpgradeDescription: Deal 10 more damage for each note cleared
+  noteDescription: Clear all enemy notes, deal 1 damage for each note cleared
+  noteUpgradeDescription: Deal 1 more damage for each note cleared
   noteSpeed: 10
   isHostile: 0
   hitSound: {fileID: 8300000, guid: d9b1c92b23402d54dbb984b6e4e439a3, type: 3}
-  damage: 10
-  upgradeDamage: 10
+  damage: 1
+  upgradeDamage: 1
