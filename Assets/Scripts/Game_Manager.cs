@@ -70,4 +70,9 @@ public class Game_Manager : MonoBehaviour
         roundManager.IncreaseDifficulty();
         SceneManager.LoadScene("Shop");
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
