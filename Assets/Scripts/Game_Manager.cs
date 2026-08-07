@@ -10,6 +10,13 @@ public class Game_Manager : MonoBehaviour
 
     public bool isCombatActive;
 
+    [Header("Difficulty Settings")]
+    public float noteSpeed;
+    public float noteSpeedMultipiler;
+    public int enemyPerRound;
+    public int enemyHpMultiplier;
+    public int enemyDamageMultiplier;
+
     [Header("Persistent Objects")]
     public GameObject[] persistentObjects;
 
@@ -67,8 +74,13 @@ public class Game_Manager : MonoBehaviour
     public void StartShopScene()
     {
         isCombatActive = false;
-        roundManager.IncreaseDifficulty();
+        IncreaseDifficulty();
         SceneManager.LoadScene("Shop");
+    }
+
+    private void IncreaseDifficulty()
+    {
+        noteSpeed += noteSpeedMultipiler;
     }
 
     public void QuitGame()

@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d85375a5a8e6824bb3c2899aebdc718, type: 3}
-  m_Name: Sallie
+  m_Name: Lucy
   m_EditorClassIdentifier: 
-  playerName: Sallie
-  playerSprite: {fileID: 21300000, guid: ca64fbd433422fe4a9cf78324d09f978, type: 3}
-  playerHP: 100
-  playerDamage: 0
-  startingMoney: 200
+  playerName: Lucy
+  playerSprite: {fileID: 21300000, guid: 590ded3b57d4dec46a9d756ab7dae646, type: 3}
+  playerHP: 200
+  playerDamage: 1
+  startingMoney: 0
   attackTypes:
-  - {fileID: 11400000, guid: 5bfcc0c4ab5798646b3a174c4e12d198, type: 2}
-  - {fileID: 11400000, guid: da19c976b26df39409493ea4f7962dd6, type: 2}
+  - {fileID: 11400000, guid: 69b847ab97aff654886ec36a2d3f58e9, type: 2}

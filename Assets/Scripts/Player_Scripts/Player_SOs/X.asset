@@ -14,10 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerName: X
   playerSprite: {fileID: 21300000, guid: 8987e925df32a95469c771b09902d81b, type: 3}
-  playerHP: 100
-  playerDamage: 1
+  playerHP: 50
+  playerDamage: 0
   startingMoney: 0
   attackTypes:
-  - {fileID: 11400000, guid: 072a623d48de1d2498133c912f74ea36, type: 2}
   - {fileID: 11400000, guid: 2fb0fa3ae0c24c646a208f4eaa1feb9f, type: 2}
-  - {fileID: 11400000, guid: 69b847ab97aff654886ec36a2d3f58e9, type: 2}
+  - {fileID: 11400000, guid: 16794b889c2732a42b0fe1710562dc8e, type: 2}

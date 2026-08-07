@@ -8,7 +8,9 @@ public class Enemy_SO : ScriptableObject
     public string enemyName;
     public Sprite enemySprite;
     public int enemyHP;
-    public int enemyDamage;
+    public int damage;
     public int enemyMoneyReward;
     public Note_SO[] attackTypes;
+
+    public int enemyDamage => damage *= Game_Manager.instance.enemyDamageMultiplier;
 }

@@ -6,8 +6,7 @@ using UnityEngine;
 public class Combat_Manager : MonoBehaviour
 {
     [SerializeField] private Combat_Handler combatHandler;
-    [SerializeField] private Player_HP playerHP;
-    [SerializeField] private Enemy_HP enemyHP;
+    [SerializeField] private Note_SO defaultNote;
 
     #region Event subscribers
     private void OnEnable()
@@ -45,7 +44,7 @@ public class Combat_Manager : MonoBehaviour
         //Target player block
         if (combatHandler.Block(true)) return;
 
-        playerHP.ChangeHP(enemyHP.CurrentEnemy.enemyDamage);
+        combatHandler.DealDamage(defaultNote, 0);
     }
 
     private void OnNoteExit(Note_SO note)

@@ -2,18 +2,10 @@ using UnityEngine;
 
 public class Round_Manager : MonoBehaviour
 {
-    [Header("Difficulty level")]
-    [SerializeField] private float difficultyLevel;
-    [SerializeField] private float difficultyMultiplier;
-
-    [Header("Combat round")]
-    [SerializeField] private int enemyCounter = 0;
-    [SerializeField] private int enemyPerRound = 3;
     [SerializeField] private bool isRoundEnded;
-
-    public float DifficultyLevel => difficultyLevel;
-    public void IncreaseDifficulty() => difficultyLevel += difficultyMultiplier;
-
+    [SerializeField] private int enemyCounter = 0;
+    
+    private int enemyPerRound => Game_Manager.instance.enemyPerRound;
     public bool IsRoundEnded => isRoundEnded;
     public void StartNewRound()
     {
