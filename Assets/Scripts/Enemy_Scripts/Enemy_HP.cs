@@ -11,6 +11,7 @@ public class Enemy_HP : MonoBehaviour, IHealth
     [SerializeField] private int moneyReward;
 
     public static event Action<Enemy_SO> OnEnemyDefeated;
+    public Enemy_SO CurrentEnemy => currentEnemy;
 
     public void SetEnemy(Enemy_SO newEnemy)
     {
@@ -54,8 +55,8 @@ public class Enemy_HP : MonoBehaviour, IHealth
     private IEnumerator EnemyDefeat()
     {
         yield return StartCoroutine(enemyUI.EnemyDefeat());
-        Game_Manager.instance.IncreaseEnemyCounter();
-        if (Game_Manager.instance.IsRoundEnded() == false)
+        Game_Manager.instance.roundManager.IncreaseEnemyCounter();
+        if (Game_Manager.instance.roundManager.IsRoundEnded == false)
         {
             OnEnemyDefeated?.Invoke(currentEnemy);
         }

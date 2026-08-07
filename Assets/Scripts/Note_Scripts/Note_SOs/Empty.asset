@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noteName: 
   noteDescription: 
+  noteUpgradeDescription: 
   noteSpeed: 0
   isHostile: 0
+  hitSound: {fileID: 0}
   damage: 0
+  upgradeDamage: 0

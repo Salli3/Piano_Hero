@@ -15,7 +15,8 @@ public class Note_Spawner : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float playerNoteChance;
 
     [Header("References")]
-    [SerializeField] private Combat_Manager combatManager;
+    [SerializeField] private Transform spawnerTransform;
+    [SerializeField] private Enemy_HP enemyHP;
     [SerializeField] private GameObject notePrefab;
     [SerializeField] private Transform[] spawnPoints;
 
@@ -28,7 +29,7 @@ public class Note_Spawner : MonoBehaviour
     {
         if (Game_Manager.instance.isCombatActive == false) return;
 
-        timer += Time.deltaTime * Game_Manager.instance.GetDifficultyLevel();
+        timer += Time.deltaTime * Game_Manager.instance.noteSpeed;
         if (timer >= spawnInterval)
         {
             timer = 0;
@@ -48,7 +49,7 @@ public class Note_Spawner : MonoBehaviour
         }
         else
         {
-            Note_SO[] enemyNotes = combatManager.currentEnemy.attackTypes;
+            Note_SO[] enemyNotes = enemyHP.CurrentEnemy.attackTypes;
             chosenNote = enemyNotes[Random.Range(0, enemyNotes.Length)];
         }
 
@@ -59,7 +60,7 @@ public class Note_Spawner : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(transform.position, new Vector3(width, height, 0));
+        Gizmos.DrawWireCube(spawnerTransform.position, new Vector3(width, height, 0));
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(spawnPoints[0].position, new Vector3(1, 1, 0));
         Gizmos.DrawWireCube(spawnPoints[1].position, new Vector3(1, 1, 0));

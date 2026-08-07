@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public class Enemy_UI : MonoBehaviour, IHitNumber
 {
+    [SerializeField] private TMP_Text nameText;
+    [SerializeField] private Image enemyImage;
+
     [SerializeField] private UI_HP uiHP;
     [SerializeField] private UI_Status uiStatus;
     [SerializeField] private Hit_Number_Pool hitNumberPool;
 
-    [SerializeField] private RectTransform enemyPosition;
-    [SerializeField] private TMP_Text nameText;
-    [SerializeField] private Image enemyImage;
+    [SerializeField] private RectTransform enemyPosition; 
     private Vector3 originalEnemyPosition;
 
     [Header("Appear")]

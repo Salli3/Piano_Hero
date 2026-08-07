@@ -6,64 +6,85 @@ public class Game_Manager : MonoBehaviour
     public static Game_Manager instance;
 
     public Stats_Manager statsManager;
+    public Round_Manager roundManager;
 
-    [Header("Difficulty settings")]
-    [SerializeField] private float difficultylevel;
-    [SerializeField] private float difficultyMultiplier;
-
-    [Header("Combat info")]
-    [SerializeField] private int enemyCounter = 0;
-    [SerializeField] private int enemyPerRound = 3;
-    [SerializeField] private bool roundEnded;
     public bool isCombatActive;
 
+    [Header("Difficulty Settings")]
+    public float noteSpeed;
+    public float noteSpeedMultipiler;
+    public int enemyPerRound;
+    public int enemyHpMultiplier;
+    public int enemyDamageMultiplier;
+
+    [Header("Persistent Objects")]
+    public GameObject[] persistentObjects;
+
+    #region Data persistent
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            MarkPersistentObjects();
         }
         else
         {
-            Destroy(gameObject);
+            CleanUpAndDestroy();
             return;
         }
     }
 
-    public void StartCombat()
+    private void MarkPersistentObjects()
     {
-        SceneManager.LoadScene("Battle");
-        roundEnded = false;
-    }
-
-    #region Difficulty level setter/getter
-    public float GetDifficultyLevel() => difficultylevel;
-    private void IncreaseDifficultyLevel() => difficultylevel += difficultyMultiplier;
-    #endregion
-
-    #region Combat round management
-    public void IncreaseEnemyCounter()
-    {
-        enemyCounter++;
-        if (enemyCounter >= enemyPerRound)
+        foreach (GameObject obj in persistentObjects)
         {
-            roundEnded = true;
-            IncreaseDifficultyLevel();
-            EndCombat();
+            if (obj != null)
+            {
+                DontDestroyOnLoad(obj);
+            }
         }
     }
 
-    public bool IsRoundEnded()
+    private void CleanUpAndDestroy()
     {
-        return roundEnded;
-    }
-
-    private void EndCombat()
-    {
-        enemyCounter = 0;
-        isCombatActive = false;
-        SceneManager.LoadScene("Shop");
+        foreach (GameObject obj in persistentObjects)
+        {
+            if (obj != null)
+            {
+                Destroy(obj);
+            }
+        }
+        Destroy(gameObject);
     }
     #endregion
+
+    public void PickCharacter(Player_SO playerSO)
+    {
+        statsManager.Initialize(playerSO);
+    }
+
+    public void StartCombatScene()
+    {
+        roundManager.StartNewRound();
+        SceneManager.LoadScene("Battle");
+    }
+
+    public void StartShopScene()
+    {
+        isCombatActive = false;
+        IncreaseDifficulty();
+        SceneManager.LoadScene("Shop");
+    }
+
+    private void IncreaseDifficulty()
+    {
+        noteSpeed += noteSpeedMultipiler;
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
