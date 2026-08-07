@@ -48,6 +48,13 @@ public class Combat_Handler : MonoBehaviour
     }
 
     //Deal Damage
+    public void DamagePlayer()
+    {
+        if(Block(true)) return;
+
+        playerHP.ChangeHP(enemyHP.CurrentEnemy.enemyDamage);
+    }
+
     public void DealDamage(Note_SO note, int damage)
     {
         if (Block(note.isHostile))
@@ -55,15 +62,14 @@ public class Combat_Handler : MonoBehaviour
             StopAllCoroutines();
             return;
         }
-
-        int finalDamage = note.isHostile ? damage : damage + Game_Manager.instance.statsManager.Damage;
+        int finalDamage = note.isHostile ? damage * Game_Manager.instance.enemyDamageMultiplier : damage + Game_Manager.instance.statsManager.Damage;
         GetTargetHP(note.isHostile).ChangeHP(finalDamage);
     }
 
     //Heal
     public void Heal(Note_SO note, int damage)
     {
-        GetTargetHP(note.isHostile).ChangeHP(-damage);
+        GetTargetHP(!note.isHostile).ChangeHP(-damage);
     }
 
     //Block

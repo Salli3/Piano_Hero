@@ -676,8 +676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatHandler: {fileID: 310191694}
-  playerHP: {fileID: 880397429}
-  enemyHP: {fileID: 1606295679}
+  defaultNote: {fileID: 11400000, guid: 160057ecef74e734f8cefc5d1d5ffa1f, type: 2}
 --- !u!1001 &317412059
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2108,6 +2107,11 @@ MonoBehaviour:
   statsManager: {fileID: 778885092}
   roundManager: {fileID: 717734310}
   isCombatActive: 0
+  noteSpeed: 1.5
+  noteSpeedMultipiler: 0.1
+  enemyPerRound: 3
+  enemyHpMultiplier: 1
+  enemyDamageMultiplier: 1
   persistentObjects:
   - {fileID: 778885091}
 --- !u!4 &717734309
@@ -2137,11 +2141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46fdb92b430529247ac16c442df807f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficultyLevel: 1.5
-  difficultyMultiplier: 0.1
-  enemyCounter: 0
-  enemyPerRound: 3
   isRoundEnded: 0
+  enemyCounter: 0
 --- !u!1 &727377955
 GameObject:
   m_ObjectHideFlags: 0

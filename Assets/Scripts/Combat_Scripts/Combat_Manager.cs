@@ -6,7 +6,6 @@ using UnityEngine;
 public class Combat_Manager : MonoBehaviour
 {
     [SerializeField] private Combat_Handler combatHandler;
-    [SerializeField] private Note_SO defaultNote;
 
     #region Event subscribers
     private void OnEnable()
@@ -41,10 +40,8 @@ public class Combat_Manager : MonoBehaviour
     private void OnNoteMiss()
     {
         if (Game_Manager.instance.isCombatActive == false) return;
-        //Target player block
-        if (combatHandler.Block(true)) return;
 
-        combatHandler.DealDamage(defaultNote, 0);
+        combatHandler.DamagePlayer();
     }
 
     private void OnNoteExit(Note_SO note)
