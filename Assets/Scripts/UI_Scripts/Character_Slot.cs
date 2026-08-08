@@ -35,7 +35,7 @@ public class Character_Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             $"HP: {playerSO.playerHP}\n" +
             $"Damage: {playerSO.playerDamage}\n" +
             $"Money: {playerSO.startingMoney}\n" +
-            $"Attack move(s):";
+            $"Attack move:";
 
         notesText.text = "";
         foreach (var note in playerSO.attackTypes)

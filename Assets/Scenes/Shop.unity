@@ -1283,7 +1283,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Some thing funny
+  m_text: This attack move 50% faster, deal 10 damage
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 4fa011823ef05aa4cbb955e3d446efd9, type: 2}
@@ -2058,6 +2058,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 876da41efca75d9439694b0d9ca849d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noteSO: {fileID: 11400000, guid: e21c3893561347043a2db6acdebb499c, type: 2}
   itemName: {fileID: 1917584521}
   itemDescription: {fileID: 1301621305}
   uiMoney: {fileID: 1648913255}
@@ -2082,13 +2083,14 @@ MonoBehaviour:
   currentItem: {fileID: 0}
   empty: {fileID: 11400000, guid: 160057ecef74e734f8cefc5d1d5ffa1f, type: 2}
   Items:
-  - {fileID: 11400000, guid: 2fb0fa3ae0c24c646a208f4eaa1feb9f, type: 2}
+  - {fileID: 11400000, guid: 5d0af96b58c87d741b4d57134c513267, type: 2}
+  - {fileID: 11400000, guid: 9b86baf0371fe914da4768573fc78ba3, type: 2}
   - {fileID: 11400000, guid: 16794b889c2732a42b0fe1710562dc8e, type: 2}
+  - {fileID: 11400000, guid: e21c3893561347043a2db6acdebb499c, type: 2}
+  - {fileID: 11400000, guid: 072a623d48de1d2498133c912f74ea36, type: 2}
   - {fileID: 11400000, guid: 5bfcc0c4ab5798646b3a174c4e12d198, type: 2}
   - {fileID: 11400000, guid: 69b847ab97aff654886ec36a2d3f58e9, type: 2}
-  - {fileID: 11400000, guid: 072a623d48de1d2498133c912f74ea36, type: 2}
   - {fileID: 11400000, guid: da19c976b26df39409493ea4f7962dd6, type: 2}
-  - {fileID: 11400000, guid: c5452421284463f4f8e8411e66fbcc27, type: 2}
   buyCost: 150
   rerollCost: 20
   healCost: 50
@@ -2465,7 +2467,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Item Name
+  m_text: Quick Attack
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}

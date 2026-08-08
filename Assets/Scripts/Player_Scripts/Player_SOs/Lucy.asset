@@ -15,7 +15,8 @@ MonoBehaviour:
   playerName: Lucy
   playerSprite: {fileID: 21300000, guid: 590ded3b57d4dec46a9d756ab7dae646, type: 3}
   playerHP: 200
-  playerDamage: 1
+  playerDamage: 0
   startingMoney: 0
   attackTypes:
-  - {fileID: 11400000, guid: 69b847ab97aff654886ec36a2d3f58e9, type: 2}
+  - {fileID: 11400000, guid: f2764f16329b2e2458ae25d74dc3c412, type: 2}
+  - {fileID: 11400000, guid: 9b86baf0371fe914da4768573fc78ba3, type: 2}

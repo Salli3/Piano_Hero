@@ -16,7 +16,7 @@ public class Enemy_HP : MonoBehaviour, IHealth
     public void SetEnemy(Enemy_SO newEnemy)
     {
         currentEnemy = newEnemy;
-        maxHP = currentEnemy.enemyHP;
+        maxHP = currentEnemy.enemyHP * Game_Manager.instance.enemyHpMultiplier;
         currentHP = maxHP;
         enemyUI.SetEnemyUI(currentEnemy, currentHP, maxHP);
         StartCoroutine(EnemyAppear());

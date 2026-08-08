@@ -15,3 +15,8 @@ public interface IHitNumber
 {
     void ShowHitNumber(int damage, bool isBlocked = false);
 }
+
+public interface IStatus
+{
+    void UpdateCombatStatusUI(int block, int stackingDamage, int boostTime);
+}

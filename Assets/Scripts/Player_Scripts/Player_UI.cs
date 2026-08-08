@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player_UI : MonoBehaviour, IHitNumber
+public class Player_UI : MonoBehaviour, IHitNumber, IStatus
 {
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private Image playerImage;
@@ -44,5 +44,5 @@ public class Player_UI : MonoBehaviour, IHitNumber
 
     public void ShowHitNumber(int damage, bool isBlocked = false) => hitNumberPool.ShowHitNumber(damage, isBlocked);
 
-    public void UpdateCombatStatusUI(int block, int stackingDamage) => uiStatus.UpdateCombatStatus(block, stackingDamage);
+    public void UpdateCombatStatusUI(int block, int stackingDamage, int boostTime) => uiStatus.UpdateCombatStatus(block, stackingDamage, boostTime);
 }

@@ -13,21 +13,17 @@ public class Combat_Handler : MonoBehaviour
 
     [SerializeField] private int playerBlock;
     [SerializeField] private int playerStackingDamage;
+    [SerializeField] private int playerBoostAttack;
 
     [SerializeField] private int enemyBlock;
     [SerializeField] private int enemyStackingDamage;
+    [SerializeField] private int enemyBoostAttack;
 
     private IHealth GetTargetHP(bool isHostile) => isHostile ? playerHP : enemyHP;
     private IHitNumber GetHitNumberUI(bool isHostile) => isHostile ? playerUI : enemyUI;
 
-    private void OnEnable()
-    {
-        Enemy_HP.OnEnemyDefeated += RefreshEnemyStatus;
-    }
-    private void OnDisable()
-    {
-        Enemy_HP.OnEnemyDefeated -= RefreshEnemyStatus;
-    }
+    private void OnEnable() => Enemy_HP.OnEnemyDefeated += RefreshEnemyStatus;
+    private void OnDisable() => Enemy_HP.OnEnemyDefeated -= RefreshEnemyStatus;
 
     private void Start()
     {
@@ -36,8 +32,8 @@ public class Combat_Handler : MonoBehaviour
 
     private void UpdateCombatStatus()
     {
-        playerUI.UpdateCombatStatusUI(playerBlock, playerStackingDamage);
-        enemyUI.UpdateCombatStatusUI(enemyBlock, enemyStackingDamage);
+        playerUI.UpdateCombatStatusUI(playerBlock, playerStackingDamage, playerBoostAttack);
+        enemyUI.UpdateCombatStatusUI(enemyBlock, enemyStackingDamage, enemyBoostAttack);
     }
 
     private void RefreshEnemyStatus(Enemy_SO _)
@@ -47,10 +43,10 @@ public class Combat_Handler : MonoBehaviour
         UpdateCombatStatus();
     }
 
-    //Deal Damage
+    #region Deal damage
     public void DamagePlayer()
     {
-        if(Block(true)) return;
+        if (Block(true)) return;
 
         playerHP.ChangeHP(enemyHP.CurrentEnemy.enemyDamage);
     }
@@ -63,16 +59,30 @@ public class Combat_Handler : MonoBehaviour
             return;
         }
         int finalDamage = note.isHostile ? damage * Game_Manager.instance.enemyDamageMultiplier : damage + Game_Manager.instance.statsManager.Damage;
+        if (BoostAttack(note.isHostile)) finalDamage *= 2;
         GetTargetHP(note.isHostile).ChangeHP(finalDamage);
     }
 
-    //Heal
+    public void SelfDamage(Note_SO note, int damage)
+    {
+        if (Block(note.isHostile))
+        {
+            StopAllCoroutines();
+            return;
+        }
+        int finalDamage = note.isHostile ? damage * Game_Manager.instance.enemyDamageMultiplier : damage + Game_Manager.instance.statsManager.Damage;
+        GetTargetHP(!note.isHostile).ChangeHP(finalDamage);
+    }
+    #endregion
+
+    #region Heal
     public void Heal(Note_SO note, int damage)
     {
         GetTargetHP(!note.isHostile).ChangeHP(-damage);
     }
+    #endregion
 
-    //Block
+    #region Block
     public void SetBlock(Note_SO note, int amount)
     {
         ref int block = ref (note.isHostile ? ref enemyBlock : ref playerBlock);
@@ -89,8 +99,36 @@ public class Combat_Handler : MonoBehaviour
         UpdateCombatStatus();
         return true;
     }
+    public void RemoveBlock(Note_SO note, int amount)
+    {
+        ref int block = ref (note.isHostile ? ref playerBlock : ref enemyBlock);
 
-    //Clear note
+        block -= amount;
+        if (block <= 0) block = 0;
+        GetHitNumberUI(note.isHostile).ShowHitNumber(0, true);
+        UpdateCombatStatus();
+    }
+    #endregion
+
+    #region Attack boost
+    public void SetAttackBoost(Note_SO note, int amount)
+    {
+        ref int boost = ref (note.isHostile ? ref enemyBoostAttack : ref playerBoostAttack);
+        boost = amount;
+        UpdateCombatStatus();
+    }
+    public bool BoostAttack(bool isHostile)
+    {
+        ref int boost = ref (isHostile ? ref enemyBoostAttack : ref playerBoostAttack);
+        if (boost <= 0) return false;
+
+        boost--;
+        UpdateCombatStatus();
+        return true;
+    }
+    #endregion
+
+    #region Clear note
     public int ClearNote()
     {
         Note[] allNotes = FindObjectsByType<Note>(FindObjectsSortMode.None);
@@ -107,8 +145,9 @@ public class Combat_Handler : MonoBehaviour
         }
         return clearedCount;
     }
+    #endregion
 
-    //Stack damage
+    #region Stack damage
     public int StackDamage(Note_SO note, int amount)
     {
         ref int stackingDamage = ref (note.isHostile ? ref enemyStackingDamage : ref playerStackingDamage);
@@ -116,8 +155,9 @@ public class Combat_Handler : MonoBehaviour
         UpdateCombatStatus();
         return stackingDamage;
     }
+    #endregion
 
-    //Multi hit
+    #region Multi hit
     public void RunMultiHit(Note_SO note, int damage, int hitTime)
     {
         StartCoroutine(AttackInterval(note, damage, hitTime));
@@ -130,4 +170,5 @@ public class Combat_Handler : MonoBehaviour
             yield return new WaitForSecondsRealtime(0.1f);
         }
     }
+    #endregion
 }

@@ -1,10 +1,12 @@
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Shop_UI : MonoBehaviour
 {
     [Header("Item")]
+    [SerializeField] private Note_SO noteSO;
     [SerializeField] private TMP_Text itemName;
     [SerializeField] private TMP_Text itemDescription;
 
@@ -17,6 +19,15 @@ public class Shop_UI : MonoBehaviour
     [SerializeField] private Button rerollButton;
     [SerializeField] private Button healButton;
     [SerializeField] private Button exitButton;
+
+    private void OnValidate()
+    {
+        if (noteSO != null)
+        {
+            itemName.text = noteSO.noteName;
+            itemDescription.text = noteSO.GetDescription(0);
+        }
+    }
 
     private void Start()
     {
