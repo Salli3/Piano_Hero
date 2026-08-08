@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ab282b026ba97044b922cc28a74386c, type: 3}
   m_Name: Player_Tackle
   m_EditorClassIdentifier: 
-  noteName: Tackle*
+  noteName: Tackle (*)
   noteDescription: Deal 20 damage, take 5 damage
   noteUpgradeDescription: Deal 20 more damage, take 1 more damage
   noteSpeed: 10

@@ -9,14 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08221a141cbeee942935066122f60c6b, type: 3}
-  m_Name: Demon_Curse
+  m_Script: {fileID: 11500000, guid: 9ab282b026ba97044b922cc28a74386c, type: 3}
+  m_Name: Demon_Blood_Magic
   m_EditorClassIdentifier: 
-  noteName: Curse
+  noteName: Blood Magic
   noteDescription: 
   noteUpgradeDescription: 
   noteSpeed: 10
   isHostile: 1
-  hitSound: {fileID: 8300000, guid: fafe119df2372a74ca663975e4f388ac, type: 3}
-  damage: 2
+  hitSound: {fileID: 0}
+  damage: 20
   upgradeDamage: 0
+  selfDamage: 10
+  upgradeSelfDamage: 0

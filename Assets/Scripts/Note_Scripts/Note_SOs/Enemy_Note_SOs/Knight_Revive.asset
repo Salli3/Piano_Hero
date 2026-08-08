@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08221a141cbeee942935066122f60c6b, type: 3}
-  m_Name: Demon_Curse
+  m_Script: {fileID: 11500000, guid: 0f652fe8a55b278489f0338a92aaa0e8, type: 3}
+  m_Name: Knight_Revive
   m_EditorClassIdentifier: 
-  noteName: Curse
+  noteName: Revive
   noteDescription: 
   noteUpgradeDescription: 
   noteSpeed: 10
   isHostile: 1
-  hitSound: {fileID: 8300000, guid: fafe119df2372a74ca663975e4f388ac, type: 3}
-  damage: 2
-  upgradeDamage: 0
+  hitSound: {fileID: 0}
+  healAmount: 50
+  upgradeHeal: 0

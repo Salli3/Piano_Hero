@@ -65,7 +65,7 @@ public class Combat_Handler : MonoBehaviour
 
     public void SelfDamage(Note_SO note, int damage)
     {
-        if (Block(note.isHostile))
+        if (Block(!note.isHostile))
         {
             StopAllCoroutines();
             return;

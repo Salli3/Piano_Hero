@@ -4924,6 +4924,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHP: {fileID: 1606295679}
   enemySOs:
+  - {fileID: 11400000, guid: 4d19ffa4b2c585f4e9bc99fec5204e27, type: 2}
   - {fileID: 11400000, guid: fd3660c20d2d6bb4fa23d442893aa2a3, type: 2}
   - {fileID: 11400000, guid: e055423a9f5f4cc49876a2240bc191ea, type: 2}
   - {fileID: 11400000, guid: d9775de95725ec44bb62a763550886a8, type: 2}
