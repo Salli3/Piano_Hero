@@ -16,7 +16,7 @@ MonoBehaviour:
   noteDescription: 
   noteUpgradeDescription: 
   noteSpeed: 10
-  isHostile: 0
+  isHostile: 1
   hitSound: {fileID: 0}
   boostTime: 1
   upgradeBoostTime: 0
