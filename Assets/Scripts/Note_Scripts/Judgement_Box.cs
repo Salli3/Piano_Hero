@@ -27,8 +27,11 @@ public class Judgement_Box : MonoBehaviour
         Collider2D[] hits = Physics2D.OverlapBoxAll(judgeBoxCollider.bounds.center, judgeBoxCollider.bounds.size, 0, noteLayer);
         if (hits.Length > 0)
         {
-            hits[0].GetComponent<Note>().OnNoteHit();
-            OnNoteHit?.Invoke(hits[0].GetComponent<Note>().noteSO);
+            foreach (Collider2D hit in hits)
+            {
+                hit.GetComponent<Note>().OnNoteHit();
+                OnNoteHit?.Invoke(hit.GetComponent<Note>().noteSO);
+            }
         }
         else
         {
