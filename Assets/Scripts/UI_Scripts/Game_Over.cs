@@ -1,18 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Game_Over : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private CanvasGroup gameOverCanvas;
+
+    private void Start()
     {
-        
+        gameOverCanvas.alpha = 0;
+        gameOverCanvas.interactable = false;
+        gameOverCanvas.blocksRaycasts = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DisplayGameOverScreen()
     {
-        
+        Time.timeScale = 0;
+        gameOverCanvas.alpha = 1;
+        gameOverCanvas.interactable = true;
+        gameOverCanvas.blocksRaycasts = true;
+    }
+
+    public void Quit()
+    {
+        Game_Manager.instance.CleanUpAndDestroy();
+        SceneManager.LoadScene("Main_Menu");
     }
 }
