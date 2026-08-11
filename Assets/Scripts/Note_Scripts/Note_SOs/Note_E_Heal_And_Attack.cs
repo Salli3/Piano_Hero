@@ -10,7 +10,7 @@ public class Note_E_Heal_And_Attack : Note_SO
 
     public override void Apply(Combat_Handler combatHandler, Note_SO note)
     {
-        int stacks = Game_Manager.instance.statsManager.GetStackCount(note);
+        int stacks = Game_Manager.instance.statsManager.noteLevelTracker.GetStackCount(note);
         combatHandler.Heal(note, GetTotalHeal(stacks));
         combatHandler.DealDamage(note, GetTotalDamage(stacks));
     }

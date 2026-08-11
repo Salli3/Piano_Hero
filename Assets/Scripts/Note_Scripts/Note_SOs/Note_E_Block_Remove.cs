@@ -7,7 +7,7 @@ public class Note_E_Block_Remove : Note_SO
     [SerializeField] private int upgradeRemoveAmount;
     public override void Apply(Combat_Handler combatHandler, Note_SO note)
     {
-        combatHandler.RemoveBlock(note, GetTotalStat(Game_Manager.instance.statsManager.GetStackCount(note)));
+        combatHandler.RemoveBlock(note, GetTotalStat(Game_Manager.instance.statsManager.noteLevelTracker.GetStackCount(note)));
     }
 
     public override int GetTotalStat(int ownedCount)

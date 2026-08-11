@@ -40,7 +40,7 @@ public class Enemy_HP : MonoBehaviour, IHealth
             if (currentHP <= 0 && Game_Manager.instance.isCombatActive == true)
             {
                 Game_Manager.instance.isCombatActive = false;
-                Game_Manager.instance.statsManager.UpdateCurrentMoney(-currentEnemy.enemyMoneyReward);
+                Game_Manager.instance.statsManager.ModifyStat(Stat_Type.Money, currentEnemy.enemyMoneyReward);
                 StartCoroutine(EnemyDefeat());
             }
         }

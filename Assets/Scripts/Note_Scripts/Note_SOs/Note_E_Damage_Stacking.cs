@@ -7,7 +7,7 @@ public class Note_E_Damage_Stacking : Note_SO
     [SerializeField] private int upgradeDamage;
     public override void Apply(Combat_Handler combatHandler, Note_SO note)
     {
-        int stackedDamage = combatHandler.StackDamage(note, GetTotalStat(Game_Manager.instance.statsManager.GetStackCount(note)));
+        int stackedDamage = combatHandler.StackDamage(note, GetTotalStat(Game_Manager.instance.statsManager.noteLevelTracker.GetStackCount(note)));
         combatHandler.DealDamage(note, stackedDamage);
     }
 

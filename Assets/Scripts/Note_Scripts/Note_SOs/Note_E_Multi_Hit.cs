@@ -9,7 +9,7 @@ public class Note_E_Multi_Hit : Note_SO
 
     public override void Apply(Combat_Handler combatHandler, Note_SO note)
     {
-        combatHandler.RunMultiHit(note, damage, GetTotalStat(Game_Manager.instance.statsManager.GetStackCount(note)));
+        combatHandler.RunMultiHit(note, damage, GetTotalStat(Game_Manager.instance.statsManager.noteLevelTracker.GetStackCount(note)));
     }
 
     public override int GetTotalStat(int ownedCount)

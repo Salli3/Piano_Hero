@@ -21,7 +21,7 @@ public class Shop_Manager : MonoBehaviour
 
     private void Start()
     {
-        Items = Items.Union(Game_Manager.instance.statsManager.GetNote()).ToArray();
+        Items = Items.Union(Game_Manager.instance.statsManager.noteLevelTracker.GetNote()).ToArray();
         GetNewItem();
     }
 
@@ -61,8 +61,8 @@ public class Shop_Manager : MonoBehaviour
     #region Button press methods
     public void OnBuyButtonPressed()
     {
-        Game_Manager.instance.statsManager.PurchaseNote(currentItem);
-        Game_Manager.instance.statsManager.UpdateCurrentMoney(buyCost);
+        Game_Manager.instance.statsManager.noteLevelTracker.PurchaseNote(currentItem);
+        Game_Manager.instance.statsManager.ModifyStat(Stat_Type.Money, buyCost);
         shopUI.UpdateResources(buyCost);
         currentItem = null;
         GetNewItem();
@@ -70,7 +70,7 @@ public class Shop_Manager : MonoBehaviour
 
     public void OnRerollButtonPressed()
     {
-        Game_Manager.instance.statsManager.UpdateCurrentMoney(rerollCost);
+        Game_Manager.instance.statsManager.ModifyStat(Stat_Type.Money, rerollCost);
         shopUI.UpdateResources(rerollCost);
         rerollCost += inflation;
         GetNewItem();
@@ -78,8 +78,8 @@ public class Shop_Manager : MonoBehaviour
 
     public void OnHealButtonPressed()
     {
-        Game_Manager.instance.statsManager.UpdateCurrentHP(-healAmount);
-        Game_Manager.instance.statsManager.UpdateCurrentMoney(healCost);
+        Game_Manager.instance.statsManager.ModifyStat(Stat_Type.CurrentHP, -healAmount);
+        Game_Manager.instance.statsManager.ModifyStat(Stat_Type.Money, healCost);
         shopUI.UpdateResources(healCost, healAmount);
         healCost += inflation;
         UpdateUI();

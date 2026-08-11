@@ -8,7 +8,7 @@ public class Note_E_Clear_Note : Note_SO
     public override void Apply(Combat_Handler combatHandler, Note_SO note)
     {
         int cleared = combatHandler.ClearNote();
-        combatHandler.DealDamage(note, cleared * GetTotalStat(Game_Manager.instance.statsManager.GetStackCount(note)));
+        combatHandler.DealDamage(note, cleared * GetTotalStat(Game_Manager.instance.statsManager.noteLevelTracker.GetStackCount(note)));
     }
 
     public override int GetTotalStat(int ownedCount)
