@@ -17,7 +17,7 @@ public class Stats_Manager : MonoBehaviour
 
     public Note_Level_Tracker noteLevelTracker;
 
-    private void Start()
+    private void Awake()
     {
         Initialize(player);
     }

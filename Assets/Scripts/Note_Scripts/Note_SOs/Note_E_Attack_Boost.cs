@@ -7,13 +7,13 @@ public class Note_E_Attack_Boost : Note_SO
 {
     [SerializeField] private int boostTime;
     [SerializeField] private int upgradeBoostTime;
-    public override void Apply(Combat_Handler combatHandler, Note_SO note)
+    public override void Apply(Combat_Handler combatHandler, int level)
     {
-        combatHandler.SetAttackBoost(note, GetTotalStat(Game_Manager.instance.statsManager.noteLevelTracker.GetStackCount(note)));
+        combatHandler.SetAttackBoost(isHostile, GetTotalStat(level));
     }
 
-    public override int GetTotalStat(int ownedCount)
+    public override int GetTotalStat(int level)
     {
-        return boostTime + upgradeBoostTime * Mathf.Max(0, ownedCount - 1);
+        return boostTime + upgradeBoostTime * Mathf.Max(0, level - 1);
     }
 }

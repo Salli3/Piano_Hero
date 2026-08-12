@@ -32,6 +32,7 @@ public class Shop_Manager : MonoBehaviour
             List<Note_SO> availableItems = new List<Note_SO>(Items);
             if (currentItem != null)
             {
+                //Prevent duplicate pick if choose to reroll
                 availableItems.Remove(currentItem);
             }
 

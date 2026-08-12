@@ -11,14 +11,14 @@ public abstract class Note_SO : ScriptableObject
 
     public AudioClip hitSound;
 
-    public abstract void Apply(Combat_Handler combatHandler, Note_SO note);
+    public abstract void Apply(Combat_Handler combatHandler, int level);
 
-    public virtual string GetDescription(int ownedCount)
+    public virtual string GetDescription(int level)
     {
-        if (ownedCount <= 0) return noteDescription;
-        return $"{noteUpgradeDescription} (total: {GetTotalStat(ownedCount + 1)})";
+        if (level <= 0) return noteDescription;
+        return $"{noteUpgradeDescription} (total: {GetTotalStat(level + 1)})";
     }
 
-    public abstract int GetTotalStat(int ownedCount);
+    public abstract int GetTotalStat(int level);
 }
 

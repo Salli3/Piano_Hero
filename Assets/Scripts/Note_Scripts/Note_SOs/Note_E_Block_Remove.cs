@@ -5,13 +5,13 @@ public class Note_E_Block_Remove : Note_SO
 {
     [SerializeField] private int removeAmount;
     [SerializeField] private int upgradeRemoveAmount;
-    public override void Apply(Combat_Handler combatHandler, Note_SO note)
+    public override void Apply(Combat_Handler combatHandler, int level)
     {
-        combatHandler.RemoveBlock(note, GetTotalStat(Game_Manager.instance.statsManager.noteLevelTracker.GetStackCount(note)));
+        combatHandler.RemoveBlock(isHostile, GetTotalStat(level));
     }
 
-    public override int GetTotalStat(int ownedCount)
+    public override int GetTotalStat(int level)
     {
-        return removeAmount + upgradeRemoveAmount * Mathf.Max(0, ownedCount - 1);
+        return removeAmount + upgradeRemoveAmount * Mathf.Max(0, level - 1);
     }
 }

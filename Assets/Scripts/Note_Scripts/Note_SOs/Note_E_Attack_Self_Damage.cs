@@ -7,28 +7,27 @@ public class Note_E_Attack_Self_Damage : Note_SO
     [SerializeField] private int upgradeDamage;
     [SerializeField] private int selfDamage;
     [SerializeField] private int upgradeSelfDamage;
-    public override void Apply(Combat_Handler combatHandler, Note_SO note)
+    public override void Apply(Combat_Handler combatHandler, int level)
     {
-        int stacks = Game_Manager.instance.statsManager.noteLevelTracker.GetStackCount(note);
-        combatHandler.DealDamage(note, GetTotalDamage(stacks));
-        combatHandler.SelfDamage(note, GetTotalSelfDamage(stacks));
+        combatHandler.DealDamage(isHostile, GetTotalDamage(level));
+        combatHandler.SelfDamage(isHostile, GetTotalSelfDamage(level));
     }
 
-    private int GetTotalDamage(int ownedCount) => damage + upgradeDamage * Mathf.Max(0, ownedCount - 1);
-    private int GetTotalSelfDamage(int ownedCount) => selfDamage + upgradeSelfDamage * Mathf.Max(0, ownedCount - 1);
+    private int GetTotalDamage(int level) => damage + upgradeDamage * Mathf.Max(0, level - 1);
+    private int GetTotalSelfDamage(int level) => selfDamage + upgradeSelfDamage * Mathf.Max(0, level - 1);
 
-    public override int GetTotalStat(int ownedCount) => GetTotalDamage(ownedCount);
+    public override int GetTotalStat(int level) => GetTotalDamage(level);
 
-    public override string GetDescription(int ownedCount)
+    public override string GetDescription(int level)
     {
-        if (ownedCount <= 0)
+        if (level <= 0)
         {
             return noteDescription;
         }
         else
         {
-            int totalDamage = GetTotalDamage(ownedCount + 1);
-            int totalSelfDamage = GetTotalSelfDamage(ownedCount + 1);
+            int totalDamage = GetTotalDamage(level + 1);
+            int totalSelfDamage = GetTotalSelfDamage(level + 1);
             return $"{noteUpgradeDescription} (damage: {totalDamage}, self damage: {totalSelfDamage})";
         }
     }

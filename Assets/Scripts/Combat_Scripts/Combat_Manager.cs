@@ -30,7 +30,7 @@ public class Combat_Manager : MonoBehaviour
         }
         else
         {
-            note.Apply(combatHandler, note);
+            note.Apply(combatHandler, Game_Manager.instance.statsManager.noteLevelTracker.GetNoteLevel(note));
         }
     }
 
@@ -45,7 +45,7 @@ public class Combat_Manager : MonoBehaviour
     {
         if (note.isHostile == true)
         {
-            note.Apply(combatHandler, note);
+            note.Apply(combatHandler, 1); // change this later for enemy note level
         }
     }
     #endregion

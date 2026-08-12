@@ -36,8 +36,8 @@ public class Shop_UI : MonoBehaviour
 
     public void ShowItemInfo(Note_SO note)
     {
-        itemName.text = note.noteName + new string('+', Game_Manager.instance.statsManager.noteLevelTracker.GetStackCount(note));
-        itemDescription.text = note.GetDescription(Game_Manager.instance.statsManager.noteLevelTracker.GetStackCount(note));
+        itemName.text = note.noteName + new string('+', Game_Manager.instance.statsManager.noteLevelTracker.GetNoteLevel(note));
+        itemDescription.text = note.GetDescription(Game_Manager.instance.statsManager.noteLevelTracker.GetNoteLevel(note));
     }
 
     public void UpdateResources(int money = 0, int hp = 0)
