@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class Combat_Manager : MonoBehaviour
@@ -33,7 +30,7 @@ public class Combat_Manager : MonoBehaviour
         }
         else
         {
-            note.Apply(combatHandler, note);
+            note.Apply(combatHandler, Game_Manager.instance.statsManager.noteLevelTracker.GetNoteLevel(note));
         }
     }
 
@@ -41,14 +38,14 @@ public class Combat_Manager : MonoBehaviour
     {
         if (Game_Manager.instance.isCombatActive == false) return;
 
-        combatHandler.DamagePlayer();
+        combatHandler.DealDamageToPlayer();
     }
 
     private void OnNoteExit(Note_SO note)
     {
         if (note.isHostile == true)
         {
-            note.Apply(combatHandler, note);
+            note.Apply(combatHandler, 1); // change this later for enemy note level
         }
     }
     #endregion

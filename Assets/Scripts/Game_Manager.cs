@@ -47,7 +47,7 @@ public class Game_Manager : MonoBehaviour
         }
     }
 
-    private void CleanUpAndDestroy()
+    public void CleanUpAndDestroy()
     {
         foreach (GameObject obj in persistentObjects)
         {
@@ -81,10 +81,5 @@ public class Game_Manager : MonoBehaviour
     private void IncreaseDifficulty()
     {
         noteSpeed += noteSpeedMultipiler;
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
     }
 }

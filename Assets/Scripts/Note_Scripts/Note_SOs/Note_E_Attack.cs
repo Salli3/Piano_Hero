@@ -5,13 +5,13 @@ public class Note_E_Attack : Note_SO
 {
     [SerializeField] private int damage;
     [SerializeField] private int upgradeDamage;
-    public override void Apply(Combat_Handler combatHandler, Note_SO note)
+    public override void Apply(Combat_Handler combatHandler, int level)
     {
-        combatHandler.DealDamage(note, GetTotalStat(Game_Manager.instance.statsManager.GetStackCount(note)));
+        combatHandler.DealDamage(isHostile, GetTotalStat(level));
     }
 
-    public override int GetTotalStat(int ownedCount)
+    public override int GetTotalStat(int level)
     {
-        return damage + upgradeDamage * Mathf.Max(0, ownedCount - 1);
+        return damage + upgradeDamage * Mathf.Max(0, level - 1);
     }
 }

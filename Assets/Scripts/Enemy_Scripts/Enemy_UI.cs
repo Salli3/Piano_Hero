@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Enemy_UI : MonoBehaviour, IHitNumber
+public class Enemy_UI : MonoBehaviour, IHitNumber, IStatus
 {
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private Image enemyImage;
@@ -41,7 +41,7 @@ public class Enemy_UI : MonoBehaviour, IHitNumber
 
     public void ShowHitNumber(int damage, bool isBlocked = false) => hitNumberPool.ShowHitNumber(damage, isBlocked);
 
-    public void UpdateCombatStatusUI(int block, int stackingDamage) => uiStatus.UpdateCombatStatus(block, stackingDamage);
+    public void UpdateCombatStatusUI(int block, int stackingDamage, int boostTime) => uiStatus.UpdateCombatStatus(block, stackingDamage, boostTime);
 
     //TODO rework enemy appear animation
     #region Enemy Appear and Defeat animation methods

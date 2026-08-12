@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87aa5e2b132d7e044b337a87ae5e2e54, type: 3}
   m_Name: Player_Riposte
   m_EditorClassIdentifier: 
-  noteName: Riposte
+  noteName: Riposte (*)
   noteDescription: Clear all enemy notes, deal 1 damage for each note cleared
   noteUpgradeDescription: Deal 1 more damage for each note cleared
   noteSpeed: 10

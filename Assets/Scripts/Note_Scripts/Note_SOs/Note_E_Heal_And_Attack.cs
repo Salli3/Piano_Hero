@@ -8,28 +8,27 @@ public class Note_E_Heal_And_Attack : Note_SO
     [SerializeField] private int damage;
     [SerializeField] private int upgradeDamage;
 
-    public override void Apply(Combat_Handler combatHandler, Note_SO note)
+    public override void Apply(Combat_Handler combatHandler, int level)
     {
-        int stacks = Game_Manager.instance.statsManager.GetStackCount(note);
-        combatHandler.Heal(note, GetTotalHeal(stacks));
-        combatHandler.DealDamage(note, GetTotalDamage(stacks));
+        combatHandler.Heal(isHostile, GetTotalHeal(level));
+        combatHandler.DealDamage(isHostile, GetTotalDamage(level));
     }
 
-    private int GetTotalHeal(int ownedCount) => healAmount + upgradeHeal * Mathf.Max(0, ownedCount - 1);
-    private int GetTotalDamage(int ownedCount) => damage + upgradeDamage * Mathf.Max(0, ownedCount - 1);
+    private int GetTotalHeal(int level) => healAmount + upgradeHeal * Mathf.Max(0, level - 1);
+    private int GetTotalDamage(int level) => damage + upgradeDamage * Mathf.Max(0, level - 1);
 
-    public override int GetTotalStat(int ownedCount) => GetTotalHeal(ownedCount);
+    public override int GetTotalStat(int level) => GetTotalHeal(level);
 
-    public override string GetDescription(int ownedCount)
+    public override string GetDescription(int level)
     {
-        if (ownedCount <= 0)
+        if (level <= 0)
         {
             return noteDescription;
         }
         else
         {
-            int totalHeal = GetTotalHeal(ownedCount + 1);
-            int totalDamage = GetTotalDamage(ownedCount + 1);
+            int totalHeal = GetTotalHeal(level + 1);
+            int totalDamage = GetTotalDamage(level + 1);
             return $"{noteUpgradeDescription} (heal: {totalHeal}, damage: {totalDamage})";
         }
     }

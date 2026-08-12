@@ -1,6 +1,4 @@
-using System.Runtime.Serialization.Formatters;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -35,7 +33,7 @@ public class Character_Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             $"HP: {playerSO.playerHP}\n" +
             $"Damage: {playerSO.playerDamage}\n" +
             $"Money: {playerSO.startingMoney}\n" +
-            $"Attack move(s):";
+            $"Attack move:";
 
         notesText.text = "";
         foreach (var note in playerSO.attackTypes)

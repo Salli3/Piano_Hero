@@ -5,13 +5,13 @@ public class Note_E_Block : Note_SO
 {
     [SerializeField] private int blockTime;
     [SerializeField] private int upgradeBlockTime;
-    public override void Apply(Combat_Handler combatHandler, Note_SO note)
+    public override void Apply(Combat_Handler combatHandler, int level)
     {
-        combatHandler.SetBlock(note, GetTotalStat(Game_Manager.instance.statsManager.GetStackCount(note)));
+        combatHandler.SetBlock(isHostile, GetTotalStat(level));
     }
 
-    public override int GetTotalStat(int ownedCount)
+    public override int GetTotalStat(int level)
     {
-        return blockTime + upgradeBlockTime * Mathf.Max(0, ownedCount - 1);
+        return blockTime + upgradeBlockTime * Mathf.Max(0, level - 1);
     }
 }

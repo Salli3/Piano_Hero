@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea31cd8fc9a2c024884ca652eaf9070c, type: 3}
+  m_Name: Player_Break_Barrier
+  m_EditorClassIdentifier: 
+  noteName: Break Barrier
+  noteDescription: Break 2 enemy barrier
+  noteUpgradeDescription: Break 1 more barrier
+  noteSpeed: 10
+  isHostile: 0
+  hitSound: {fileID: 0}
+  removeAmount: 2
+  upgradeRemoveAmount: 1

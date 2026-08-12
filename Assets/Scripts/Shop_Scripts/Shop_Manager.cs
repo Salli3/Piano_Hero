@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +21,7 @@ public class Shop_Manager : MonoBehaviour
 
     private void Start()
     {
+        Items = Items.Union(Game_Manager.instance.statsManager.noteLevelTracker.GetNote()).ToArray();
         GetNewItem();
     }
 
@@ -30,6 +32,7 @@ public class Shop_Manager : MonoBehaviour
             List<Note_SO> availableItems = new List<Note_SO>(Items);
             if (currentItem != null)
             {
+                //Prevent duplicate pick if choose to reroll
                 availableItems.Remove(currentItem);
             }
 
@@ -59,26 +62,26 @@ public class Shop_Manager : MonoBehaviour
     #region Button press methods
     public void OnBuyButtonPressed()
     {
-        Game_Manager.instance.statsManager.PurchaseNote(currentItem);
-        Game_Manager.instance.statsManager.UpdateCurrentMoney(buyCost);
-        shopUI.UpdateResources(buyCost);
+        Game_Manager.instance.statsManager.noteLevelTracker.PurchaseNote(currentItem);
+        Game_Manager.instance.statsManager.ModifyStat(Stat_Type.Money, -buyCost);
+        shopUI.UpdateResources(-buyCost);
         currentItem = null;
         GetNewItem();
     }
 
     public void OnRerollButtonPressed()
     {
-        Game_Manager.instance.statsManager.UpdateCurrentMoney(rerollCost);
-        shopUI.UpdateResources(rerollCost);
+        Game_Manager.instance.statsManager.ModifyStat(Stat_Type.Money, -rerollCost);
+        shopUI.UpdateResources(-rerollCost);
         rerollCost += inflation;
         GetNewItem();
     }
 
     public void OnHealButtonPressed()
     {
-        Game_Manager.instance.statsManager.UpdateCurrentHP(-healAmount);
-        Game_Manager.instance.statsManager.UpdateCurrentMoney(healCost);
-        shopUI.UpdateResources(healCost, healAmount);
+        Game_Manager.instance.statsManager.ModifyStat(Stat_Type.CurrentHP, healAmount);
+        Game_Manager.instance.statsManager.ModifyStat(Stat_Type.Money, -healCost);
+        shopUI.UpdateResources(-healCost, healAmount);
         healCost += inflation;
         UpdateUI();
     }

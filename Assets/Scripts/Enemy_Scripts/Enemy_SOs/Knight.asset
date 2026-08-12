@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85eb7680f6a0dda4c961c0cc037e57d9, type: 3}
+  m_Name: Knight
+  m_EditorClassIdentifier: 
+  enemyName: Knight
+  enemySprite: {fileID: 21300000, guid: 6a118f018a1e5c240a61eed77c525cc0, type: 3}
+  enemyHP: 150
+  damage: 5
+  enemyMoneyReward: 200
+  attackTypes:
+  - {fileID: 11400000, guid: efbcefd046440724793a0a224c8e492f, type: 2}
+  - {fileID: 11400000, guid: db516a537ce1da04ca5b8a193f4867cf, type: 2}
+  - {fileID: 11400000, guid: 8f24a8e8bda3da7479b6114b0e643b5c, type: 2}
+  - {fileID: 11400000, guid: 51f40bfe6cff9354fa51ef0e6b0619a3, type: 2}

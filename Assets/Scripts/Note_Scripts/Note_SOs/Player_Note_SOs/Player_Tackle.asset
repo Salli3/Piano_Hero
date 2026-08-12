@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ab282b026ba97044b922cc28a74386c, type: 3}
+  m_Name: Player_Tackle
+  m_EditorClassIdentifier: 
+  noteName: Tackle (*)
+  noteDescription: Deal 20 damage, take 5 damage
+  noteUpgradeDescription: Deal 20 more damage, take 1 more damage
+  noteSpeed: 10
+  isHostile: 0
+  hitSound: {fileID: 0}
+  damage: 20
+  upgradeDamage: 20
+  selfDamage: 5
+  upgradeSelfDamage: 1

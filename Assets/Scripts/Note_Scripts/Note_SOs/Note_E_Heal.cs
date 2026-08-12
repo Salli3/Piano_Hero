@@ -6,13 +6,13 @@ public class Note_E_Heal : Note_SO
     [SerializeField] private int healAmount;
     [SerializeField] private int upgradeHeal;
 
-    public override void Apply(Combat_Handler combatHandler, Note_SO note)
+    public override void Apply(Combat_Handler combatHandler, int level)
     {
-        combatHandler.Heal(note, GetTotalStat(Game_Manager.instance.statsManager.GetStackCount(note)));
+        combatHandler.Heal(isHostile, GetTotalStat(level));
     }
 
-    public override int GetTotalStat(int ownedCount)
+    public override int GetTotalStat(int level)
     {
-        return healAmount + upgradeHeal * Mathf.Max(0, ownedCount - 1);
+        return healAmount + upgradeHeal * Mathf.Max(0, level - 1);
     }
 }

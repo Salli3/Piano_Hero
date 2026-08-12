@@ -14,8 +14,8 @@ public class Money_Number : MonoBehaviour
 
     public void Init(int amount, Vector3 spawnPoint)
     {
-        moneyText.text = amount > 0 ? $"-{amount}$" : $"+{-amount}$";
-        moneyText.color = amount > 0 ? minusColor : plusColor;
+        moneyText.text = amount > 0 ? $"+{amount}$" : $"{amount}$";
+        moneyText.color = amount > 0 ? plusColor : minusColor;
         transform.position = spawnPoint;
 
         if (activeRoutine != null) StopCoroutine(activeRoutine);

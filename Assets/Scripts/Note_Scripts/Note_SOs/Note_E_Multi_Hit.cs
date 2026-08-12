@@ -7,13 +7,13 @@ public class Note_E_Multi_Hit : Note_SO
     [SerializeField] private int hitTime;
     [SerializeField] private int upgradeHitTime;
 
-    public override void Apply(Combat_Handler combatHandler, Note_SO note)
+    public override void Apply(Combat_Handler combatHandler, int level)
     {
-        combatHandler.RunMultiHit(note, damage, GetTotalStat(Game_Manager.instance.statsManager.GetStackCount(note)));
+        combatHandler.RunMultiHit(isHostile, damage, GetTotalStat(level));
     }
 
-    public override int GetTotalStat(int ownedCount)
+    public override int GetTotalStat(int level)
     {
-        return hitTime + upgradeHitTime * Mathf.Max(0, ownedCount - 1);
+        return hitTime + upgradeHitTime * Mathf.Max(0, level - 1);
     }
 }

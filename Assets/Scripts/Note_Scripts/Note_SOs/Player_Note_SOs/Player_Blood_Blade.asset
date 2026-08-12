@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2cfb47f9cceca2e49b193832fe176171, type: 3}
-  m_Name: Player_Leach
+  m_Name: Player_Blood_Blade
   m_EditorClassIdentifier: 
-  noteName: Leach
+  noteName: Blood Blade (*)
   noteDescription: Deal 5 damage and heal 1HP
   noteUpgradeDescription: Deal 1 more damage and heal 1 more HP
   noteSpeed: 10
