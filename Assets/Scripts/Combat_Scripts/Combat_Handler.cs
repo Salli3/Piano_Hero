@@ -41,11 +41,21 @@ public class Combat_Handler : MonoBehaviour
     }
 
     #region Deal damage
-    public void DamagePlayer()
+    private int PlayerDamage(int damage)
+    {
+        return damage + Game_Manager.instance.statsManager.Damage;
+    }
+
+    private int EnemyDamage(int damage)
+    {
+        return damage * Game_Manager.instance.enemyDamageMultiplier;
+    }
+
+    public void DealDamageToPlayer()
     {
         if (Block(true)) return;
 
-        playerHP.ChangeHP(enemyHP.CurrentEnemy.enemyDamage);
+        playerHP.ChangeHP(-EnemyDamage(enemyHP.CurrentEnemy.enemyDamage));
     }
 
     public void DealDamage(Note_SO note, int damage)
@@ -55,9 +65,9 @@ public class Combat_Handler : MonoBehaviour
             StopAllCoroutines();
             return;
         }
-        int finalDamage = note.isHostile ? damage * Game_Manager.instance.enemyDamageMultiplier : damage + Game_Manager.instance.statsManager.Damage;
+        int finalDamage = note.isHostile ? EnemyDamage(damage) : PlayerDamage(damage);
         if (BoostAttack(note.isHostile)) finalDamage *= 2;
-        GetTargetHP(note.isHostile).ChangeHP(finalDamage);
+        GetTargetHP(note.isHostile).ChangeHP(-finalDamage);
     }
 
     public void SelfDamage(Note_SO note, int damage)
@@ -67,15 +77,15 @@ public class Combat_Handler : MonoBehaviour
             StopAllCoroutines();
             return;
         }
-        int finalDamage = note.isHostile ? damage * Game_Manager.instance.enemyDamageMultiplier : damage + Game_Manager.instance.statsManager.Damage;
-        GetTargetHP(!note.isHostile).ChangeHP(finalDamage);
+        int finalDamage = note.isHostile ? EnemyDamage(damage) : PlayerDamage(damage);
+        GetTargetHP(!note.isHostile).ChangeHP(-finalDamage);
     }
     #endregion
 
     #region Heal
     public void Heal(Note_SO note, int damage)
     {
-        GetTargetHP(!note.isHostile).ChangeHP(-damage);
+        GetTargetHP(!note.isHostile).ChangeHP(damage);
     }
     #endregion
 

@@ -18,7 +18,7 @@ public class Hit_Number : MonoBehaviour
     private Hit_Number_Pool hitNumberPool;
     private Coroutine activeRoutine;
 
-    public void Show(int damage, Vector3 worldPosition, Hit_Number_Pool pool, bool isBlocked)
+    public void Show(int amount, Vector3 worldPosition, Hit_Number_Pool pool, bool isBlocked)
     {
         hitNumberPool = pool;
         transform.position = worldPosition;
@@ -31,9 +31,9 @@ public class Hit_Number : MonoBehaviour
         }
         else
         {
-            hitText.text = damage > 0 ? $"-{damage}" : $"+{-damage}";
+            hitText.text = amount > 0 ? $"+{amount}" : $"{amount}";
             hitImage.sprite = damageImage;
-            hitImage.color = damage > 0 ? damageColor : healColor;
+            hitImage.color = amount > 0 ? healColor : damageColor;
         }
         
         gameObject.SetActive(true);

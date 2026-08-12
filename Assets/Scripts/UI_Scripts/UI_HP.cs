@@ -11,12 +11,12 @@ public class UI_HP : MonoBehaviour
 
     public void UpdateHP(int currentHP, int maxHP, int amount)
     {
-        if (amount > 0)
+        if (amount < 0)
         {
             hpBarAnim.Play("HP_Decrease");
             if (cameraShake != null) cameraShake.Shake();
         }
-        else if (amount < 0)
+        else if (amount > 0)
         {
             hpBarAnim.Play("HP_Increase");
         }

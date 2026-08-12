@@ -26,7 +26,7 @@ public class Enemy_HP : MonoBehaviour, IHealth
     {
         if (currentEnemy == null) return;
 
-        currentHP -= amount;
+        currentHP += amount;
         if (currentHP >= maxHP)
         {
             currentHP = maxHP;

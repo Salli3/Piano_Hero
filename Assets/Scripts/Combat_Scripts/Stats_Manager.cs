@@ -24,6 +24,7 @@ public class Stats_Manager : MonoBehaviour
 
     public void Initialize(Player_SO playerSO)
     {
+        if (playerSO == null) return;
         player = playerSO;
         stats.Clear();
 

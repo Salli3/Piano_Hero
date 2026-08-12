@@ -62,25 +62,25 @@ public class Shop_Manager : MonoBehaviour
     public void OnBuyButtonPressed()
     {
         Game_Manager.instance.statsManager.noteLevelTracker.PurchaseNote(currentItem);
-        Game_Manager.instance.statsManager.ModifyStat(Stat_Type.Money, buyCost);
-        shopUI.UpdateResources(buyCost);
+        Game_Manager.instance.statsManager.ModifyStat(Stat_Type.Money, -buyCost);
+        shopUI.UpdateResources(-buyCost);
         currentItem = null;
         GetNewItem();
     }
 
     public void OnRerollButtonPressed()
     {
-        Game_Manager.instance.statsManager.ModifyStat(Stat_Type.Money, rerollCost);
-        shopUI.UpdateResources(rerollCost);
+        Game_Manager.instance.statsManager.ModifyStat(Stat_Type.Money, -rerollCost);
+        shopUI.UpdateResources(-rerollCost);
         rerollCost += inflation;
         GetNewItem();
     }
 
     public void OnHealButtonPressed()
     {
-        Game_Manager.instance.statsManager.ModifyStat(Stat_Type.CurrentHP, -healAmount);
-        Game_Manager.instance.statsManager.ModifyStat(Stat_Type.Money, healCost);
-        shopUI.UpdateResources(healCost, healAmount);
+        Game_Manager.instance.statsManager.ModifyStat(Stat_Type.CurrentHP, healAmount);
+        Game_Manager.instance.statsManager.ModifyStat(Stat_Type.Money, -healCost);
+        shopUI.UpdateResources(-healCost, healAmount);
         healCost += inflation;
         UpdateUI();
     }

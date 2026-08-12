@@ -43,7 +43,7 @@ public class Shop_UI : MonoBehaviour
     public void UpdateResources(int money = 0, int hp = 0)
     {
         uiMoney.UpdateMoney(money);
-        uiHP.UpdateHP(Game_Manager.instance.statsManager.CurrentHP, Game_Manager.instance.statsManager.MaxHP, -hp);
+        uiHP.UpdateHP(Game_Manager.instance.statsManager.CurrentHP, Game_Manager.instance.statsManager.MaxHP, hp);
     }
 
     public void UpdateCost(int buyCost, int rerollCost, int healCost, int healAmount)

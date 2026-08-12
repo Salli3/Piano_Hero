@@ -2951,7 +2951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a660bb7ec515d47a80173dae79a85c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 11400000, guid: 61aafd30cd15bc64ea630c8e99e092c0, type: 2}
+  player: {fileID: 11400000, guid: 1d2602436b70a134aa6a3f7f1b71ede9, type: 2}
   noteLevelTracker: {fileID: 778885094}
 --- !u!4 &778885093
 Transform:
@@ -2980,7 +2980,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d12a9254f60264eb94521193af630f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAttackTypes: []
 --- !u!1 &810942938
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,7 +23,7 @@ public class Hit_Number_Pool : MonoBehaviour
         }
     }
 
-    public void ShowHitNumber(int damage, bool isBlocked)
+    public void ShowHitNumber(int amount, bool isBlocked)
     {
         float randomWidth = Random.Range(-hitNumberAppearWidth * 0.5f, hitNumberAppearWidth * 0.5f);
         float randomHeight = Random.Range(-hitNumberAppearHeight * 0.5f, hitNumberAppearHeight * 0.5f);
@@ -34,7 +34,7 @@ public class Hit_Number_Pool : MonoBehaviour
         Vector3 spawnPosition = spawnPoint.position + baseOffset + randomOffset;
 
         Hit_Number hitNumber = GetHitNumber();
-        hitNumber.Show(damage, spawnPosition, this, isBlocked);
+        hitNumber.Show(amount, spawnPosition, this, isBlocked);
     }
 
     private Hit_Number GetHitNumber()

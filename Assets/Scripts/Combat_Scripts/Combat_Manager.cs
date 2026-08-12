@@ -38,7 +38,7 @@ public class Combat_Manager : MonoBehaviour
     {
         if (Game_Manager.instance.isCombatActive == false) return;
 
-        combatHandler.DamagePlayer();
+        combatHandler.DealDamageToPlayer();
     }
 
     private void OnNoteExit(Note_SO note)
