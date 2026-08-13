@@ -2254,6 +2254,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAttackTypes:
   - {fileID: 11400000, guid: c5452421284463f4f8e8411e66fbcc27, type: 2}
+  - {fileID: 11400000, guid: 69b847ab97aff654886ec36a2d3f58e9, type: 2}
+  - {fileID: 11400000, guid: 072a623d48de1d2498133c912f74ea36, type: 2}
 --- !u!114 &1809892913
 MonoBehaviour:
   m_ObjectHideFlags: 0

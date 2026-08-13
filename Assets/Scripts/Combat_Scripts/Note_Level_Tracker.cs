@@ -7,6 +7,15 @@ public class Note_Level_Tracker : MonoBehaviour
     [SerializeField] private List<Note_SO> playerAttackTypes = new List<Note_SO>();
     private Dictionary<Note_SO, int> notesLevel = new Dictionary<Note_SO, int>();
 
+    private void Awake()
+    {
+        //For testing
+        foreach (var note in playerAttackTypes)
+        {
+            notesLevel[note] = 1;
+        }
+    }
+
     public void SetPlayerNote(Player_SO playerSO)
     {
         playerAttackTypes = playerSO.attackTypes.ToList();
