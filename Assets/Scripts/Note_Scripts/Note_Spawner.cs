@@ -49,7 +49,7 @@ public class Note_Spawner : MonoBehaviour
         }
         else
         {
-            Note_SO[] enemyNotes = enemyHP.CurrentEnemy.attackTypes;
+            Note_SO[] enemyNotes = Game_Manager.instance.currentEnemy.attackTypes;
             chosenNote = enemyNotes[Random.Range(0, enemyNotes.Length)];
         }
 

@@ -24,6 +24,7 @@ public class Shop_UI : MonoBehaviour
     {
         if (noteSO != null)
         {
+            //For testing
             itemName.text = noteSO.noteName;
             itemDescription.text = noteSO.GetDescription(0);
         }

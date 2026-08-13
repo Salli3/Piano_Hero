@@ -11,7 +11,7 @@ public abstract class Note_SO : ScriptableObject
 
     public AudioClip hitSound;
 
-    public abstract void Apply(Combat_Handler combatHandler, int level);
+    public abstract void Apply(Combat_Manager combatManager, int level);
 
     public virtual string GetDescription(int level)
     {

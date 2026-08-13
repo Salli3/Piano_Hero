@@ -7,10 +7,10 @@ public class Note_E_Attack_Self_Damage : Note_SO
     [SerializeField] private int upgradeDamage;
     [SerializeField] private int selfDamage;
     [SerializeField] private int upgradeSelfDamage;
-    public override void Apply(Combat_Handler combatHandler, int level)
+    public override void Apply(Combat_Manager combatManager, int level)
     {
-        combatHandler.DealDamage(isHostile, GetTotalDamage(level));
-        combatHandler.SelfDamage(isHostile, GetTotalSelfDamage(level));
+        combatManager.DealDamage(isHostile, GetTotalDamage(level));
+        combatManager.SelfDamage(isHostile, GetTotalSelfDamage(level));
     }
 
     private int GetTotalDamage(int level) => damage + upgradeDamage * Mathf.Max(0, level - 1);

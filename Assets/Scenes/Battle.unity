@@ -771,16 +771,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222cdad629af9224fbf92e40c076d666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHP: {fileID: 880397429}
-  playerUI: {fileID: 880397430}
-  enemyHP: {fileID: 1606295679}
-  enemyUI: {fileID: 1606295680}
   playerBlock: 0
-  playerStackingDamage: 0
-  playerBoostAttack: 0
+  playerDamageStack: 0
+  playerAttackBoost: 0
   enemyBlock: 0
-  enemyStackingDamage: 0
-  enemyBoostAttack: 0
+  enemyDamageStack: 0
+  enemyAttackBoost: 0
 --- !u!4 &310191696
 Transform:
   m_ObjectHideFlags: 0
@@ -808,7 +804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e8348be4e1ca04d992892fdc79f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combatHandler: {fileID: 310191694}
+  combatManager: {fileID: 310191694}
 --- !u!1001 &317412059
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2614,6 +2610,7 @@ MonoBehaviour:
   enemyPerRound: 3
   enemyHpMultiplier: 1
   enemyDamageMultiplier: 1
+  currentEnemy: {fileID: 0}
   persistentObjects:
   - {fileID: 778885091}
 --- !u!4 &717734309
@@ -2951,8 +2948,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a660bb7ec515d47a80173dae79a85c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 11400000, guid: 1d2602436b70a134aa6a3f7f1b71ede9, type: 2}
+  player: {fileID: 0}
   noteLevelTracker: {fileID: 778885094}
+  damage: 10
+  currentHP: 999
+  maxHP: 999
+  money: 999
 --- !u!4 &778885093
 Transform:
   m_ObjectHideFlags: 0
@@ -2980,6 +2981,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d12a9254f60264eb94521193af630f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerAttackTypes:
+  - {fileID: 11400000, guid: c5452421284463f4f8e8411e66fbcc27, type: 2}
+  - {fileID: 11400000, guid: 072a623d48de1d2498133c912f74ea36, type: 2}
 --- !u!1 &810942938
 GameObject:
   m_ObjectHideFlags: 0
@@ -3242,8 +3246,8 @@ GameObject:
   - component: {fileID: 880397431}
   - component: {fileID: 880397429}
   - component: {fileID: 880397430}
-  - component: {fileID: 880397434}
   - component: {fileID: 880397435}
+  - component: {fileID: 880397434}
   - component: {fileID: 880397433}
   - component: {fileID: 880397432}
   m_Layer: 5
@@ -3362,6 +3366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98a49196a620a414ba40a41db098cc27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiHP: {fileID: 880397434}
   playerUI: {fileID: 880397430}
   gameOver: {fileID: 1691254240}
 --- !u!114 &880397430
@@ -3378,11 +3383,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 398914012}
   playerImage: {fileID: 434724811}
-  uiHP: {fileID: 880397434}
-  uiMoney: {fileID: 880397435}
   uiStatus: {fileID: 880397433}
   hitNumberPool: {fileID: 880397432}
-  moneyText: {fileID: 1776045605}
 --- !u!114 &880397431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3433,10 +3435,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockStatus: {fileID: 1697566764}
   blockText: {fileID: 449725637}
-  stackingDamageStatus: {fileID: 454009641}
-  stackingDamageText: {fileID: 850950856}
-  boostAttackStatus: {fileID: 1765133853}
-  boostAttackText: {fileID: 1183796001}
+  damageStackStatus: {fileID: 454009641}
+  damageStackText: {fileID: 850950856}
+  attackBoostStatus: {fileID: 1765133853}
+  attackBoostText: {fileID: 1183796001}
 --- !u!114 &880397434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5264,13 +5266,13 @@ GameObject:
   - component: {fileID: 1606295677}
   - component: {fileID: 1606295676}
   - component: {fileID: 1606295675}
-  - component: {fileID: 1606295681}
+  - component: {fileID: 1606295685}
   - component: {fileID: 1606295679}
   - component: {fileID: 1606295680}
   - component: {fileID: 1606295684}
   - component: {fileID: 1606295683}
   - component: {fileID: 1606295682}
-  - component: {fileID: 1606295685}
+  - component: {fileID: 1606295681}
   m_Layer: 5
   m_Name: Enemy
   m_TagString: Untagged
@@ -5386,6 +5388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3873b9c7303194144bbaf410ced1224e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiHP: {fileID: 1606295684}
   enemyUI: {fileID: 1606295680}
   currentEnemy: {fileID: 0}
   currentHP: 0
@@ -5405,7 +5408,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 784856}
   enemyImage: {fileID: 693149112}
-  uiHP: {fileID: 1606295684}
   uiStatus: {fileID: 1606295683}
   hitNumberPool: {fileID: 1606295682}
   enemyPosition: {fileID: 693149111}
@@ -5465,10 +5467,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockStatus: {fileID: 1276702756}
   blockText: {fileID: 318924500}
-  stackingDamageStatus: {fileID: 86961422}
-  stackingDamageText: {fileID: 899391048}
-  boostAttackStatus: {fileID: 650006144}
-  boostAttackText: {fileID: 1636189026}
+  damageStackStatus: {fileID: 86961422}
+  damageStackText: {fileID: 899391048}
+  attackBoostStatus: {fileID: 650006144}
+  attackBoostText: {fileID: 1636189026}
 --- !u!114 &1606295684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5498,6 +5500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHP: {fileID: 1606295679}
+  enemyUI: {fileID: 1606295680}
   enemySOs:
   - {fileID: 11400000, guid: 4d19ffa4b2c585f4e9bc99fec5204e27, type: 2}
   - {fileID: 11400000, guid: fd3660c20d2d6bb4fa23d442893aa2a3, type: 2}

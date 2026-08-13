@@ -3,12 +3,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Enemy_UI : MonoBehaviour, IHitNumber, IStatus
+public class Enemy_UI : MonoBehaviour
 {
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private Image enemyImage;
 
-    [SerializeField] private UI_HP uiHP;
     [SerializeField] private UI_Status uiStatus;
     [SerializeField] private Hit_Number_Pool hitNumberPool;
 
@@ -25,23 +24,28 @@ public class Enemy_UI : MonoBehaviour, IHitNumber, IStatus
     [SerializeField] private float fallDistance;
     [SerializeField] private float slideDistance;
 
+    private void OnEnable()
+    {
+        Combat_Manager.DamageEnemy += hitNumberPool.ShowHitNumber;
+        Combat_Manager.EnemyStatusChange += uiStatus.UpdateCombatStatus;
+    }
+
+    private void OnDisable()
+    {
+        Combat_Manager.DamageEnemy -= hitNumberPool.ShowHitNumber;
+        Combat_Manager.EnemyStatusChange -= uiStatus.UpdateCombatStatus;
+    }
+
     private void Awake()
     {
         originalEnemyPosition = enemyPosition.position;
     }
 
-    public void SetEnemyUI(Enemy_SO enemySO, int currentHP, int maxHP)
+    public void SetEnemyUI(Enemy_SO enemySO)
     {
         enemyImage.sprite = enemySO.enemySprite;
         nameText.text = enemySO.enemyName;
-        UpdateHPUI(currentHP, maxHP);
     }
-
-    public void UpdateHPUI(int currentHP, int maxHP, int amount = 0) => uiHP.UpdateHP(currentHP, maxHP, amount);
-
-    public void ShowHitNumber(int damage, bool isBlocked = false) => hitNumberPool.ShowHitNumber(damage, isBlocked);
-
-    public void UpdateCombatStatusUI(int block, int stackingDamage, int boostTime) => uiStatus.UpdateCombatStatus(block, stackingDamage, boostTime);
 
     //TODO rework enemy appear animation
     #region Enemy Appear and Defeat animation methods

@@ -7,9 +7,9 @@ public class Note_E_Multi_Hit : Note_SO
     [SerializeField] private int hitTime;
     [SerializeField] private int upgradeHitTime;
 
-    public override void Apply(Combat_Handler combatHandler, int level)
+    public override void Apply(Combat_Manager combatManager, int level)
     {
-        combatHandler.RunMultiHit(isHostile, damage, GetTotalStat(level));
+        combatManager.RunMultiHit(isHostile, damage, GetTotalStat(level));
     }
 
     public override int GetTotalStat(int level)

@@ -2204,6 +2204,7 @@ MonoBehaviour:
   enemyPerRound: 3
   enemyHpMultiplier: 1
   enemyDamageMultiplier: 1
+  currentEnemy: {fileID: 0}
   persistentObjects:
   - {fileID: 1809892911}
 --- !u!4 &1799656459
@@ -2251,6 +2252,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d12a9254f60264eb94521193af630f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerAttackTypes:
+  - {fileID: 11400000, guid: c5452421284463f4f8e8411e66fbcc27, type: 2}
+  - {fileID: 11400000, guid: 69b847ab97aff654886ec36a2d3f58e9, type: 2}
+  - {fileID: 11400000, guid: 072a623d48de1d2498133c912f74ea36, type: 2}
 --- !u!114 &1809892913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2265,6 +2270,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: 1d2602436b70a134aa6a3f7f1b71ede9, type: 2}
   noteLevelTracker: {fileID: 1809892912}
+  damage: 10
+  currentHP: 100
+  maxHP: 100
+  money: 9999
 --- !u!4 &1809892914
 Transform:
   m_ObjectHideFlags: 0

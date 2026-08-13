@@ -5,10 +5,10 @@ public class Note_E_Clear_Note : Note_SO
 {
     [SerializeField] private int damage;
     [SerializeField] private int upgradeDamage;
-    public override void Apply(Combat_Handler combatHandler, int level)
+    public override void Apply(Combat_Manager combatManager, int level)
     {
-        int cleared = combatHandler.ClearNote(isHostile);
-        combatHandler.DealDamage(isHostile, cleared * GetTotalStat(level));
+        int cleared = combatManager.ClearNote(isHostile);
+        combatManager.DealDamage(isHostile, cleared * GetTotalStat(level));
     }
 
     public override int GetTotalStat(int level)

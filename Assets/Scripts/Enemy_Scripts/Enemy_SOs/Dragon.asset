@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyName: Dragon
   enemySprite: {fileID: 21300000, guid: 800607afddc7be8488faef19629689fe, type: 3}
   enemyHP: 200
-  damage: 10
+  enemyDamage: 10
   enemyMoneyReward: 200
   attackTypes:
   - {fileID: 11400000, guid: 282540b0146e4d4428339c3b8cdf5209, type: 2}
