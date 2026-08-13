@@ -12,6 +12,10 @@ public class Judgement_Input_Handler : MonoBehaviour
         {
             triggerKeys = new string[judgementBoxes.Length];
         }
+        for (int i = 0; i < judgementBoxes.Length; i++)
+        {
+            judgementBoxes[i].inputText.text = triggerKeys[i];
+        }
     }
 
     private void Update()

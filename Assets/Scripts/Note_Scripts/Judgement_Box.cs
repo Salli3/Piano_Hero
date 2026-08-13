@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class Judgement_Box : MonoBehaviour
 {
     [SerializeField] private Collider2D judgeBoxCollider;
     [SerializeField] private SpriteRenderer sr;
+    public TMP_Text inputText;
     [SerializeField] private LayerMask noteLayer;
     private Vector3 originalScale;
 
@@ -14,8 +16,6 @@ public class Judgement_Box : MonoBehaviour
 
     private void Awake()
     {
-        judgeBoxCollider = GetComponent<BoxCollider2D>();
-        sr = GetComponent<SpriteRenderer>();
         originalScale = transform.localScale;
     }
 
