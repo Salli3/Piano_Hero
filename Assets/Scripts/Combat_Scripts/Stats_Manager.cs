@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class Stats_Manager : MonoBehaviour
 {
     [SerializeField] private Player_SO player;
     public Note_Level_Tracker noteLevelTracker;
+    public Passive_Level_Tracker passiveLevelTracker;
 
     [Header("Player Stats")]
     [SerializeField] private int damage;
@@ -59,6 +61,19 @@ public class Stats_Manager : MonoBehaviour
             default:
                 Debug.LogWarning($"Stat not registered in ModifyStat: {type}");
                 break;
+        }
+    }
+
+    public int GetStat(Stat_Type type)
+    {
+        switch (type)
+        {
+            case Stat_Type.Damage: return damage;
+            case Stat_Type.CurrentHP: return currentHP;
+            case Stat_Type.MaxHP: return maxHP;
+            case Stat_Type.Money: return money;
+            default:
+                return 0;
         }
     }
 }

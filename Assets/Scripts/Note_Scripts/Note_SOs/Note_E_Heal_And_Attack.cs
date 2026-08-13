@@ -8,10 +8,10 @@ public class Note_E_Heal_And_Attack : Note_SO
     [SerializeField] private int damage;
     [SerializeField] private int upgradeDamage;
 
-    public override void Apply(Combat_Manager combatManager, int level)
+    public override void Apply(Combat_Manager combatManager)
     {
-        combatManager.Heal(isHostile, GetTotalHeal(level));
-        combatManager.DealDamage(isHostile, GetTotalDamage(level));
+        combatManager.Heal(isHostile, GetTotalHeal(Level));
+        combatManager.DealDamage(isHostile, GetTotalDamage(Level));
     }
 
     private int GetTotalHeal(int level) => healAmount + upgradeHeal * Mathf.Max(0, level - 1);
@@ -19,16 +19,16 @@ public class Note_E_Heal_And_Attack : Note_SO
 
     public override int GetTotalStat(int level) => GetTotalHeal(level);
 
-    public override string GetDescription(int level)
+    public override string GetDescription()
     {
-        if (level <= 0)
+        if (Level <= 0)
         {
             return noteDescription;
         }
         else
         {
-            int totalHeal = GetTotalHeal(level + 1);
-            int totalDamage = GetTotalDamage(level + 1);
+            int totalHeal = GetTotalHeal(Level + 1);
+            int totalDamage = GetTotalDamage(Level + 1);
             return $"{noteUpgradeDescription} (heal: {totalHeal}, damage: {totalDamage})";
         }
     }

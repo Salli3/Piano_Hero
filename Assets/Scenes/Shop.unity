@@ -1228,7 +1228,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: This attack move 50% faster, deal 10 damage
+  m_text: 'Deal 1 more damage and heal 1 more HP (heal: 2, damage: 6)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 4fa011823ef05aa4cbb955e3d446efd9, type: 2}
@@ -1934,7 +1934,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 876da41efca75d9439694b0d9ca849d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noteSO: {fileID: 11400000, guid: e21c3893561347043a2db6acdebb499c, type: 2}
   itemName: {fileID: 1917584521}
   itemDescription: {fileID: 1301621305}
   uiMoney: {fileID: 1648913255}
@@ -1956,17 +1955,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopUI: {fileID: 1648913252}
-  currentItem: {fileID: 0}
-  empty: {fileID: 11400000, guid: 160057ecef74e734f8cefc5d1d5ffa1f, type: 2}
-  Items:
+  noteItems:
   - {fileID: 11400000, guid: 5d0af96b58c87d741b4d57134c513267, type: 2}
   - {fileID: 11400000, guid: 9b86baf0371fe914da4768573fc78ba3, type: 2}
   - {fileID: 11400000, guid: 16794b889c2732a42b0fe1710562dc8e, type: 2}
-  - {fileID: 11400000, guid: e21c3893561347043a2db6acdebb499c, type: 2}
-  - {fileID: 11400000, guid: 072a623d48de1d2498133c912f74ea36, type: 2}
   - {fileID: 11400000, guid: 5bfcc0c4ab5798646b3a174c4e12d198, type: 2}
+  - {fileID: 11400000, guid: e21c3893561347043a2db6acdebb499c, type: 2}
   - {fileID: 11400000, guid: 69b847ab97aff654886ec36a2d3f58e9, type: 2}
   - {fileID: 11400000, guid: da19c976b26df39409493ea4f7962dd6, type: 2}
+  - {fileID: 11400000, guid: 072a623d48de1d2498133c912f74ea36, type: 2}
+  passiveItems:
+  - {fileID: 11400000, guid: 0b70bc8728ff1f94e85afa8b25689886, type: 2}
+  - {fileID: 11400000, guid: d42ff295050d17d46a647b98019528db, type: 2}
+  empty: {fileID: 11400000, guid: 160057ecef74e734f8cefc5d1d5ffa1f, type: 2}
   buyCost: 150
   rerollCost: 20
   healCost: 50
@@ -2233,6 +2234,7 @@ GameObject:
   - component: {fileID: 1809892914}
   - component: {fileID: 1809892913}
   - component: {fileID: 1809892912}
+  - component: {fileID: 1809892915}
   m_Layer: 0
   m_Name: Stats_Manager
   m_TagString: Untagged
@@ -2270,8 +2272,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: 1d2602436b70a134aa6a3f7f1b71ede9, type: 2}
   noteLevelTracker: {fileID: 1809892912}
+  passiveLevelTracker: {fileID: 1809892915}
   damage: 10
-  currentHP: 100
+  currentHP: 50
   maxHP: 100
   money: 9999
 --- !u!4 &1809892914
@@ -2289,6 +2292,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1809892915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809892911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b25d09a7ca038f45bb5d95b34a9b72c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPassives: []
 --- !u!1 &1866733987
 GameObject:
   m_ObjectHideFlags: 0
@@ -2480,7 +2496,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Quick Attack
+  m_text: Blood Blade (*)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}

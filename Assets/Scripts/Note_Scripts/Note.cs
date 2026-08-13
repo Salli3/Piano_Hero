@@ -28,7 +28,7 @@ public class Note : MonoBehaviour
         transform.position = spawnPoint.position;
         sr.color = noteSO.noteColor;
         noteCollider.enabled = true;
-        noteName.text = noteSO.noteName;
+        noteName.text = noteSO.Name;
     }
 
     public void OnNoteHit()
@@ -36,11 +36,6 @@ public class Note : MonoBehaviour
         sr.color = Color.white;
         noteCollider.enabled = false;
         anim.Play("Fade");
-
-        if (noteSO.hitSound != null)
-        {
-            AudioSource.PlayClipAtPoint(noteSO.hitSound, transform.position);
-        }
 
         Destroy(gameObject, 0.3f);
     }

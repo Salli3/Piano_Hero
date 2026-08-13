@@ -39,8 +39,8 @@ public class Character_Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         foreach (var note in playerSO.attackTypes)
         {
             notesText.text += 
-                $"\n-{note.noteName}:" +
-                $"\n{note.GetDescription(0)}\n";
+                $"\n-{note.Name}:" +
+                $"\n{note.Description}\n";
         }
     }
 

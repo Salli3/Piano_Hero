@@ -6,9 +6,9 @@ public class Note_E_Heal : Note_SO
     [SerializeField] private int healAmount;
     [SerializeField] private int upgradeHeal;
 
-    public override void Apply(Combat_Manager combatManager, int level)
+    public override void Apply(Combat_Manager combatManager)
     {
-        combatManager.Heal(isHostile, GetTotalStat(level));
+        combatManager.Heal(isHostile, GetTotalStat(Level));
     }
 
     public override int GetTotalStat(int level)

@@ -1,24 +1,30 @@
 using UnityEngine;
 
-public abstract class Note_SO : ScriptableObject
+public abstract class Note_SO : ScriptableObject, IBuy
 {
-    public string noteName;
-    [TextArea] public string noteDescription;
-    [TextArea] public string noteUpgradeDescription;
+    [SerializeField] private string noteName;
+    [SerializeField, TextArea] protected string noteDescription;
+    [SerializeField, TextArea] protected string noteUpgradeDescription;
     public float noteSpeed = 10;
     public bool isHostile;
     public Color noteColor => isHostile ? Color.red : Color.blue;
 
-    public AudioClip hitSound;
+    public string Name => noteName;
+    public string Description => GetDescription();
+    public int Level => Game_Manager.instance.statsManager.noteLevelTracker.GetNoteLevel(this);
 
-    public abstract void Apply(Combat_Manager combatManager, int level);
-
-    public virtual string GetDescription(int level)
+    public void BuyItem()
     {
-        if (level <= 0) return noteDescription;
-        return $"{noteUpgradeDescription} (total: {GetTotalStat(level + 1)})";
+        Game_Manager.instance.statsManager.noteLevelTracker.PurchaseNote(this);
     }
 
+    public abstract void Apply(Combat_Manager combatManager);
     public abstract int GetTotalStat(int level);
+    public virtual string GetDescription()
+    {
+        if (Level <= 0) return noteDescription;
+        return $"{noteUpgradeDescription} (total: {GetTotalStat(Level + 1)})";
+    }
 }
+
 
