@@ -9,7 +9,7 @@ public class UI_HP : MonoBehaviour
     [SerializeField] private Slider hpBar;
     [SerializeField] private TMP_Text hpText;
 
-    public void UpdateHP(int currentHP, int maxHP, int amount)
+    public void UpdateHP(int currentHP, int maxHP, int amount = 0)
     {
         if (amount < 0)
         {

@@ -16,6 +16,7 @@ public class Game_Manager : MonoBehaviour
     public int enemyPerRound;
     public int enemyHpMultiplier;
     public int enemyDamageMultiplier;
+    public Enemy_SO currentEnemy;
 
     [Header("Persistent Objects")]
     public GameObject[] persistentObjects;

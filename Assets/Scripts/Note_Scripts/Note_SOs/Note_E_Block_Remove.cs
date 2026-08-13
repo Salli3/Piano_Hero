@@ -5,9 +5,9 @@ public class Note_E_Block_Remove : Note_SO
 {
     [SerializeField] private int removeAmount;
     [SerializeField] private int upgradeRemoveAmount;
-    public override void Apply(Combat_Handler combatHandler, int level)
+    public override void Apply(Combat_Manager combatManager, int level)
     {
-        combatHandler.RemoveBlock(isHostile, GetTotalStat(level));
+        combatManager.RemoveBlock(isHostile, GetTotalStat(level));
     }
 
     public override int GetTotalStat(int level)

@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Enemy_HP : MonoBehaviour, IHealth
+public class Enemy_HP : MonoBehaviour
 {
+    [SerializeField] private UI_HP uiHP;
     [SerializeField] private Enemy_UI enemyUI;
     [SerializeField] private Enemy_SO currentEnemy;
     [SerializeField] private int currentHP;
@@ -11,39 +12,34 @@ public class Enemy_HP : MonoBehaviour, IHealth
     [SerializeField] private int moneyReward;
 
     public static event Action<Enemy_SO> OnEnemyDefeated;
-    public Enemy_SO CurrentEnemy => currentEnemy;
+
+    private void OnEnable() => Combat_Manager.DamageEnemy += (amount, _) => ChangeHP(amount);
+    private void OnDisable() => Combat_Manager.DamageEnemy -= (amount, _) => ChangeHP(amount);
 
     public void SetEnemy(Enemy_SO newEnemy)
     {
         currentEnemy = newEnemy;
         maxHP = currentEnemy.enemyHP * Game_Manager.instance.enemyHpMultiplier;
         currentHP = maxHP;
-        enemyUI.SetEnemyUI(currentEnemy, currentHP, maxHP);
+        uiHP.UpdateHP(currentHP, maxHP);
         StartCoroutine(EnemyAppear());
     }
 
-    public void ChangeHP(int amount)
+    private void ChangeHP(int amount)
     {
         if (currentEnemy == null) return;
 
         currentHP += amount;
-        if (currentHP >= maxHP)
+        if (currentHP >= maxHP) currentHP = maxHP;
+        uiHP.UpdateHP(currentHP, maxHP, amount);
+
+        if (currentHP <= 0 && Game_Manager.instance.isCombatActive == true)
         {
-            currentHP = maxHP;
+            Game_Manager.instance.isCombatActive = false;
+            Game_Manager.instance.statsManager.ModifyStat(Stat_Type.Money, currentEnemy.enemyMoneyReward);
+            StartCoroutine(EnemyDefeat());
         }
 
-        if (amount != 0)
-        {
-            enemyUI.UpdateHPUI(currentHP, maxHP, amount);
-            enemyUI.ShowHitNumber(amount);
-
-            if (currentHP <= 0 && Game_Manager.instance.isCombatActive == true)
-            {
-                Game_Manager.instance.isCombatActive = false;
-                Game_Manager.instance.statsManager.ModifyStat(Stat_Type.Money, currentEnemy.enemyMoneyReward);
-                StartCoroutine(EnemyDefeat());
-            }
-        }
     }
 
     private IEnumerator EnemyAppear()

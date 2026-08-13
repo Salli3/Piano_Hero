@@ -8,17 +8,17 @@ public class UI_Status : MonoBehaviour
     [SerializeField] private GameObject blockStatus;
     [SerializeField] private TMP_Text blockText;
 
-    [SerializeField] private GameObject stackingDamageStatus;
-    [SerializeField] private TMP_Text stackingDamageText;
+    [SerializeField] private GameObject damageStackStatus;
+    [SerializeField] private TMP_Text damageStackText;
 
-    [SerializeField] private GameObject boostAttackStatus;
-    [SerializeField] private TMP_Text boostAttackText;
+    [SerializeField] private GameObject attackBoostStatus;
+    [SerializeField] private TMP_Text attackBoostText;
 
-    public void UpdateCombatStatus(int blockNumber, int stackingDamageNumber, int boostAttackNumber)
+    public void UpdateCombatStatus(Status status)
     {
-        UpdateStatus(blockStatus, blockText, blockNumber);
-        UpdateStatus(stackingDamageStatus, stackingDamageText, stackingDamageNumber);
-        UpdateStatus(boostAttackStatus, boostAttackText, boostAttackNumber);
+        UpdateStatus(blockStatus, blockText, status.block);
+        UpdateStatus(damageStackStatus, damageStackText, status.damageStack);
+        UpdateStatus(attackBoostStatus, attackBoostText, status.attackBoost);
     }
 
     private void UpdateStatus(GameObject status, TMP_Text text, int num)

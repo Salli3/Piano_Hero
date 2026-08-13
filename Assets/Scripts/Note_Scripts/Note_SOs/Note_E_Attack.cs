@@ -5,9 +5,9 @@ public class Note_E_Attack : Note_SO
 {
     [SerializeField] private int damage;
     [SerializeField] private int upgradeDamage;
-    public override void Apply(Combat_Handler combatHandler, int level)
+    public override void Apply(Combat_Manager combatManager, int level)
     {
-        combatHandler.DealDamage(isHostile, GetTotalStat(level));
+        combatManager.DealDamage(isHostile, GetTotalStat(level));
     }
 
     public override int GetTotalStat(int level)

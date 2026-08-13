@@ -23,7 +23,7 @@ public class Hit_Number_Pool : MonoBehaviour
         }
     }
 
-    public void ShowHitNumber(int amount, bool isBlocked)
+    public void ShowHitNumber(int amount, bool isBlocked = false)
     {
         float randomWidth = Random.Range(-hitNumberAppearWidth * 0.5f, hitNumberAppearWidth * 0.5f);
         float randomHeight = Random.Range(-hitNumberAppearHeight * 0.5f, hitNumberAppearHeight * 0.5f);

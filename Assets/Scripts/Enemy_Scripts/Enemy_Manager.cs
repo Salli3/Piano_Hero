@@ -6,6 +6,7 @@ using UnityEngine;
 public class Enemy_Manager : MonoBehaviour
 {
     [SerializeField] private Enemy_HP enemyHP;
+    [SerializeField] private Enemy_UI enemyUI;
     [SerializeField] private Enemy_SO[] enemySOs;
 
     private void OnEnable()
@@ -42,6 +43,8 @@ public class Enemy_Manager : MonoBehaviour
         if (enemyHP != null)
         {
             enemyHP.SetEnemy(currentEnemy);
+            enemyUI.SetEnemyUI(currentEnemy);
+            Game_Manager.instance.currentEnemy = currentEnemy;
         }
     }
 }

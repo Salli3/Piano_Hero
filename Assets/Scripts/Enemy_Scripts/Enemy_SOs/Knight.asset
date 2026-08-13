@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyName: Knight
   enemySprite: {fileID: 21300000, guid: 6a118f018a1e5c240a61eed77c525cc0, type: 3}
   enemyHP: 150
-  damage: 5
+  enemyDamage: 5
   enemyMoneyReward: 200
   attackTypes:
   - {fileID: 11400000, guid: efbcefd046440724793a0a224c8e492f, type: 2}
