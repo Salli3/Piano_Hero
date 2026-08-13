@@ -11,7 +11,7 @@ public abstract class Note_SO : ScriptableObject, IBuy
 
     public string Name => noteName;
     public string Description => GetDescription();
-    public int Level => Game_Manager.instance.statsManager.noteLevelTracker.GetNoteLevel(this);
+    public int Level => Game_Manager.instance != null ? Game_Manager.instance.statsManager.noteLevelTracker.GetNoteLevel(this) : 0;
 
     public void BuyItem()
     {

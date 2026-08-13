@@ -43,17 +43,8 @@ public class Shop_Manager : MonoBehaviour
                 availableItems.Remove(currentItem); // prevent duplicate pick on reroll
             }
 
-            if (availableItems.Count == 0)
-            {
-                currentItem = null;
-                shopUI.ShowItemInfo(empty);
-                UpdateUI();
-                return;
-            }
-
             currentItem = availableItems[Random.Range(0, availableItems.Count)];
             shopUI.ShowItemInfo(currentItem);
-            Debug.Log(currentItem.Name);
         }
         UpdateUI();
     }
