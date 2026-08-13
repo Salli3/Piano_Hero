@@ -34,6 +34,7 @@ public class Player_UI : MonoBehaviour, IHitNumber, IStatus
 
     private void SetPlayerUI()
     {
+        if (Game_Manager.instance.statsManager.Player == null) return;
         playerImage.sprite = Game_Manager.instance.statsManager.Player.playerSprite;
         nameText.text = Game_Manager.instance.statsManager.Player.playerName;
     }

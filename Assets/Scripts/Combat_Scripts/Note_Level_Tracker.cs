@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Note_Level_Tracker : MonoBehaviour
 {
-    [SerializeField] private HashSet<Note_SO> playerAttackTypes = new HashSet<Note_SO>();
+    [SerializeField] private List<Note_SO> playerAttackTypes = new List<Note_SO>();
     private Dictionary<Note_SO, int> notesLevel = new Dictionary<Note_SO, int>();
 
     public void SetPlayerNote(Player_SO playerSO)
     {
-        playerAttackTypes = playerSO.attackTypes.ToHashSet();
+        playerAttackTypes = playerSO.attackTypes.ToList();
         notesLevel.Clear();
         foreach (var note in playerAttackTypes)
         {
@@ -23,7 +23,7 @@ public class Note_Level_Tracker : MonoBehaviour
         notesLevel[note] = GetNoteLevel(note) + 1;
     }
 
-    public Note_SO[] GetNote() => playerAttackTypes.ToArray();
+    public Note_SO[] GetNote() => playerAttackTypes.Distinct().ToArray();
 
     public int GetNoteLevel(Note_SO note)
     {

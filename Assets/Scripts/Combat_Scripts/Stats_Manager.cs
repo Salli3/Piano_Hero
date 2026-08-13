@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -5,17 +6,20 @@ using UnityEngine;
 public class Stats_Manager : MonoBehaviour
 {
     [SerializeField] private Player_SO player;
-    public Player_SO Player => player;
+    public Note_Level_Tracker noteLevelTracker;
 
-    private Dictionary<Stat_Type, int> stats = new();
+    [Header("Player Stats")]
+    [SerializeField] private int damage;
+    [SerializeField] private int currentHP;
+    [SerializeField] private int maxHP;
+    [SerializeField] private int money;
 
     //Public getter
-    public int Damage => GetStat(Stat_Type.Damage);
-    public int CurrentHP => GetStat(Stat_Type.CurrentHP);
-    public int MaxHP => GetStat(Stat_Type.MaxHP);
-    public int Money => GetStat(Stat_Type.Money);
-
-    public Note_Level_Tracker noteLevelTracker;
+    public Player_SO Player => player;
+    public int Damage => damage;
+    public int CurrentHP => currentHP;
+    public int MaxHP => maxHP;
+    public int Money => money;
 
     private void Awake()
     {
@@ -26,19 +30,12 @@ public class Stats_Manager : MonoBehaviour
     {
         if (playerSO == null) return;
         player = playerSO;
-        stats.Clear();
-
-        stats[Stat_Type.Damage] = playerSO.playerDamage;
-        stats[Stat_Type.MaxHP] = playerSO.playerHP;
-        stats[Stat_Type.CurrentHP] = playerSO.playerHP;
-        stats[Stat_Type.Money] = playerSO.startingMoney;
+        damage = playerSO.playerDamage;
+        maxHP = playerSO.playerHP;
+        currentHP = maxHP;
+        money = playerSO.startingMoney;
 
         noteLevelTracker.SetPlayerNote(playerSO);
-    }
-
-    public int GetStat(Stat_Type type)
-    {
-        return stats.TryGetValue(type, out int value) ? value : 0;
     }
 
     public void ModifyStat(Stat_Type type, int amount)
@@ -46,15 +43,21 @@ public class Stats_Manager : MonoBehaviour
         switch (type)
         {
             case Stat_Type.CurrentHP:
-                stats[type] += amount;
-                if (stats[type] > GetStat(Stat_Type.MaxHP)) stats[type] = GetStat(Stat_Type.MaxHP);
+                currentHP += amount;
+                if (currentHP > maxHP) currentHP = maxHP;
                 break;
             case Stat_Type.MaxHP:
-                stats[type] += amount;
-                stats[Stat_Type.CurrentHP] += amount;
+                maxHP += amount;
+                currentHP += amount;
+                break;
+            case Stat_Type.Damage:
+                damage += amount;
+                break;
+            case Stat_Type.Money:
+                money += amount;
                 break;
             default:
-                stats[type] += amount;
+                Debug.LogWarning($"Stat not registered in ModifyStat: {type}");
                 break;
         }
     }
