@@ -2,19 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Passive_SO : ScriptableObject
+public abstract class Passive_SO : ScriptableObject, IBuy
 {
-    public string passiveName;
-    [TextArea] public string passiveDescription;
-    [TextArea] public string passiveUpgradeDescription;
+    [SerializeField] private string passiveName;
+    [SerializeField, TextArea] protected string passiveDescription;
+    [SerializeField, TextArea] protected string passiveUpgradeDescription;
 
-    public abstract void Apply();
+    public string Name => passiveName;
+    public string Description => GetDescription();
+    public int Level => Game_Manager.instance != null ? Game_Manager.instance.statsManager.passiveLevelTracker.GetPassiveLevel(this) : 0;
 
-    public virtual string GetDescription(int ownedCount)
+    public void BuyItem()
     {
-        if (ownedCount <= 0) return passiveDescription;
-        return $"{passiveUpgradeDescription} (total: {GetTotalStat(ownedCount + 1)})";
+        Game_Manager.instance.statsManager.passiveLevelTracker.PurchasePassive(this);
+        Apply();
     }
 
-    public abstract int GetTotalStat(int ownedCount);
+    public abstract void Apply();
+    public abstract int GetTotalStat();
+    public virtual string GetDescription()
+    {
+        if (Level <= 0) return passiveDescription;
+        return $"{passiveUpgradeDescription} (total: {GetTotalStat()})";
+    }
 }

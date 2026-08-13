@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class Shop_UI : MonoBehaviour
 {
     [Header("Item")]
-    [SerializeField] private Note_SO noteSO;
     [SerializeField] private TMP_Text itemName;
     [SerializeField] private TMP_Text itemDescription;
 
@@ -20,25 +19,15 @@ public class Shop_UI : MonoBehaviour
     [SerializeField] private Button healButton;
     [SerializeField] private Button exitButton;
 
-    private void OnValidate()
-    {
-        if (noteSO != null)
-        {
-            //For testing
-            itemName.text = noteSO.noteName;
-            itemDescription.text = noteSO.GetDescription(0);
-        }
-    }
-
     private void Start()
     {
         UpdateResources();
     }
 
-    public void ShowItemInfo(Note_SO note)
+    public void ShowItemInfo(IBuy item)
     {
-        itemName.text = note.noteName + new string('+', Game_Manager.instance.statsManager.noteLevelTracker.GetNoteLevel(note));
-        itemDescription.text = note.GetDescription(Game_Manager.instance.statsManager.noteLevelTracker.GetNoteLevel(note));
+        itemName.text = item.Name + new string('+', item.Level);
+        itemDescription.text = item.Description;
     }
 
     public void UpdateResources(int money = 0, int hp = 0)

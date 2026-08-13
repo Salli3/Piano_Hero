@@ -8,9 +8,11 @@ public class Shop_Manager : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Shop_UI shopUI;
-    [SerializeField] private Note_SO currentItem;
+
+    [Header("Item Pools")]
+    [SerializeField] private Note_SO[] noteItems;
+    [SerializeField] private Passive_SO[] passiveItems;
     [SerializeField] private Note_SO empty;
-    [SerializeField] private Note_SO[] Items;
 
     [Header("Shop setting")]
     [SerializeField] private int buyCost;
@@ -19,9 +21,15 @@ public class Shop_Manager : MonoBehaviour
     [SerializeField] private int inflation;
     [SerializeField] private int healAmount = 1;
 
+    private List<IBuy> allItems = new();
+    private IBuy currentItem;
+
     private void Start()
     {
-        Items = Items.Union(Game_Manager.instance.statsManager.noteLevelTracker.GetNote()).ToArray();
+        allItems.AddRange(noteItems);
+        allItems.AddRange(passiveItems);
+        allItems.AddRange(Game_Manager.instance.statsManager.noteLevelTracker.GetNote());
+
         GetNewItem();
     }
 
@@ -29,11 +37,10 @@ public class Shop_Manager : MonoBehaviour
     {
         if (Game_Manager.instance.statsManager.Money >= buyCost)
         {
-            List<Note_SO> availableItems = new List<Note_SO>(Items);
+            List<IBuy> availableItems = new List<IBuy>(allItems);
             if (currentItem != null)
             {
-                //Prevent duplicate pick if choose to reroll
-                availableItems.Remove(currentItem);
+                availableItems.Remove(currentItem); // prevent duplicate pick on reroll
             }
 
             currentItem = availableItems[Random.Range(0, availableItems.Count)];
@@ -62,7 +69,7 @@ public class Shop_Manager : MonoBehaviour
     #region Button press methods
     public void OnBuyButtonPressed()
     {
-        Game_Manager.instance.statsManager.noteLevelTracker.PurchaseNote(currentItem);
+        currentItem.BuyItem();
         Game_Manager.instance.statsManager.ModifyStat(Stat_Type.Money, -buyCost);
         shopUI.UpdateResources(-buyCost);
         currentItem = null;

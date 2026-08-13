@@ -41,20 +41,23 @@ public class Note_Spawner : MonoBehaviour
     private void SpawnRandomNote()
     {
         Note_SO chosenNote;
+        Transform spawnPoint;
 
         if (Random.value < playerNoteChance)
         {
             Note_SO[] playerNotes = Game_Manager.instance.statsManager.noteLevelTracker.GetNote();
             chosenNote = playerNotes[Random.Range(0, playerNotes.Length)];
+            spawnPoint = spawnPoints[Random.Range(0, 2)];
         }
         else
         {
             Note_SO[] enemyNotes = Game_Manager.instance.currentEnemy.attackTypes;
             chosenNote = enemyNotes[Random.Range(0, enemyNotes.Length)];
+            spawnPoint = spawnPoints[Random.Range(2, 4)];
         }
 
         Note note = Instantiate(notePrefab, transform).GetComponent<Note>();
-        note.Init(chosenNote, spawnPoints[Random.Range(0, spawnPoints.Length)]);
+        note.Init(chosenNote, spawnPoint);
     }
 
     private void OnDrawGizmos()
