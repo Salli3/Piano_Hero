@@ -7,6 +7,12 @@ public class Note_E_Attack_Self_Damage : Note_SO
     [SerializeField] private int upgradeDamage;
     [SerializeField] private int selfDamage;
     [SerializeField] private int upgradeSelfDamage;
+
+    private void Reset()
+    {
+        noteColor = Color.red;
+    }
+
     public override void Apply(Combat_Manager combatManager)
     {
         combatManager.DealDamage(isHostile, GetTotalDamage(Level));

@@ -17,6 +17,6 @@ MonoBehaviour:
   noteUpgradeDescription: 
   noteSpeed: 15
   isHostile: 1
-  hitSound: {fileID: 8300000, guid: 16a3685237ae6a94faaac75b32f3d23c, type: 3}
+  noteColor: {r: 1, g: 0, b: 0, a: 1}
   damage: 10
   upgradeDamage: 0

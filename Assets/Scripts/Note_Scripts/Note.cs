@@ -26,7 +26,7 @@ public class Note : MonoBehaviour
     {
         noteSO = chosenNote;
         transform.position = spawnPoint.position;
-        sr.color = noteSO.noteColor;
+        sr.color = noteSO.Color;
         noteCollider.enabled = true;
         noteName.text = noteSO.Name;
     }

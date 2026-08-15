@@ -27,6 +27,7 @@ public class Shop_UI : MonoBehaviour
     public void ShowItemInfo(IBuy item)
     {
         itemName.text = item.Name + new string('+', item.Level);
+        itemName.color = item.Color;
         itemDescription.text = item.Description;
     }
 

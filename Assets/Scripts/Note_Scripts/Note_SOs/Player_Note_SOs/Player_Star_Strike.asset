@@ -17,7 +17,7 @@ MonoBehaviour:
   noteUpgradeDescription: Attack 2 more times
   noteSpeed: 10
   isHostile: 0
-  hitSound: {fileID: 8300000, guid: 34af0064e9e005a40ba6ebc823b2e4d8, type: 3}
+  noteColor: {r: 1, g: 0, b: 0, a: 1}
   damage: 1
   hitTime: 10
   upgradeHitTime: 2

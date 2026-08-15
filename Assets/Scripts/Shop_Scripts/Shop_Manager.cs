@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Shop_Manager : MonoBehaviour
 {
@@ -37,7 +35,7 @@ public class Shop_Manager : MonoBehaviour
     {
         if (Game_Manager.instance.statsManager.Money >= buyCost)
         {
-            List<IBuy> availableItems = new List<IBuy>(allItems);
+            List<IBuy> availableItems = new List<IBuy>(allItems.Distinct());
             if (currentItem != null)
             {
                 availableItems.Remove(currentItem); // prevent duplicate pick on reroll
@@ -45,6 +43,7 @@ public class Shop_Manager : MonoBehaviour
 
             currentItem = availableItems[Random.Range(0, availableItems.Count)];
             shopUI.ShowItemInfo(currentItem);
+            Debug.Log($"Showing {currentItem}");
         }
         UpdateUI();
     }

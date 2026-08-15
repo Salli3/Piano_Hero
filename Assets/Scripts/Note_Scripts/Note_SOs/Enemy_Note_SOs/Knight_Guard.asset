@@ -17,6 +17,6 @@ MonoBehaviour:
   noteUpgradeDescription: 
   noteSpeed: 10
   isHostile: 1
-  hitSound: {fileID: 0}
+  noteColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   blockTime: 1
   upgradeBlockTime: 0

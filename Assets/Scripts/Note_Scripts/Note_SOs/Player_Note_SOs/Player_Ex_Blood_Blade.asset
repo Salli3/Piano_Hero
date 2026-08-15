@@ -17,6 +17,7 @@ MonoBehaviour:
   noteUpgradeDescription: Deal 1 more damage and heal 1 more HP
   noteSpeed: 10
   isHostile: 0
+  noteColor: {r: 0, g: 1, b: 0, a: 1}
   healAmount: 1
   upgradeHeal: 1
   damage: 5

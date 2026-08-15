@@ -17,6 +17,6 @@ MonoBehaviour:
   noteUpgradeDescription: Heal 2 more HP
   noteSpeed: 10
   isHostile: 0
-  hitSound: {fileID: 8300000, guid: fec416284a1383e4d9d71f3b97d92ce5, type: 3}
+  noteColor: {r: 0, g: 1, b: 0, a: 1}
   healAmount: 2
   upgradeHeal: 2
