@@ -8,7 +8,7 @@ public class Note_E_Block_Remove : Note_SO
 
     private void Reset()
     {
-        noteColor = Color.white;
+        noteColor = Color.gray;
     }
 
     public override void Apply(Combat_Manager combatManager)

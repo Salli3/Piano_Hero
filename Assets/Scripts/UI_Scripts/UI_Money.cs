@@ -9,19 +9,17 @@ public class UI_Money : MonoBehaviour
     [SerializeField] private float xOffset;
     [SerializeField] private float yOffset;
 
-    private void OnEnable()
-    {
-        Enemy_HP.OnEnemyDefeated += (enemySO) => UpdateMoney(enemySO.enemyMoneyReward);
-    }
-
-    private void OnDisable()
-    {
-        Enemy_HP.OnEnemyDefeated -= (enemySO) => UpdateMoney(enemySO.enemyMoneyReward);
-    }
+    private void OnEnable() => Enemy_HP.OnEnemyDefeated += OnEnemyDefeat;
+    private void OnDisable() => Enemy_HP.OnEnemyDefeated -= OnEnemyDefeat;
 
     private void Start()
     {
         UpdateMoney();
+    }
+
+    private void OnEnemyDefeat(Enemy_SO enemySO)
+    {
+        UpdateMoney(enemySO.enemyMoneyReward);
     }
 
     public void UpdateMoney(int amount = 0)

@@ -13,8 +13,13 @@ public class Enemy_HP : MonoBehaviour
 
     public static event Action<Enemy_SO> OnEnemyDefeated;
 
-    private void OnEnable() => Combat_Manager.DamageEnemy += (amount, _) => ChangeHP(amount);
-    private void OnDisable() => Combat_Manager.DamageEnemy -= (amount, _) => ChangeHP(amount);
+    private void OnEnable() => Combat_Manager.DamageEnemy += OnDamageEnemy;
+    private void OnDisable() => Combat_Manager.DamageEnemy -= OnDamageEnemy;
+
+    private void OnDamageEnemy(int amount, bool _)
+    {
+        ChangeHP(amount);
+    }
 
     public void SetEnemy(Enemy_SO newEnemy)
     {

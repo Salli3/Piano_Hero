@@ -18,8 +18,8 @@ public class Combat_Manager : MonoBehaviour
     public static event Action<int, bool> DamageEnemy;
     public static event Action<Status> EnemyStatusChange;
 
-    private void OnEnable() => Enemy_HP.OnEnemyDefeated += (_) => RefreshEnemyStatus();
-    private void OnDisable() => Enemy_HP.OnEnemyDefeated -= (_) => RefreshEnemyStatus();
+    private void OnEnable() => Enemy_HP.OnEnemyDefeated += OnEnemyDefeat;
+    private void OnDisable() => Enemy_HP.OnEnemyDefeated -= OnEnemyDefeat;
 
     private void Start()
     {
@@ -30,6 +30,11 @@ public class Combat_Manager : MonoBehaviour
     {
         PlayerStatusChange?.Invoke(new Status(playerBlock, playerDamageStack, playerAttackBoost));
         EnemyStatusChange?.Invoke(new Status(enemyBlock, enemyDamageStack, enemyAttackBoost));
+    }
+
+    private void OnEnemyDefeat(Enemy_SO enemySO)
+    {
+        RefreshEnemyStatus();
     }
 
     private void RefreshEnemyStatus()

@@ -6,8 +6,18 @@ public class Player_HP : MonoBehaviour
     [SerializeField] private Player_UI playerUI;
     [SerializeField] private Game_Over gameOver;
 
-    private void OnEnable() => Combat_Manager.DamagePlayer += (amount, _) => ChangeHP(amount);
-    private void OnDisable() => Combat_Manager.DamagePlayer -= (amount, _) => ChangeHP(amount);
+    private void OnEnable() => Combat_Manager.DamagePlayer += OnDamagePlayer;
+    private void OnDisable() => Combat_Manager.DamagePlayer -= OnDamagePlayer;
+
+    private void Start()
+    {
+        ChangeHP(0);
+    }
+
+    private void OnDamagePlayer(int amount, bool _)
+    {
+        ChangeHP(amount);
+    }
 
     private void ChangeHP(int amount)
     {
