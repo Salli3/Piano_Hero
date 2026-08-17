@@ -1956,7 +1956,6 @@ MonoBehaviour:
   mainCamera: {fileID: 519420031}
   targetPosition: {fileID: 434724810}
   targetImage: {fileID: 434724811}
-  freezeTimeScale: 0
   duration: 0.1
   magnitude: 0.2
   originalCameraPosition: {x: 0, y: 0, z: 0}
@@ -3485,7 +3484,6 @@ MonoBehaviour:
   mainCamera: {fileID: 519420031}
   targetPosition: {fileID: 693149111}
   targetImage: {fileID: 693149112}
-  freezeTimeScale: 1
   duration: 0.1
   magnitude: 0.1
   originalCameraPosition: {x: 0, y: 0, z: 0}

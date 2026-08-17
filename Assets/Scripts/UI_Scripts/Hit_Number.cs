@@ -54,7 +54,7 @@ public class Hit_Number : MonoBehaviour
             transform.position = startPos + Vector3.up * floatSpeed * time;
             hitText.color = new Color(startColor.r, startColor.g, startColor.b, Mathf.Lerp(1f, 0f, time));
             hitImage.color = new Color(startColor.r, startColor.g, startColor.b, Mathf.Lerp(1f, 0f, time));
-            elapsed += Time.unscaledDeltaTime;
+            elapsed += Time.deltaTime;
             yield return null;
         }
 

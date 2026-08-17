@@ -79,6 +79,12 @@ public class Enemy_UI : MonoBehaviour
 
         while (elapsed < appearDuration)
         {
+            if (Time.timeScale == 0f)
+            {
+                yield return null;
+                continue;
+            }
+
             float t = elapsed / appearDuration;
 
             enemyPosition.position = Vector3.Lerp(originalEnemyPosition + startOffset, originalEnemyPosition, t);
@@ -87,7 +93,7 @@ public class Enemy_UI : MonoBehaviour
             float alpha = Mathf.Lerp(0f, 1f, t);
             enemyImage.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
 
-            elapsed += Time.unscaledDeltaTime;
+            elapsed += Time.deltaTime;
             yield return null;
         }
 
@@ -103,6 +109,12 @@ public class Enemy_UI : MonoBehaviour
 
         while (elapsed < defeatShakeDuration)
         {
+            if (Time.timeScale == 0f)
+            {
+                yield return null;
+                continue;
+            }
+
             float t = elapsed / defeatShakeDuration;
 
             //Slide
@@ -119,7 +131,7 @@ public class Enemy_UI : MonoBehaviour
             float alpha = Mathf.Lerp(1f, 0f, t);
             enemyImage.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
 
-            elapsed += Time.unscaledDeltaTime;
+            elapsed += Time.deltaTime;
             yield return null;
         }
 

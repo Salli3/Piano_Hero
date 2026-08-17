@@ -20,7 +20,7 @@ public class Game_Manager : MonoBehaviour
     [SerializeField] private int enemyNoteLevel = 1;
 
     public int EnemyPerRound => enemyPerRound;
-    public float NoteSpeed => noteSpeed;
+    public float NoteSpeed => noteSpeed * 1.5f;
     public float EnemyHpMultiplier => enemyHpMultiplier;
     public float EnemyDamageMultiplier => enemyDamageMultiplier;
     public Enemy_SO CurrentEnemy => currentEnemy;

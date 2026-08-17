@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using TMPro;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class Judgement_Box : MonoBehaviour
@@ -17,6 +18,13 @@ public class Judgement_Box : MonoBehaviour
     private void Awake()
     {
         originalScale = transform.localScale;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        StartCoroutine(hitRespond());
+        collision.GetComponent<Note>().OnNoteHit();
+        OnNoteHit?.Invoke(collision.GetComponent<Note>().noteSO);
     }
 
     public void TryHitNote()

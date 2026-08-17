@@ -7,7 +7,6 @@ public class Camera_Shake : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     [SerializeField] private RectTransform targetPosition;
     [SerializeField] private Image targetImage;
-    [SerializeField] private bool freezeTimeScale;
     [SerializeField] private float duration;
     [SerializeField] private float magnitude;
 
@@ -32,8 +31,6 @@ public class Camera_Shake : MonoBehaviour
 
     private IEnumerator DoShake()
     {
-        if (freezeTimeScale) Time.timeScale = 0;
-
         float elapsed = 0f;
         targetImage.color = Color.red;
 
@@ -53,7 +50,5 @@ public class Camera_Shake : MonoBehaviour
         targetPosition.position = originalTargetPosition;
         shakeRoutine = null;
         targetImage.color = Color.white;
-
-        if (freezeTimeScale) Time.timeScale = 1;
     }
 }

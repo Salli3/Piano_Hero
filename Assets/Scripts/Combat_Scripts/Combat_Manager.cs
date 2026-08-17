@@ -180,7 +180,7 @@ public class Combat_Manager : MonoBehaviour
         for (int i = 0; i < hitTime; i++)
         {
             DealDamage(isHostile, damage);
-            yield return new WaitForSecondsRealtime(0.1f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
     #endregion

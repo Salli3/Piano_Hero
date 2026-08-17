@@ -34,7 +34,7 @@ public class Money_Number : MonoBehaviour
             float time = elapsed / lifeTime;
             transform.position = startPos + Vector3.up * floatSpeed * time;
             moneyText.color = new Color(startColor.r, startColor.g, startColor.b, Mathf.Lerp(1f, 0f, time));
-            elapsed += Time.unscaledDeltaTime;
+            elapsed += Time.deltaTime;
             yield return null;
         }
         Destroy(gameObject);
