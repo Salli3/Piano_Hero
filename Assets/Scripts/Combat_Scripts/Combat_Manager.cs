@@ -60,7 +60,7 @@ public class Combat_Manager : MonoBehaviour
     {
         if (Block(true)) return;
 
-        DamagePlayer?.Invoke(-EnemyDamage(Game_Manager.instance.currentEnemy.enemyDamage), false);
+        DamagePlayer?.Invoke(-EnemyDamage(Game_Manager.instance.CurrentEnemy.enemyDamage), false);
     }
 
     public void DealDamage(bool isHostile, int damage)

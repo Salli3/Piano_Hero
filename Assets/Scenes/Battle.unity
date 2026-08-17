@@ -1629,9 +1629,9 @@ MonoBehaviour:
   statsManager: {fileID: 778885092}
   roundManager: {fileID: 717734310}
   isCombatActive: 0
-  noteSpeed: 1.5
-  noteSpeedMultipiler: 0.1
+  difficultyScaler: 1.1
   enemyPerRound: 3
+  noteSpeed: 1.5
   enemyHpMultiplier: 1
   enemyDamageMultiplier: 1
   currentEnemy: {fileID: 0}
@@ -3027,7 +3027,7 @@ Transform:
   m_GameObject: {fileID: 1437343558}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -12.5, z: 0}
+  m_LocalPosition: {x: 0, y: -14, z: 0}
   m_LocalScale: {x: 12, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4909,7 +4909,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 12
   height: 2
-  minInterval: 0.2
+  minInterval: 0.4
   maxInterval: 1
   timer: 0
   spawnInterval: 0

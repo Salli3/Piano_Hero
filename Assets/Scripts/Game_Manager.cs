@@ -16,12 +16,14 @@ public class Game_Manager : MonoBehaviour
     [SerializeField] private float noteSpeed;  
     [SerializeField] private float enemyHpMultiplier;
     [SerializeField] private float enemyDamageMultiplier;
-    public Enemy_SO currentEnemy;
+    [SerializeField] private Enemy_SO currentEnemy;
+    private int enemyNoteLevel = 1;
 
     public int EnemyPerRound => enemyPerRound;
     public float NoteSpeed => noteSpeed;
     public float EnemyHpMultiplier => enemyHpMultiplier;
     public float EnemyDamageMultiplier => enemyDamageMultiplier;
+    public Enemy_SO CurrentEnemy => currentEnemy;
 
     [Header("Persistent Objects")]
     public GameObject[] persistentObjects;
@@ -96,5 +98,12 @@ public class Game_Manager : MonoBehaviour
     {
         enemyHpMultiplier *= difficultyScaler;
         enemyDamageMultiplier *= difficultyScaler;
+        enemyNoteLevel++;
+    }
+
+    public void SetEnemy(Enemy_SO enemySO)
+    {
+        currentEnemy = enemySO;
+        statsManager.noteLevelTracker.SetEnemyNote(enemySO, enemyNoteLevel);
     }
 }

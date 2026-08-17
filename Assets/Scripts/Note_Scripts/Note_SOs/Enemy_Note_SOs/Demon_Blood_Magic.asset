@@ -19,6 +19,6 @@ MonoBehaviour:
   isHostile: 1
   noteColor: {r: 1, g: 0, b: 0, a: 1}
   damage: 20
-  upgradeDamage: 0
+  upgradeDamage: 10
   selfDamage: 10
-  upgradeSelfDamage: 0
+  upgradeSelfDamage: 5

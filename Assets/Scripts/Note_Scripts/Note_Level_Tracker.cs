@@ -38,4 +38,12 @@ public class Note_Level_Tracker : MonoBehaviour
     {
         return notesLevel.TryGetValue(note, out int count) ? count : 0;
     }
+
+    public void SetEnemyNote(Enemy_SO enemySO, int level)
+    {
+        foreach (var note in enemySO.attackTypes)
+        {
+            notesLevel[note] = level;
+        }
+    }
 }

@@ -42,7 +42,7 @@ public class Enemy_Manager : MonoBehaviour
         {
             enemyHP.SetEnemy(currentEnemy);
             enemyUI.SetEnemyUI(currentEnemy);
-            Game_Manager.instance.currentEnemy = currentEnemy;
+            Game_Manager.instance.SetEnemy(currentEnemy);
         }
     }
 }

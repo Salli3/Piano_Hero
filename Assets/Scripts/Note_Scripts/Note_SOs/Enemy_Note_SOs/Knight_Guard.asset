@@ -19,4 +19,4 @@ MonoBehaviour:
   isHostile: 1
   noteColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   blockTime: 1
-  upgradeBlockTime: 0
+  upgradeBlockTime: 1
