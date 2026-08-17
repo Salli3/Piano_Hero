@@ -5,7 +5,7 @@ public class Round_Manager : MonoBehaviour
     [SerializeField] private bool isRoundEnded;
     [SerializeField] private int enemyCounter = 0;
     
-    private int enemyPerRound => Game_Manager.instance.enemyPerRound;
+    private int enemyPerRound => Game_Manager.instance.EnemyPerRound;
     public bool IsRoundEnded => isRoundEnded;
     public void StartNewRound()
     {

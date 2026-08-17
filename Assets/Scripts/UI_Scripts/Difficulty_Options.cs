@@ -32,9 +32,9 @@ public class Difficulty_Options : MonoBehaviour
     {
         public string difficultyName;
         public Color difficultyColor;
-        public float noteSpeed;
         public int enemyPerRound;
-        public int enemyHpMultiplier;
-        public int enemyDamageMultiplier;
+        public float noteSpeed;
+        public float enemyHpMultiplier;
+        public float enemyDamageMultiplier;
     }
 }

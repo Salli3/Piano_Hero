@@ -1810,9 +1810,9 @@ MonoBehaviour:
   statsManager: {fileID: 118649064}
   roundManager: {fileID: 1578339846}
   isCombatActive: 0
-  noteSpeed: 0
-  noteSpeedMultipiler: 0
+  difficultyScaler: 1.1
   enemyPerRound: 0
+  noteSpeed: 0
   enemyHpMultiplier: 0
   enemyDamageMultiplier: 0
   currentEnemy: {fileID: 0}
@@ -1981,26 +1981,26 @@ MonoBehaviour:
   difficultySettings:
   - difficultyName: Easy
     difficultyColor: {r: 0.15686275, g: 0.3137255, b: 0.15686275, a: 1}
-    noteSpeed: 1
     enemyPerRound: 2
+    noteSpeed: 1
     enemyHpMultiplier: 1
     enemyDamageMultiplier: 1
   - difficultyName: Normal
     difficultyColor: {r: 0.3137255, g: 0.3137255, b: 0.15686275, a: 1}
-    noteSpeed: 1.5
     enemyPerRound: 3
+    noteSpeed: 1.5
     enemyHpMultiplier: 1
     enemyDamageMultiplier: 1
   - difficultyName: Hard
     difficultyColor: {r: 0.3137255, g: 0.15686275, b: 0.15686275, a: 1}
-    noteSpeed: 1.75
     enemyPerRound: 4
+    noteSpeed: 1.75
     enemyHpMultiplier: 2
     enemyDamageMultiplier: 2
   - difficultyName: Nightmare
     difficultyColor: {r: 0.15686275, g: 0.15686275, b: 0.3137255, a: 1}
-    noteSpeed: 2
     enemyPerRound: 5
+    noteSpeed: 2
     enemyHpMultiplier: 3
     enemyDamageMultiplier: 3
 --- !u!114 &1768885356

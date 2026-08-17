@@ -11,12 +11,17 @@ public class Game_Manager : MonoBehaviour
     public bool isCombatActive;
 
     [Header("Difficulty Settings")]
-    public float noteSpeed;
-    public float noteSpeedMultipiler;
-    public int enemyPerRound;
-    public int enemyHpMultiplier;
-    public int enemyDamageMultiplier;
+    [SerializeField] private float difficultyScaler = 1.1f;
+    [SerializeField] private int enemyPerRound;
+    [SerializeField] private float noteSpeed;  
+    [SerializeField] private float enemyHpMultiplier;
+    [SerializeField] private float enemyDamageMultiplier;
     public Enemy_SO currentEnemy;
+
+    public int EnemyPerRound => enemyPerRound;
+    public float NoteSpeed => noteSpeed;
+    public float EnemyHpMultiplier => enemyHpMultiplier;
+    public float EnemyDamageMultiplier => enemyDamageMultiplier;
 
     [Header("Persistent Objects")]
     public GameObject[] persistentObjects;
@@ -66,6 +71,14 @@ public class Game_Manager : MonoBehaviour
         statsManager.Initialize(playerSO);
     }
 
+    public void SetDifficulty(int enemyPerRound, float noteSpeed, float enemyHpMultiplier, float enemyDamageMultiplier)
+    {
+        this.enemyPerRound = enemyPerRound;
+        this.noteSpeed = noteSpeed;
+        this.enemyHpMultiplier = enemyHpMultiplier;
+        this.enemyDamageMultiplier = enemyDamageMultiplier;
+    }
+
     public void StartCombatScene()
     {
         roundManager.StartNewRound();
@@ -81,6 +94,7 @@ public class Game_Manager : MonoBehaviour
 
     private void IncreaseDifficulty()
     {
-        noteSpeed += noteSpeedMultipiler;
+        enemyHpMultiplier *= difficultyScaler;
+        enemyDamageMultiplier *= difficultyScaler;
     }
 }

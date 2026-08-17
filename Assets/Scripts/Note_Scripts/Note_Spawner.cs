@@ -29,7 +29,7 @@ public class Note_Spawner : MonoBehaviour
     {
         if (Game_Manager.instance.isCombatActive == false) return;
 
-        timer += Time.deltaTime * Game_Manager.instance.noteSpeed;
+        timer += Time.deltaTime * Game_Manager.instance.NoteSpeed;
         if (timer >= spawnInterval)
         {
             timer = 0;

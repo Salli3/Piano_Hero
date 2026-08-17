@@ -1966,9 +1966,9 @@ MonoBehaviour:
   hitNumberPrefab: {fileID: 1908450938278161185, guid: bc148178278520a4e8074658239809de, type: 3}
   initialPoolSize: 10
   spawnPoint: {fileID: 434724810}
-  hitNumberPositionOffset: 0
-  hitNumberAppearWidth: 300
-  hitNumberAppearHeight: 500
+  hitNumberPositionOffset: 50
+  hitNumberAppearWidth: 250
+  hitNumberAppearHeight: 400
 --- !u!114 &880397433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3414,7 +3414,7 @@ MonoBehaviour:
   appearSlideDistance: 200
   defeatShakeDuration: 3
   defeatShakeMagnitude: 0.2
-  fallDistance: 200
+  fallDistance: 100
   slideDistance: 200
 --- !u!114 &1606295681
 MonoBehaviour:
@@ -3449,9 +3449,9 @@ MonoBehaviour:
   hitNumberPrefab: {fileID: 1908450938278161185, guid: bc148178278520a4e8074658239809de, type: 3}
   initialPoolSize: 10
   spawnPoint: {fileID: 693149111}
-  hitNumberPositionOffset: 0
-  hitNumberAppearWidth: 300
-  hitNumberAppearHeight: 500
+  hitNumberPositionOffset: -50
+  hitNumberAppearWidth: 250
+  hitNumberAppearHeight: 400
 --- !u!114 &1606295683
 MonoBehaviour:
   m_ObjectHideFlags: 0

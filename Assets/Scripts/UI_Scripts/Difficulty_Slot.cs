@@ -11,10 +11,10 @@ public class Difficulty_Slot : MonoBehaviour, IPointerEnterHandler, IPointerExit
     [SerializeField] private GameObject infoPanel;
     [SerializeField] private TMP_Text infoText;
 
-    private float noteSpeed;
     private int enemyPerRound;
-    private int enemyHpMultiplier;
-    private int enemyDamageMultiplier;
+    private float noteSpeed; 
+    private float enemyHpMultiplier;
+    private float enemyDamageMultiplier;
 
     private void Awake()
     {
@@ -25,9 +25,9 @@ public class Difficulty_Slot : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void SetDifficultyOption(Difficulty_Options.Difficulty_Setting difficultySetting)
     {
         difficultyName.text = difficultySetting.difficultyName;
-        infoPanel.GetComponent<Image>().color = difficultySetting.difficultyColor;
-        noteSpeed = difficultySetting.noteSpeed;
+        infoPanel.GetComponent<Image>().color = difficultySetting.difficultyColor; 
         enemyPerRound = difficultySetting.enemyPerRound;
+        noteSpeed = difficultySetting.noteSpeed;
         enemyHpMultiplier = difficultySetting.enemyHpMultiplier;
         enemyDamageMultiplier = difficultySetting.enemyDamageMultiplier;
         SetDifficultyInfo();
@@ -44,10 +44,7 @@ public class Difficulty_Slot : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     private void SetDifficulty()
     {
-        Game_Manager.instance.noteSpeed = noteSpeed;
-        Game_Manager.instance.enemyPerRound = enemyPerRound;
-        Game_Manager.instance.enemyHpMultiplier = enemyHpMultiplier;
-        Game_Manager.instance.enemyDamageMultiplier = enemyDamageMultiplier;
+        Game_Manager.instance.SetDifficulty(enemyPerRound, noteSpeed, enemyHpMultiplier, enemyDamageMultiplier);
         Game_Manager.instance.StartCombatScene();
     }
 

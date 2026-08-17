@@ -24,7 +24,7 @@ public class Enemy_HP : MonoBehaviour
     public void SetEnemy(Enemy_SO newEnemy)
     {
         currentEnemy = newEnemy;
-        maxHP = currentEnemy.enemyHP * Game_Manager.instance.enemyHpMultiplier;
+        maxHP = Mathf.RoundToInt(currentEnemy.enemyHP * Game_Manager.instance.EnemyHpMultiplier);
         currentHP = maxHP;
         uiHP.UpdateHP(currentHP, maxHP);
         StartCoroutine(EnemyAppear());

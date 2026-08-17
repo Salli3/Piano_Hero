@@ -53,7 +53,7 @@ public class Combat_Manager : MonoBehaviour
 
     private int EnemyDamage(int damage)
     {
-        return damage * Game_Manager.instance.enemyDamageMultiplier;
+        return Mathf.RoundToInt(damage * Game_Manager.instance.EnemyDamageMultiplier);
     }
 
     public void DealDamageToPlayer()
