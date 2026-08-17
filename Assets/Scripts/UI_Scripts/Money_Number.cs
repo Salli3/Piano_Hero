@@ -12,10 +12,11 @@ public class Money_Number : MonoBehaviour
 
     private Coroutine activeRoutine;
 
-    public void Init(int amount, Vector3 spawnPoint)
+    public void Init(int amount, Vector3 spawnPoint, float textSize)
     {
         moneyText.text = amount > 0 ? $"+{amount}$" : $"{amount}$";
         moneyText.color = amount > 0 ? plusColor : minusColor;
+        moneyText.fontSize = textSize;
         transform.position = spawnPoint;
 
         if (activeRoutine != null) StopCoroutine(activeRoutine);

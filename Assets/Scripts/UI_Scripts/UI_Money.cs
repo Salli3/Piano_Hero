@@ -8,6 +8,7 @@ public class UI_Money : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private float xOffset;
     [SerializeField] private float yOffset;
+    private float textSize => moneyText.fontSize;
 
     private void OnEnable() => Enemy_HP.OnEnemyDefeated += OnEnemyDefeat;
     private void OnDisable() => Enemy_HP.OnEnemyDefeated -= OnEnemyDefeat;
@@ -33,7 +34,7 @@ public class UI_Money : MonoBehaviour
     {
         Vector3 baseOffset = new Vector3(xOffset, yOffset, 0);
         Money_Number money = Instantiate(moneyNumberPrefab, transform).GetComponent<Money_Number>();
-        money.Init(amount, spawnPoint.position + baseOffset);
+        money.Init(amount, spawnPoint.position + baseOffset, textSize);
     }
 
     private void OnDrawGizmos()
