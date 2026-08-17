@@ -17,7 +17,7 @@ public class Game_Manager : MonoBehaviour
     [SerializeField] private float enemyHpMultiplier;
     [SerializeField] private float enemyDamageMultiplier;
     [SerializeField] private Enemy_SO currentEnemy;
-    private int enemyNoteLevel = 1;
+    [SerializeField] private int enemyNoteLevel = 1;
 
     public int EnemyPerRound => enemyPerRound;
     public float NoteSpeed => noteSpeed;

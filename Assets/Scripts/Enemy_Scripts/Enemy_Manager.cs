@@ -17,12 +17,7 @@ public class Enemy_Manager : MonoBehaviour
         Enemy_HP.OnEnemyDefeated -= PickEnemy;
     }
 
-    private void Start()
-    {
-        PickEnemy();
-    }
-
-    private void PickEnemy(Enemy_SO enemySO = null)
+    public void PickEnemy(Enemy_SO enemySO = null)
     {
         Enemy_SO[] enemyPool = enemySOs;
 

@@ -7,6 +7,11 @@ public class Enemy_UI : MonoBehaviour
 {
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private Image enemyImage;
+    [SerializeField] private Animator anim;
+
+    [SerializeField] private CanvasGroup infoCG;
+    [SerializeField] private CanvasGroup hpCG;
+    [SerializeField] private CanvasGroup mpCG;
 
     [SerializeField] private UI_Status uiStatus;
     [SerializeField] private Hit_Number_Pool hitNumberPool;
@@ -41,10 +46,24 @@ public class Enemy_UI : MonoBehaviour
         originalEnemyPosition = enemyPosition.position;
     }
 
+    private void Start()
+    {
+        anim.Play("Start");
+        infoCG.alpha = 0;
+        hpCG.alpha = 0;
+        mpCG.alpha = 0;
+    }
+
+    public void DisableAnimator() => anim.enabled = false;
+
     public void SetEnemyUI(Enemy_SO enemySO)
     {
         enemyImage.sprite = enemySO.enemySprite;
         nameText.text = enemySO.enemyName;
+
+        infoCG.alpha = 1;
+        hpCG.alpha = 1;
+        mpCG.alpha = 1;
     }
 
     //TODO rework enemy appear animation

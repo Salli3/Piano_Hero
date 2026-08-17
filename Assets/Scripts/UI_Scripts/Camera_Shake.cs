@@ -12,8 +12,8 @@ public class Camera_Shake : MonoBehaviour
     [SerializeField] private float magnitude;
 
     private Coroutine shakeRoutine;
-    private Vector3 originalCameraPosition;
-    private Vector3 originalTargetPosition;
+    [SerializeField] private Vector3 originalCameraPosition;
+    [SerializeField] private Vector3 originalTargetPosition;
 
     private void Awake()
     {
