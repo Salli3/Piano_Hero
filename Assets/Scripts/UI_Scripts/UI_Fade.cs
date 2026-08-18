@@ -23,7 +23,7 @@ public class UI_Fade : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    public void EndRound()
+    public void FadeOut()
     {
         anim.Play("Fade Out");
     }
@@ -31,7 +31,6 @@ public class UI_Fade : MonoBehaviour
     public void EndFadeIn()
     {
         Time.timeScale = 1;
-        Debug.Log("End fade in");
     }
 
     public void EndFadeOut()

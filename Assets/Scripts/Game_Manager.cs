@@ -17,13 +17,15 @@ public class Game_Manager : MonoBehaviour
     [Header("Difficulty Settings")]
     [SerializeField] private float difficultyScaler = 1.1f;
     [SerializeField] private int enemyPerRound;
-    [SerializeField] private float noteSpeed;  
+    [SerializeField] private float noteSpeed;
     [SerializeField] private float enemyHpMultiplier;
     [SerializeField] private float enemyDamageMultiplier;
     [SerializeField] private Enemy_SO currentEnemy;
     [SerializeField] private int enemyNoteLevel = 1;
-
-    public int EnemyPerRound => enemyPerRound;
+    [SerializeField] private int roundToBoss = 3;
+    [SerializeField] private int round = 1;
+    public bool IsBossRound => (round % (roundToBoss + 1) == 0);
+    public int EnemyPerRound => IsBossRound? 1 : enemyPerRound;
     public float NoteSpeed => noteSpeed * 1.5f;
     public float EnemyHpMultiplier => enemyHpMultiplier;
     public float EnemyDamageMultiplier => enemyDamageMultiplier;
@@ -98,6 +100,9 @@ public class Game_Manager : MonoBehaviour
             case 2:
                 StartCombatScene();
                 break;
+            default:
+                StartShopScene();
+                break;
         }
     }
 
@@ -116,6 +121,7 @@ public class Game_Manager : MonoBehaviour
 
     private void IncreaseDifficulty()
     {
+        round++;
         enemyHpMultiplier *= difficultyScaler;
         enemyDamageMultiplier *= difficultyScaler;
         enemyNoteLevel++;

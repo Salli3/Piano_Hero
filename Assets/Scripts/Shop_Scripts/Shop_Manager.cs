@@ -43,7 +43,7 @@ public class Shop_Manager : MonoBehaviour
 
             currentItem = availableItems[Random.Range(0, availableItems.Count)];
             shopUI.ShowItemInfo(currentItem);
-            Debug.Log($"Showing {currentItem}");
+            //Debug.Log($"Showing {currentItem}");
         }
         UpdateUI();
     }
@@ -94,7 +94,7 @@ public class Shop_Manager : MonoBehaviour
 
     public void OnExitButtonPressed()
     {
-        Game_Manager.instance.fadeUI.EndRound();
+        Game_Manager.instance.fadeUI.FadeOut();
     }
     #endregion
 }

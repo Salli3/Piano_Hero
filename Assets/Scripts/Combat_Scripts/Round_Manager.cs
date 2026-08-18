@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Round_Manager : MonoBehaviour
@@ -19,7 +18,7 @@ public class Round_Manager : MonoBehaviour
         if (enemyCounter >= enemyPerRound)
         {
             isRoundEnded = true;
-            Game_Manager.instance.fadeUI.EndRound();
+            Game_Manager.instance.fadeUI.FadeOut();
         }
     }
 }

@@ -42,6 +42,7 @@ public class Shop_UI : MonoBehaviour
         buyButton.GetComponentInChildren<TMP_Text>().text = $"Buy\n{buyCost}$";
         rerollButton.GetComponentInChildren<TMP_Text>().text = $"Reroll\n{rerollCost}$";
         healButton.GetComponentInChildren<TMP_Text>().text = $"Heal {healAmount}HP\n{healCost}$";
+        exitButton.GetComponentInChildren<TMP_Text>().text = Game_Manager.instance.IsBossRound? "Boss Battle" : "To Battle";
     }
 
     public void ShowButton(bool canBuy, bool canReroll, bool canHeal)

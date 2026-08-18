@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Passive_HP_Up
   m_EditorClassIdentifier: 
   passiveName: HP Up (Passive)
-  passiveDescription: Increase max HP by 10
-  passiveUpgradeDescription: increase max HP by 10 more
+  passiveDescription: Increase max HP by 50
+  passiveUpgradeDescription: increase max HP by 50 more
   type: 1
-  amount: 10
+  amount: 50

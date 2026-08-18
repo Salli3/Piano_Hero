@@ -6,6 +6,7 @@ public class Enemy_Manager : MonoBehaviour
     [SerializeField] private Enemy_HP enemyHP;
     [SerializeField] private Enemy_UI enemyUI;
     [SerializeField] private Enemy_SO[] enemySOs;
+    [SerializeField] private Enemy_SO[] bossSOs;
 
     private void OnEnable()
     {
@@ -19,7 +20,7 @@ public class Enemy_Manager : MonoBehaviour
 
     public void PickEnemy(Enemy_SO enemySO = null)
     {
-        Enemy_SO[] enemyPool = enemySOs;
+        Enemy_SO[] enemyPool = Game_Manager.instance.IsBossRound ? bossSOs : enemySOs;    
 
         if (enemySO != null)
         {
