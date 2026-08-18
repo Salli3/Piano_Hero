@@ -1687,6 +1687,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 69b847ab97aff654886ec36a2d3f58e9, type: 2}
   - {fileID: 11400000, guid: da19c976b26df39409493ea4f7962dd6, type: 2}
   - {fileID: 11400000, guid: 072a623d48de1d2498133c912f74ea36, type: 2}
+  - {fileID: 11400000, guid: 05af9043535a9b045a09058c192d1689, type: 2}
   passiveItems:
   - {fileID: 11400000, guid: 0b70bc8728ff1f94e85afa8b25689886, type: 2}
   - {fileID: 11400000, guid: d42ff295050d17d46a647b98019528db, type: 2}
@@ -1923,12 +1924,13 @@ MonoBehaviour:
   statsManager: {fileID: 1809892913}
   roundManager: {fileID: 1799656457}
   isCombatActive: 0
-  noteSpeed: 1.5
-  noteSpeedMultipiler: 0.1
+  difficultyScaler: 1.1
   enemyPerRound: 3
+  noteSpeed: 1.5
   enemyHpMultiplier: 1
   enemyDamageMultiplier: 1
   currentEnemy: {fileID: 0}
+  enemyNoteLevel: 1
   persistentObjects:
   - {fileID: 1809892911}
 --- !u!4 &1799656459

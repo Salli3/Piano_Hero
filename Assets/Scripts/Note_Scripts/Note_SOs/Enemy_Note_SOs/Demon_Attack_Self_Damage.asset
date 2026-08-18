@@ -9,14 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f652fe8a55b278489f0338a92aaa0e8, type: 3}
-  m_Name: Knight_Revive
+  m_Script: {fileID: 11500000, guid: 9ab282b026ba97044b922cc28a74386c, type: 3}
+  m_Name: Demon_Attack_Self_Damage
   m_EditorClassIdentifier: 
-  noteName: Revive
+  noteName: Blood Magic
   noteDescription: 
   noteUpgradeDescription: 
   noteSpeed: 10
   isHostile: 1
-  noteColor: {r: 0, g: 1, b: 0, a: 1}
-  healAmount: 50
-  upgradeHeal: 20
+  noteColor: {r: 1, g: 0, b: 0, a: 1}
+  damage: 20
+  upgradeDamage: 10
+  selfDamage: 10
+  upgradeSelfDamage: 5

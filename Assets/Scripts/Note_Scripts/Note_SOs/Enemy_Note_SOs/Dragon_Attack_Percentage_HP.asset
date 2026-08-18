@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08221a141cbeee942935066122f60c6b, type: 3}
-  m_Name: Demon_Curse
+  m_Script: {fileID: 11500000, guid: 34c2c7d85d921474b8effe0f414ed8e7, type: 3}
+  m_Name: Dragon_Attack_Percentage_HP
   m_EditorClassIdentifier: 
-  noteName: Curse
+  noteName: Bite
   noteDescription: 
   noteUpgradeDescription: 
   noteSpeed: 10
   isHostile: 1
   noteColor: {r: 1, g: 0, b: 0, a: 1}
-  damage: 2
-  upgradeDamage: 2
+  percentageDamage: 20
+  upgradeDamage: 0

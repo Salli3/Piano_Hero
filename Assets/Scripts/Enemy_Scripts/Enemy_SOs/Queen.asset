@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85eb7680f6a0dda4c961c0cc037e57d9, type: 3}
+  m_Name: Queen
+  m_EditorClassIdentifier: 
+  enemyName: Queen
+  enemySprite: {fileID: 21300000, guid: 354ca0dec0889b84d822a4fe3fcb5dc5, type: 3}
+  enemyHP: 400
+  enemyDamage: 10
+  enemyMoneyReward: 400
+  attackTypes:
+  - {fileID: 11400000, guid: 832431e67fdb2de4e858e05f906989d0, type: 2}
+  - {fileID: 11400000, guid: 8956ce5ffe14ca24eb1b8c34930ceabc, type: 2}
+  - {fileID: 11400000, guid: 9a88d67d04dd01d4087730a3c9ab33e7, type: 2}
+  - {fileID: 11400000, guid: d39f66c8f47ca3c4692f8cb07ca2d567, type: 2}
+  - {fileID: 11400000, guid: 6a45aed7917662b4f9726c8392df96e9, type: 2}
+  - {fileID: 11400000, guid: 5fa6b8e895e6bcf4888baa7d7aecb124, type: 2}
+  - {fileID: 11400000, guid: 33a0d0892ce8292418c27a6eb5424343, type: 2}

@@ -1816,6 +1816,7 @@ MonoBehaviour:
   enemyHpMultiplier: 0
   enemyDamageMultiplier: 0
   currentEnemy: {fileID: 0}
+  enemyNoteLevel: 1
   persistentObjects:
   - {fileID: 118649063}
 --- !u!4 &1578339848
@@ -2002,7 +2003,7 @@ MonoBehaviour:
     enemyPerRound: 5
     noteSpeed: 2
     enemyHpMultiplier: 3
-    enemyDamageMultiplier: 3
+    enemyDamageMultiplier: 2
 --- !u!114 &1768885356
 MonoBehaviour:
   m_ObjectHideFlags: 0

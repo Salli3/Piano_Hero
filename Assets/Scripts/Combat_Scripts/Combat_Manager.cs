@@ -184,4 +184,14 @@ public class Combat_Manager : MonoBehaviour
         }
     }
     #endregion
+
+    #region Percentage HP damage
+    public int GetTargetMaxHP(bool isHostile)
+    {
+        int targetMaxHP = isHostile ? 
+            Game_Manager.instance.statsManager.MaxHP : 
+            Mathf.RoundToInt(Game_Manager.instance.CurrentEnemy.enemyHP * Game_Manager.instance.EnemyHpMultiplier);
+        return targetMaxHP;
+    }
+    #endregion
 }

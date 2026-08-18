@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea31cd8fc9a2c024884ca652eaf9070c, type: 3}
-  m_Name: Alien_Analyze
+  m_Script: {fileID: 11500000, guid: 9f2f53a8f490fce45841a53dc382d0e6, type: 3}
+  m_Name: Queen_Block
   m_EditorClassIdentifier: 
-  noteName: Analyze
+  noteName: Dark Throne
   noteDescription: 
   noteUpgradeDescription: 
   noteSpeed: 10
   isHostile: 1
-  noteColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  removeAmount: 999
-  upgradeRemoveAmount: 0
+  noteColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  blockTime: 2
+  upgradeBlockTime: 2

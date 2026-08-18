@@ -19,6 +19,6 @@ MonoBehaviour:
   enemyMoneyReward: 180
   attackTypes:
   - {fileID: 11400000, guid: 8c305acf04f1b75449f691eb9111f9d0, type: 2}
-  - {fileID: 11400000, guid: 96e926bccdadf5142a9530af647a016d, type: 2}
   - {fileID: 11400000, guid: e412641c6e56f744c854534657c8f150, type: 2}
   - {fileID: 11400000, guid: 1eddbc7aaf9dcbb478c5544479ecc372, type: 2}
+  - {fileID: 11400000, guid: 22692f7a4eadbd5469f6e3f3c9b74a9a, type: 2}
