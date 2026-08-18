@@ -123,6 +123,7 @@ public class Game_Manager : MonoBehaviour
     private void IncreaseDifficulty()
     {
         round++;
+        noteSpeed *= difficultyScaler;
         enemyHpMultiplier *= difficultyScaler;
         enemyDamageMultiplier *= difficultyScaler;
         enemyNoteLevel++;
