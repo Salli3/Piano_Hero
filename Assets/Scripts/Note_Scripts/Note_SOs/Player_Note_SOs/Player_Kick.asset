@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Player_Kick
   m_EditorClassIdentifier: 
   noteName: Kick
-  noteDescription: Deal damage equal to 5% of enemy max HP
-  noteUpgradeDescription: Deal 5% more of enemy max HP as damage
+  noteDescription: Deal damage equal to 5% of enemy current HP
+  noteUpgradeDescription: Deal 5% more of enemy current HP as damage
   noteSpeed: 10
   isHostile: 0
   noteColor: {r: 1, g: 0, b: 0, a: 1}

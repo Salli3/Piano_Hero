@@ -30,6 +30,7 @@ public class Game_Manager : MonoBehaviour
     public float EnemyHpMultiplier => enemyHpMultiplier;
     public float EnemyDamageMultiplier => enemyDamageMultiplier;
     public Enemy_SO CurrentEnemy => currentEnemy;
+    public int currentEnemyHP;
 
     [Header("Persistent Objects")]
     public GameObject[] persistentObjects;
