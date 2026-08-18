@@ -7,8 +7,12 @@ public class Game_Manager : MonoBehaviour
 
     public Stats_Manager statsManager;
     public Round_Manager roundManager;
+    public UI_Fade fadeUI;
 
     public bool isCombatActive;
+
+    [SerializeField] private bool isAutoPlay;
+    public bool IsAutoPlay => isAutoPlay;
 
     [Header("Difficulty Settings")]
     [SerializeField] private float difficultyScaler = 1.1f;
@@ -81,13 +85,29 @@ public class Game_Manager : MonoBehaviour
         this.enemyDamageMultiplier = enemyDamageMultiplier;
     }
 
-    public void StartCombatScene()
+    public void LoadNextScene()
+    {
+        switch (SceneManager.GetActiveScene().buildIndex)
+        {
+            case 0:
+                StartCombatScene();
+                break;
+            case 1:
+                StartShopScene();
+                break;
+            case 2:
+                StartCombatScene();
+                break;
+        }
+    }
+
+    private void StartCombatScene()
     {
         roundManager.StartNewRound();
         SceneManager.LoadScene("Battle");
     }
 
-    public void StartShopScene()
+    private void StartShopScene()
     {
         isCombatActive = false;
         IncreaseDifficulty();

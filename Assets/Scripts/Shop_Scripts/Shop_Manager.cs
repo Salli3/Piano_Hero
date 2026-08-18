@@ -94,7 +94,7 @@ public class Shop_Manager : MonoBehaviour
 
     public void OnExitButtonPressed()
     {
-        Game_Manager.instance.StartCombatScene();
+        Game_Manager.instance.fadeUI.EndRound();
     }
     #endregion
 }

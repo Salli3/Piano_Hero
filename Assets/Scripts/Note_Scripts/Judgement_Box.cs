@@ -22,9 +22,12 @@ public class Judgement_Box : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        StartCoroutine(hitRespond());
-        collision.GetComponent<Note>().OnNoteHit();
-        OnNoteHit?.Invoke(collision.GetComponent<Note>().noteSO);
+        if (Game_Manager.instance.IsAutoPlay)
+        {
+            StartCoroutine(hitRespond());
+            collision.GetComponent<Note>().OnNoteHit();
+            OnNoteHit?.Invoke(collision.GetComponent<Note>().noteSO);
+        }
     }
 
     public void TryHitNote()

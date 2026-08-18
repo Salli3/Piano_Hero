@@ -45,7 +45,7 @@ public class Difficulty_Slot : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private void SetDifficulty()
     {
         Game_Manager.instance.SetDifficulty(enemyPerRound, noteSpeed, enemyHpMultiplier, enemyDamageMultiplier);
-        Game_Manager.instance.StartCombatScene();
+        Game_Manager.instance.fadeUI.EndRound();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
