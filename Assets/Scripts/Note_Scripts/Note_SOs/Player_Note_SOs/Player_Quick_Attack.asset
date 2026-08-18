@@ -18,5 +18,5 @@ MonoBehaviour:
   noteSpeed: 15
   isHostile: 0
   noteColor: {r: 1, g: 0, b: 0, a: 1}
-  damage: 10
-  upgradeDamage: 10
+  damage: 15
+  upgradeDamage: 15

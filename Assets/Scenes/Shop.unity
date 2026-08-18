@@ -1763,6 +1763,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: da19c976b26df39409493ea4f7962dd6, type: 2}
   - {fileID: 11400000, guid: 072a623d48de1d2498133c912f74ea36, type: 2}
   - {fileID: 11400000, guid: 05af9043535a9b045a09058c192d1689, type: 2}
+  - {fileID: 11400000, guid: 15494b87f8b357e40b773913e4c12f95, type: 2}
   passiveItems:
   - {fileID: 11400000, guid: 0b70bc8728ff1f94e85afa8b25689886, type: 2}
   - {fileID: 11400000, guid: d42ff295050d17d46a647b98019528db, type: 2}
@@ -2010,6 +2011,7 @@ MonoBehaviour:
   enemyNoteLevel: 1
   roundToBoss: 3
   round: 1
+  currentEnemyHP: 0
   persistentObjects:
   - {fileID: 1809892911}
   - {fileID: 2001855422}

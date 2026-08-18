@@ -185,13 +185,23 @@ public class Combat_Manager : MonoBehaviour
     }
     #endregion
 
-    #region Percentage HP damage
+    #region Target HP
     public int GetTargetCurrentHP(bool isHostile)
     {
         int targetCurrentHP = isHostile ? 
             Game_Manager.instance.statsManager.CurrentHP : 
             Game_Manager.instance.currentEnemyHP;
         return targetCurrentHP;
+    }
+
+    public void KillForMoney(bool isHostile, int damage, int moneyGain)
+    {
+        if(isHostile) return;
+        if (PlayerDamage(damage) >= Game_Manager.instance.currentEnemyHP && Block(isHostile) == false)
+        {
+            Game_Manager.instance.statsManager.ModifyStat(Stat_Type.Money, moneyGain);
+        }
+        DealDamage(isHostile, damage);
     }
     #endregion
 }
