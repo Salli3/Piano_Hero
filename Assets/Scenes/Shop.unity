@@ -287,6 +287,8 @@ GameObject:
   m_Component:
   - component: {fileID: 306255577}
   - component: {fileID: 306255578}
+  - component: {fileID: 306255580}
+  - component: {fileID: 306255579}
   m_Layer: 5
   m_Name: Resources_Panel
   m_TagString: Untagged
@@ -327,6 +329,40 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &306255579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306255576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25484c812f77eb44092d02c2ba1a3373, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpBarAnim: {fileID: 1221737784}
+  hpBar: {fileID: 1221737785}
+  hpText: {fileID: 1912610709}
+  hpFillImage: {fileID: 1001064345}
+  duration: 0.2
+--- !u!114 &306255580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306255576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41cdb561760204448a03f4a7a6cf5259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyText: {fileID: 1866733989}
+  moneyNumberPrefab: {fileID: 1908450938278161185, guid: fa203b8fc128e4b4e9b875dbb6277761, type: 3}
+  spawnPoint: {fileID: 1947719310}
+  xOffset: 125
+  yOffset: -50
 --- !u!1 &327282725
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,6 +773,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 947423206}
   m_CullTransparentMesh: 1
+--- !u!114 &1001064345 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5017939838111920874, guid: 8556a0ba554c7f74f9ae8fad51eac323, type: 3}
+  m_PrefabInstance: {fileID: 2037768422}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1160647374
 GameObject:
   m_ObjectHideFlags: 0
@@ -1622,8 +1669,6 @@ GameObject:
   - component: {fileID: 1648913250}
   - component: {fileID: 1648913249}
   - component: {fileID: 1648913248}
-  - component: {fileID: 1648913255}
-  - component: {fileID: 1648913254}
   - component: {fileID: 1648913252}
   - component: {fileID: 1648913253}
   m_Layer: 5
@@ -1734,8 +1779,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: {fileID: 1917584521}
   itemDescription: {fileID: 1301621305}
-  uiMoney: {fileID: 1648913255}
-  uiHP: {fileID: 1648913254}
+  uiMoney: {fileID: 306255580}
+  uiHP: {fileID: 306255579}
   buyButton: {fileID: 8504553853882708144}
   rerollButton: {fileID: 1366273220}
   healButton: {fileID: 2004308826}
@@ -1773,39 +1818,6 @@ MonoBehaviour:
   healCost: 50
   inflation: 10
   healAmount: 10
---- !u!114 &1648913254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1648913246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25484c812f77eb44092d02c2ba1a3373, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraShake: {fileID: 0}
-  hpBarAnim: {fileID: 1221737784}
-  hpBar: {fileID: 1221737785}
-  hpText: {fileID: 1912610709}
---- !u!114 &1648913255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1648913246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41cdb561760204448a03f4a7a6cf5259, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moneyText: {fileID: 1866733989}
-  moneyNumberPrefab: {fileID: 1908450938278161185, guid: fa203b8fc128e4b4e9b875dbb6277761, type: 3}
-  spawnPoint: {fileID: 1947719310}
-  xOffset: 125
-  yOffset: -50
 --- !u!1 &1762074201
 GameObject:
   m_ObjectHideFlags: 0
@@ -2083,6 +2095,8 @@ MonoBehaviour:
   damage: 10
   currentHP: 50
   maxHP: 100
+  currentMP: 0
+  maxMP: 0
   money: 9999
 --- !u!4 &1809892914
 Transform:

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Player_HP : MonoBehaviour
 {
+    [SerializeField] private Camera_Shake cameraShake;
     [SerializeField] private UI_HP uiHP;
-    [SerializeField] private Player_UI playerUI;
     [SerializeField] private Game_Over gameOver;
 
     private void OnEnable() => Combat_Manager.DamagePlayer += OnDamagePlayer;
@@ -22,7 +22,9 @@ public class Player_HP : MonoBehaviour
     private void ChangeHP(int amount)
     {
         Game_Manager.instance.statsManager.ModifyStat(Stat_Type.CurrentHP, amount);
-        uiHP.UpdateHP(Game_Manager.instance.statsManager.CurrentHP, Game_Manager.instance.statsManager.MaxHP, amount);
+
+        if (amount < 0) cameraShake.Shake(); // camera hit shake
+        uiHP.UpdateHP(Game_Manager.instance.statsManager.CurrentHP, Game_Manager.instance.statsManager.MaxHP, amount); // update UI
 
         if (Game_Manager.instance.statsManager.CurrentHP <= 0)
         {

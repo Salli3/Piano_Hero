@@ -55,7 +55,6 @@ public class Shop_Manager : MonoBehaviour
         {
             shopUI.ShowItemInfo(empty);
         }
-        shopUI.UpdateResources();
         shopUI.UpdateCost(buyCost, rerollCost, healCost, healAmount);
         shopUI.ShowButton(
             canBuy: Game_Manager.instance.statsManager.Money >= buyCost,
@@ -64,13 +63,17 @@ public class Shop_Manager : MonoBehaviour
             && Game_Manager.instance.statsManager.MaxHP > Game_Manager.instance.statsManager.CurrentHP
             );
     }
+    private void UpdateResources(int money = 0, int heal = 0)
+    {
+        shopUI.UpdateResources(money, heal);
+    }
 
     #region Button press methods
     public void OnBuyButtonPressed()
     {
         currentItem.BuyItem();
         Game_Manager.instance.statsManager.ModifyStat(Stat_Type.Money, -buyCost);
-        shopUI.UpdateResources(-buyCost);
+        UpdateResources(-buyCost);
         currentItem = null;
         GetNewItem();
     }
@@ -78,7 +81,7 @@ public class Shop_Manager : MonoBehaviour
     public void OnRerollButtonPressed()
     {
         Game_Manager.instance.statsManager.ModifyStat(Stat_Type.Money, -rerollCost);
-        shopUI.UpdateResources(-rerollCost);
+        UpdateResources(-rerollCost);
         rerollCost += inflation;
         GetNewItem();
     }
@@ -87,7 +90,7 @@ public class Shop_Manager : MonoBehaviour
     {
         Game_Manager.instance.statsManager.ModifyStat(Stat_Type.CurrentHP, healAmount);
         Game_Manager.instance.statsManager.ModifyStat(Stat_Type.Money, -healCost);
-        shopUI.UpdateResources(-healCost, healAmount);
+        UpdateResources(-healCost, healAmount);
         healCost += inflation;
         UpdateUI();
     }

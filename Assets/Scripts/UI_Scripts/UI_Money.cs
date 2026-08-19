@@ -10,8 +10,8 @@ public class UI_Money : MonoBehaviour
     [SerializeField] private float yOffset;
     private float textSize => moneyText.fontSize;
 
-    private void OnEnable() => Enemy_HP.OnEnemyDefeated += OnEnemyDefeat;
-    private void OnDisable() => Enemy_HP.OnEnemyDefeated -= OnEnemyDefeat;
+    private void OnEnable() => Enemy_UI.OnEnemyDefeated += OnEnemyDefeat;
+    private void OnDisable() => Enemy_UI.OnEnemyDefeated -= OnEnemyDefeat;
 
     private void Start()
     {

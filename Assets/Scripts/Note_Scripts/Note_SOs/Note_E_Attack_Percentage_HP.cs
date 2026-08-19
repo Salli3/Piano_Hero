@@ -15,7 +15,7 @@ public class Note_E_Attack_Percent_HP : Note_SO
     public override void Apply(Combat_Manager combatManager)
     {
         int targetCurrentHP = combatManager.GetTargetCurrentHP(isHostile);
-        combatManager.DealDamage(isHostile, Mathf.RoundToInt(targetCurrentHP * (GetTotalStat(Level) / 100f)));
+        combatManager.DealDamage(isHostile, Mathf.CeilToInt(targetCurrentHP * (GetTotalStat(Level) / 100f)));
     }
 
     public override int GetTotalStat(int level)

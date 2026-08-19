@@ -5,6 +5,7 @@ public abstract class Note_SO : ScriptableObject, IBuy
     [SerializeField] private string noteName;
     [SerializeField, TextArea] protected string noteDescription;
     [SerializeField, TextArea] protected string noteUpgradeDescription;
+    public int mpGain = 1;
     public float noteSpeed = 10;
     public bool isHostile;
     [SerializeField] protected Color noteColor;

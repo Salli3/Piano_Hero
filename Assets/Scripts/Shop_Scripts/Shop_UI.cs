@@ -21,7 +21,7 @@ public class Shop_UI : MonoBehaviour
 
     private void Start()
     {
-        UpdateResources();
+        UpdateResources(0, 0);
     }
 
     public void ShowItemInfo(IBuy item)
@@ -31,7 +31,7 @@ public class Shop_UI : MonoBehaviour
         itemDescription.text = item.Description;
     }
 
-    public void UpdateResources(int money = 0, int hp = 0)
+    public void UpdateResources(int money, int hp)
     {
         uiMoney.UpdateMoney(money);
         uiHP.UpdateHP(Game_Manager.instance.statsManager.CurrentHP, Game_Manager.instance.statsManager.MaxHP, hp);

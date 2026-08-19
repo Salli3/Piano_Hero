@@ -1,21 +1,22 @@
+using System;
 using System.Linq;
 using UnityEngine;
 
 public class Enemy_Manager : MonoBehaviour
 {
-    [SerializeField] private Enemy_HP enemyHP;
-    [SerializeField] private Enemy_UI enemyUI;
     [SerializeField] private Enemy_SO[] enemySOs;
     [SerializeField] private Enemy_SO[] bossSOs;
 
+    public static event Action<Enemy_SO> SpawnNewEnemy;
+
     private void OnEnable()
     {
-        Enemy_HP.OnEnemyDefeated += PickEnemy;
+        Enemy_UI.OnEnemyDefeated += PickEnemy;
     }
 
     private void OnDisable()
     {
-        Enemy_HP.OnEnemyDefeated -= PickEnemy;
+        Enemy_UI.OnEnemyDefeated -= PickEnemy;
     }
 
     public void PickEnemy(Enemy_SO enemySO = null)
@@ -32,13 +33,9 @@ public class Enemy_Manager : MonoBehaviour
             enemyPool = enemySOs;
         }
 
-        Enemy_SO currentEnemy = enemyPool[Random.Range(0, enemyPool.Length)];
+        Enemy_SO currentEnemy = enemyPool[UnityEngine.Random.Range(0, enemyPool.Length)];
 
-        if (enemyHP != null)
-        {
-            enemyHP.SetEnemy(currentEnemy);
-            enemyUI.SetEnemyUI(currentEnemy);
-            Game_Manager.instance.SetEnemy(currentEnemy);
-        }
+        SpawnNewEnemy?.Invoke(currentEnemy);
+        Game_Manager.instance.SetEnemy(currentEnemy);
     }
 }

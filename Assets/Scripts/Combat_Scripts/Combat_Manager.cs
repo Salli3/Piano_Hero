@@ -14,12 +14,14 @@ public class Combat_Manager : MonoBehaviour
 
     public static event Action<int, bool> DamagePlayer;
     public static event Action<Status> PlayerStatusChange;
+    public static event Action<int> PlayerGainMP;
 
     public static event Action<int, bool> DamageEnemy;
     public static event Action<Status> EnemyStatusChange;
+    public static event Action<int> EnemyGainMP;
 
-    private void OnEnable() => Enemy_HP.OnEnemyDefeated += OnEnemyDefeat;
-    private void OnDisable() => Enemy_HP.OnEnemyDefeated -= OnEnemyDefeat;
+    private void OnEnable() => Enemy_UI.OnEnemyDefeated += OnEnemyDefeat;
+    private void OnDisable() => Enemy_UI.OnEnemyDefeated -= OnEnemyDefeat;
 
     private void Start()
     {
@@ -53,7 +55,7 @@ public class Combat_Manager : MonoBehaviour
 
     private int EnemyDamage(int damage)
     {
-        return Mathf.RoundToInt(damage * Game_Manager.instance.EnemyDamageMultiplier);
+        return Mathf.CeilToInt(damage * Game_Manager.instance.EnemyDamageMultiplier);
     }
 
     public void DealDamageToPlayer()
@@ -202,6 +204,20 @@ public class Combat_Manager : MonoBehaviour
             Game_Manager.instance.statsManager.ModifyStat(Stat_Type.Money, moneyGain);
         }
         DealDamage(isHostile, damage);
+    }
+    #endregion
+
+    #region Gain mp
+    public void GainMP(bool isHostile, int amount)
+    {
+        if (isHostile)
+        {
+            EnemyGainMP?.Invoke(amount);
+        }
+        else
+        {
+            PlayerGainMP?.Invoke(amount);
+        }
     }
     #endregion
 }

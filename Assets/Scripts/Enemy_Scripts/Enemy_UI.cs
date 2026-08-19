@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -29,17 +30,23 @@ public class Enemy_UI : MonoBehaviour
     [SerializeField] private float fallDistance;
     [SerializeField] private float slideDistance;
 
+    public static event Action<Enemy_SO> OnEnemyDefeated;
+
+    #region Event subscribers
     private void OnEnable()
     {
         Combat_Manager.DamageEnemy += hitNumberPool.ShowHitNumber;
         Combat_Manager.EnemyStatusChange += uiStatus.UpdateCombatStatus;
+        Enemy_Manager.SpawnNewEnemy += SetEnemyUI;
     }
 
     private void OnDisable()
     {
         Combat_Manager.DamageEnemy -= hitNumberPool.ShowHitNumber;
         Combat_Manager.EnemyStatusChange -= uiStatus.UpdateCombatStatus;
+        Enemy_Manager.SpawnNewEnemy -= SetEnemyUI;
     }
+    #endregion
 
     private void Awake()
     {
@@ -56,7 +63,7 @@ public class Enemy_UI : MonoBehaviour
 
     public void DisableAnimator() => anim.enabled = false;
 
-    public void SetEnemyUI(Enemy_SO enemySO)
+    private void SetEnemyUI(Enemy_SO enemySO)
     {
         enemyImage.sprite = enemySO.enemySprite;
         nameText.text = enemySO.enemyName;
@@ -99,9 +106,12 @@ public class Enemy_UI : MonoBehaviour
 
         enemyPosition.position = originalEnemyPosition;
         enemyImage.color = new Color(startColor.r, startColor.g, startColor.b, 1f);
+        
+        //Start combat
+        Game_Manager.instance.isCombatActive = true;
     }
 
-    public IEnumerator EnemyDefeat()
+    public IEnumerator EnemyDefeat(Enemy_SO enemy_SO)
     {
         float elapsed = 0f;
         Color startColor = Color.white;
@@ -121,8 +131,8 @@ public class Enemy_UI : MonoBehaviour
             Vector3 fallPos = originalEnemyPosition + targetOffset * t;
 
             //Shake
-            float x = Random.Range(-1f, 1f) * defeatShakeMagnitude;
-            float y = Random.Range(-1f, 1f) * defeatShakeMagnitude;
+            float x = UnityEngine.Random.Range(-1f, 1f) * defeatShakeMagnitude;
+            float y = UnityEngine.Random.Range(-1f, 1f) * defeatShakeMagnitude;
             Vector3 shakeOffset = new Vector3(x * 100, y * 100, 0f);
 
             enemyPosition.position = fallPos + shakeOffset;
@@ -137,6 +147,13 @@ public class Enemy_UI : MonoBehaviour
 
         enemyPosition.position = originalEnemyPosition;
         enemyImage.color = new Color(startColor.r, startColor.g, startColor.b, 0f);
+
+        //End combat
+        Game_Manager.instance.roundManager.IncreaseEnemyCounter();
+        if (Game_Manager.instance.roundManager.IsRoundEnded == false)
+        {
+            OnEnemyDefeated?.Invoke(enemy_SO);
+        }
     }
     #endregion
 }
