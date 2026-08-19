@@ -159,6 +159,8 @@ MonoBehaviour:
   damage: 0
   currentHP: 0
   maxHP: 0
+  currentMP: 0
+  maxMP: 0
   money: 0
 --- !u!4 &118649065
 Transform:
@@ -1970,6 +1972,9 @@ MonoBehaviour:
   enemyDamageMultiplier: 0
   currentEnemy: {fileID: 0}
   enemyNoteLevel: 1
+  roundToBoss: 3
+  round: 1
+  currentEnemyHP: 0
   persistentObjects:
   - {fileID: 118649063}
   - {fileID: 543859809}

@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class Stats_Manager : MonoBehaviour
