@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e792efcadde6fd044b3f9abebecd724f, type: 3}
-  m_Name: Player_Star_Strike
+  m_Name: Player_Jab
   m_EditorClassIdentifier: 
-  noteName: Star Strike
-  noteDescription: Attack 10 times, deal 1 damage each
+  noteName: Jab
+  noteDescription: Attack 3 times, deal 3 damage each
   noteUpgradeDescription: Attack 2 more times
+  mpGain: 1
   noteSpeed: 10
   isHostile: 0
   noteColor: {r: 1, g: 0, b: 0, a: 1}
-  damage: 1
-  hitTime: 10
+  damage: 3
+  hitTime: 3
   upgradeHitTime: 2

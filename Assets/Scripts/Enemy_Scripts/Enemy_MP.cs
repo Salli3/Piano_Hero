@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Enemy_MP : MonoBehaviour
 {
+    [SerializeField] private Ultimate_UI ultimateUI;
     [SerializeField] private Combat_Manager combatManager;
     [SerializeField] private UI_MP uiMP;
     [SerializeField] private Enemy_SO currentEnemy;
@@ -36,6 +37,7 @@ public class Enemy_MP : MonoBehaviour
 
         if (currentMP >= maxMP)
         {
+            ultimateUI.ShowUltimateEffect(currentEnemy.enemySprite, currentEnemy.enemyName, currentEnemy.ultimate.Name);
             currentEnemy.ultimate.Apply(combatManager);
             currentMP -= maxMP;
             uiMP.UpdateMP(currentMP, maxMP, maxMP);

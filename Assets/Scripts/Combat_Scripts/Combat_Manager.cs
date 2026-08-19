@@ -101,7 +101,7 @@ public class Combat_Manager : MonoBehaviour
     public void SetBlock(bool isHostile, int amount)
     {
         ref int block = ref (isHostile ? ref enemyBlock : ref playerBlock);
-        block = amount;
+        if (block < amount) block = amount;
         UpdateCombatStatus();
     }
     public bool Block(bool isHostile)
@@ -129,7 +129,7 @@ public class Combat_Manager : MonoBehaviour
     public void SetAttackBoost(bool isHostile, int amount)
     {
         ref int boost = ref (isHostile ? ref enemyAttackBoost : ref playerAttackBoost);
-        boost = amount;
+        if (boost < amount) boost = amount;
         UpdateCombatStatus();
     }
     public bool BoostAttack(bool isHostile)

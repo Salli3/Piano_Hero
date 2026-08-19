@@ -32,6 +32,9 @@ public class Game_Manager : MonoBehaviour
     public Enemy_SO CurrentEnemy => currentEnemy;
     public int currentEnemyHP;
 
+    private bool isNotePaused;
+    public float tempNoteSpeed;
+
     [Header("Persistent Objects")]
     public GameObject[] persistentObjects;
 
@@ -133,5 +136,22 @@ public class Game_Manager : MonoBehaviour
     {
         currentEnemy = enemySO;
         statsManager.noteLevelTracker.SetEnemyNote(enemySO, enemyNoteLevel);
+    }
+
+    public void PauseNote()
+    {
+        if(isNotePaused) return;
+
+        tempNoteSpeed = noteSpeed;
+        noteSpeed = 0;
+        isNotePaused = true;
+    }
+
+    public void ContinueNote()
+    {
+        if(!isNotePaused) return;
+
+        noteSpeed = tempNoteSpeed;
+        isNotePaused = false;
     }
 }
