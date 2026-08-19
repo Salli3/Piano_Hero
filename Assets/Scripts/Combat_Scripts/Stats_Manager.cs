@@ -35,6 +35,8 @@ public class Stats_Manager : MonoBehaviour
         damage = playerSO.playerDamage;
         maxHP = playerSO.playerHP;
         currentHP = maxHP;
+        maxMP = playerSO.ultimate.MpCost;
+        currentMP = 0;
         money = playerSO.startingMoney;
 
         noteLevelTracker.SetPlayerNote(playerSO);

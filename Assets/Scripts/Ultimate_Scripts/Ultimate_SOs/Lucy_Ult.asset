@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af235367f3065c9489998f5521ffb574, type: 3}
+  m_Name: Lucy_Ult
+  m_EditorClassIdentifier: 
+  ultName: Fury
+  ultDescription: Heal 100 HP, attack enemy 20 time dealing 1 damge each
+  mpCost: 100
+  effects:
+  - {fileID: 11400000, guid: edfb8fe69985fbe43854bbf5b79f753d, type: 2}
+  - {fileID: 11400000, guid: 155cb33dc6af29b4285dac7f9edf850e, type: 2}

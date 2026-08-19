@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Enemy_MP : MonoBehaviour
 {
+    [SerializeField] private Combat_Manager combatManager;
     [SerializeField] private UI_MP uiMP;
     [SerializeField] private Enemy_SO currentEnemy;
     [SerializeField] private int currentMP;
@@ -23,7 +24,7 @@ public class Enemy_MP : MonoBehaviour
     public void SetEnemyMP(Enemy_SO newEnemy)
     {
         currentEnemy = newEnemy;
-        maxMP = 10;
+        maxMP = newEnemy.ultimate.MpCost;
         currentMP = 0;
         ChangeMP(0);
     }
@@ -35,6 +36,7 @@ public class Enemy_MP : MonoBehaviour
 
         if (currentMP >= maxMP)
         {
+            currentEnemy.ultimate.Apply(combatManager);
             currentMP -= maxMP;
             uiMP.UpdateMP(currentMP, maxMP, maxMP);
         }

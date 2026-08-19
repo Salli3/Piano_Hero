@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Player_MP : MonoBehaviour
 {
+    [SerializeField] private Combat_Manager combatManager;
     [SerializeField] private UI_MP uiMP;
 
     private void OnEnable() => Combat_Manager.PlayerGainMP += ChangeMP;
@@ -19,7 +20,7 @@ public class Player_MP : MonoBehaviour
 
         if (Game_Manager.instance.statsManager.CurrentMP >= Game_Manager.instance.statsManager.MaxMP)
         {
-            Debug.Log("Ultimate");
+            Game_Manager.instance.statsManager.Player.ultimate.Apply(combatManager);
             Game_Manager.instance.statsManager.ModifyStat(Stat_Type.CurrentMP, -Game_Manager.instance.statsManager.MaxMP);
             uiMP.UpdateMP(Game_Manager.instance.statsManager.CurrentMP, Game_Manager.instance.statsManager.MaxMP, -Game_Manager.instance.statsManager.MaxMP);
         }

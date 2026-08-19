@@ -1882,6 +1882,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAttackTypes:
   - {fileID: 11400000, guid: 05af9043535a9b045a09058c192d1689, type: 2}
+  - {fileID: 11400000, guid: 5bfcc0c4ab5798646b3a174c4e12d198, type: 2}
 --- !u!114 &778885095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2280,6 +2281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9a7b5ec5ff885488abfb4de03e6e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  combatManager: {fileID: 310191694}
   uiMP: {fileID: 2033719367}
 --- !u!1 &897458163
 GameObject:
@@ -3882,6 +3884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d809c756a4a69f4a8c92a13c5d4a4d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  combatManager: {fileID: 310191694}
   uiMP: {fileID: 897458171}
   currentEnemy: {fileID: 0}
   currentMP: 0

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af235367f3065c9489998f5521ffb574, type: 3}
+  m_Name: Dragon_Ult
+  m_EditorClassIdentifier: 
+  ultName: Draconic Power
+  ultDescription: 
+  mpCost: 50
+  effects:
+  - {fileID: 11400000, guid: 5c9a8dfa1f2b16e40a2f71791353188a, type: 2}
+  - {fileID: 11400000, guid: a94615c0be3783e4d88a26af0688e2bb, type: 2}
+  - {fileID: 11400000, guid: e2a156293144a0a448c75423f0a58fc0, type: 2}

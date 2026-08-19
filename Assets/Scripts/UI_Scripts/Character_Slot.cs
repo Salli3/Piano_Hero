@@ -12,6 +12,7 @@ public class Character_Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     [SerializeField] private GameObject infoPanel;
     [SerializeField] private TMP_Text statsText;
     [SerializeField] private TMP_Text notesText;
+    [SerializeField] private TMP_Text ultText;
 
     private void Awake()
     {
@@ -24,10 +25,10 @@ public class Character_Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         this.playerSO = playerSO;
         characterImage.sprite = playerSO.playerSprite;
         characterName.text = playerSO.playerName;
-        SetCharacterInfo();
+        SetCharacterInfo(playerSO);
     }
 
-    private void SetCharacterInfo()
+    private void SetCharacterInfo(Player_SO playerSO)
     {
         statsText.text =
             $"HP: {playerSO.playerHP}\n" +
@@ -42,6 +43,8 @@ public class Character_Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitH
                 $"\n-{note.Name}:" +
                 $"\n{note.Description}\n";
         }
+
+        ultText.text = $"-{playerSO.ultimate.Name}:\n{playerSO.ultimate.Description}";
     }
 
     private void SetCharacter()
