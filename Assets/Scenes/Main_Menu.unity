@@ -2013,7 +2013,7 @@ MonoBehaviour:
   roundManager: {fileID: 1578339846}
   fadeUI: {fileID: 543859810}
   isCombatActive: 0
-  isAutoPlay: 0
+  isAutoPlay: 1
   difficultyScaler: 1.1
   enemyPerRound: 0
   noteSpeed: 0
@@ -2024,7 +2024,7 @@ MonoBehaviour:
   roundToBoss: 3
   round: 1
   currentEnemyHP: 0
-  tempNoteSpeed: 0
+  returnToNormalSpeedDuration: 1
   persistentObjects:
   - {fileID: 118649063}
   - {fileID: 543859809}

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -33,7 +34,10 @@ public class Game_Manager : MonoBehaviour
     public int currentEnemyHP;
 
     private bool isNotePaused;
-    public float tempNoteSpeed;
+    private float tempNoteSpeed;
+    private Coroutine speedUpRoutine;
+    [SerializeField] private float returnToNormalSpeedDuration = 1;
+
 
     [Header("Persistent Objects")]
     public GameObject[] persistentObjects;
@@ -140,7 +144,13 @@ public class Game_Manager : MonoBehaviour
 
     public void PauseNote()
     {
-        if(isNotePaused) return;
+        if (isNotePaused) return;
+
+        if (speedUpRoutine != null)
+        {
+            StopCoroutine(speedUpRoutine);
+            speedUpRoutine = null;
+        }
 
         tempNoteSpeed = noteSpeed;
         noteSpeed = 0;
@@ -149,9 +159,28 @@ public class Game_Manager : MonoBehaviour
 
     public void ContinueNote()
     {
-        if(!isNotePaused) return;
-
-        noteSpeed = tempNoteSpeed;
+        if (!isNotePaused) return;
         isNotePaused = false;
+
+        if (speedUpRoutine != null) StopCoroutine(speedUpRoutine);
+        speedUpRoutine = StartCoroutine(GradualSpeedUp());
+    }
+
+    private IEnumerator GradualSpeedUp()
+    {
+        float startSpeed = noteSpeed;
+        float targetSpeed = tempNoteSpeed;
+        float elapsed = 0f;
+
+        while (elapsed < returnToNormalSpeedDuration)
+        {
+            float t = Mathf.Clamp01(elapsed / returnToNormalSpeedDuration);
+            noteSpeed = Mathf.Lerp(startSpeed, targetSpeed, t);
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        noteSpeed = targetSpeed;
+        speedUpRoutine = null;
     }
 }
