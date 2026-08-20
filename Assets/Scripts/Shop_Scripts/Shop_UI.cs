@@ -1,5 +1,4 @@
 using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +11,7 @@ public class Shop_UI : MonoBehaviour
     [Header("Resources")]
     [SerializeField] private UI_Money uiMoney;
     [SerializeField] private UI_HP uiHP;
+    [SerializeField] private UI_MP uiMP;
 
     [Header("Buttons")]
     [SerializeField] private Button buyButton;
@@ -35,6 +35,7 @@ public class Shop_UI : MonoBehaviour
     {
         uiMoney.UpdateMoney(money);
         uiHP.UpdateHP(Game_Manager.instance.statsManager.CurrentHP, Game_Manager.instance.statsManager.MaxHP, hp);
+        uiMP.UpdateMP(Game_Manager.instance.statsManager.CurrentMP, Game_Manager.instance.statsManager.MaxMP, 0);
     }
 
     public void UpdateCost(int buyCost, int rerollCost, int healCost, int healAmount)

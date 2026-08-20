@@ -2051,6 +2051,7 @@ MonoBehaviour:
   itemDescription: {fileID: 1301621305}
   uiMoney: {fileID: 306255580}
   uiHP: {fileID: 306255579}
+  uiMP: {fileID: 306255584}
   buyButton: {fileID: 8504553853882708144}
   rerollButton: {fileID: 1366273220}
   healButton: {fileID: 2004308826}
@@ -2295,7 +2296,7 @@ MonoBehaviour:
   roundToBoss: 3
   round: 1
   currentEnemyHP: 0
-  tempNoteSpeed: 0
+  returnToNormalSpeedDuration: 1
   persistentObjects:
   - {fileID: 1809892911}
   - {fileID: 2001855422}
