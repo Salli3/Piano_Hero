@@ -16,5 +16,5 @@ MonoBehaviour:
   ultDescription: Heal 100 HP, attack enemy 20 time dealing 1 damge each
   mpCost: 100
   effects:
-  - {fileID: 11400000, guid: edfb8fe69985fbe43854bbf5b79f753d, type: 2}
   - {fileID: 11400000, guid: 155cb33dc6af29b4285dac7f9edf850e, type: 2}
+  - {fileID: 11400000, guid: edfb8fe69985fbe43854bbf5b79f753d, type: 2}

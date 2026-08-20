@@ -17,7 +17,7 @@ MonoBehaviour:
   noteUpgradeDescription: 
   mpGain: 1
   noteSpeed: 10
-  isHostile: 0
+  isHostile: 1
   noteColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  removeAmount: 0
+  removeAmount: 999
   upgradeRemoveAmount: 0

@@ -16,6 +16,6 @@ MonoBehaviour:
   ultDescription: 
   mpCost: 50
   effects:
+  - {fileID: 11400000, guid: e2a156293144a0a448c75423f0a58fc0, type: 2}
   - {fileID: 11400000, guid: 5c9a8dfa1f2b16e40a2f71791353188a, type: 2}
   - {fileID: 11400000, guid: a94615c0be3783e4d88a26af0688e2bb, type: 2}
-  - {fileID: 11400000, guid: e2a156293144a0a448c75423f0a58fc0, type: 2}

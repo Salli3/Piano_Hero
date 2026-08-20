@@ -19,5 +19,5 @@ MonoBehaviour:
   noteSpeed: 10
   isHostile: 1
   noteColor: {r: 1, g: 0, b: 0, a: 1}
-  percentageDamage: 50
+  percentageDamage: 20
   upgradeDamage: 0

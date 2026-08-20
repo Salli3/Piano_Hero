@@ -133,7 +133,7 @@ public class Enemy_UI : MonoBehaviour
             //Shake
             float x = UnityEngine.Random.Range(-1f, 1f) * defeatShakeMagnitude;
             float y = UnityEngine.Random.Range(-1f, 1f) * defeatShakeMagnitude;
-            Vector3 shakeOffset = new Vector3(x * 100, y * 100, 0f);
+            Vector3 shakeOffset = new Vector3(x, y, 0f);
 
             enemyPosition.position = fallPos + shakeOffset;
 

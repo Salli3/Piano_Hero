@@ -33,7 +33,7 @@ public class UI_Money : MonoBehaviour
     private void ShowNumber(int amount)
     {
         Vector3 baseOffset = new Vector3(xOffset, yOffset, 0);
-        Money_Number money = Instantiate(moneyNumberPrefab, transform).GetComponent<Money_Number>();
+        Money_Number money = Instantiate(moneyNumberPrefab, spawnPoint.transform).GetComponent<Money_Number>();
         money.Init(amount, spawnPoint.position + baseOffset, textSize);
     }
 
@@ -42,6 +42,6 @@ public class UI_Money : MonoBehaviour
         if (spawnPoint == null) return;
         Gizmos.color = Color.yellow;
         Vector3 baseOffset = new Vector3(xOffset, yOffset, 0);
-        Gizmos.DrawWireCube(spawnPoint.position + baseOffset, new Vector3(100, 100, 0));
+        Gizmos.DrawWireCube(spawnPoint.position + baseOffset, new Vector3(5, 5, 0));
     }
 }
