@@ -2092,10 +2092,10 @@ MonoBehaviour:
   roundManager: {fileID: 717734310}
   fadeUI: {fileID: 871777017}
   isCombatActive: 0
-  isAutoPlay: 1
+  isAutoPlay: 0
   difficultyScaler: 1.1
   enemyPerRound: 3
-  noteSpeed: 5
+  noteSpeed: 1.5
   enemyHpMultiplier: 1
   enemyDamageMultiplier: 1
   currentEnemy: {fileID: 0}
@@ -2103,7 +2103,7 @@ MonoBehaviour:
   roundToBoss: 3
   round: 1
   currentEnemyHP: 0
-  tempNoteSpeed: 0
+  returnToNormalSpeedDuration: 1
   persistentObjects:
   - {fileID: 778885091}
   - {fileID: 871777010}
@@ -2198,7 +2198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a660bb7ec515d47a80173dae79a85c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 11400000, guid: a694c0ba0c89f754b97b398679deb4ed, type: 2}
+  player: {fileID: 0}
   noteLevelTracker: {fileID: 778885094}
   passiveLevelTracker: {fileID: 778885095}
   damage: 0
@@ -2600,8 +2600,8 @@ MonoBehaviour:
   hitNumberPrefab: {fileID: 1908450938278161185, guid: bc148178278520a4e8074658239809de, type: 3}
   initialPoolSize: 10
   spawnPoint: {fileID: 434724810}
-  hitNumberPositionOffset: 3
-  hitNumberAppearWidth: 30
+  hitNumberPositionOffset: 5
+  hitNumberAppearWidth: 25
   hitNumberAppearHeight: 30
 --- !u!95 &880397436
 Animator:
@@ -4401,8 +4401,8 @@ MonoBehaviour:
   hitNumberPrefab: {fileID: 1908450938278161185, guid: bc148178278520a4e8074658239809de, type: 3}
   initialPoolSize: 10
   spawnPoint: {fileID: 693149111}
-  hitNumberPositionOffset: -3
-  hitNumberAppearWidth: 30
+  hitNumberPositionOffset: -5
+  hitNumberAppearWidth: 25
   hitNumberAppearHeight: 30
 --- !u!114 &1606295685
 MonoBehaviour:
@@ -6099,10 +6099,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 12
   height: 2
-  minInterval: 0.4
-  maxInterval: 1
-  timer: 0
-  spawnInterval: 0
+  spawnInterval: 0.45
+  spawnChance: 0.7
   playerNoteChance: 0.3
   spawnerTransform: {fileID: 1149875618}
   enemyHP: {fileID: 1606295679}

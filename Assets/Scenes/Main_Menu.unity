@@ -2013,7 +2013,7 @@ MonoBehaviour:
   roundManager: {fileID: 1578339846}
   fadeUI: {fileID: 543859810}
   isCombatActive: 0
-  isAutoPlay: 1
+  isAutoPlay: 0
   difficultyScaler: 1.1
   enemyPerRound: 0
   noteSpeed: 0
