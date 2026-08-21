@@ -32,7 +32,7 @@ public class Combat_Event_Handler : MonoBehaviour
 
     private void OnNoteMiss()
     {
-        if (Game_Manager.instance.isCombatActive == false) return;
+        if (Game_Manager.instance.isCombatActive == false || Game_Manager.instance.NoteSpeed == 0) return;
         combatManager.GainMP(true, 1);
         combatManager.DealDamageToPlayer();
     }

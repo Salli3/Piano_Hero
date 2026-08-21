@@ -19,6 +19,7 @@ public class Game_Manager : MonoBehaviour
     [SerializeField] private float difficultyScaler = 1.1f;
     [SerializeField] private int enemyPerRound;
     [SerializeField] private float noteSpeed;
+    [SerializeField] private float noteSpeedSetting = 1.5f;
     [SerializeField] private float enemyHpMultiplier;
     [SerializeField] private float enemyDamageMultiplier;
     [SerializeField] private Enemy_SO currentEnemy;
@@ -27,7 +28,7 @@ public class Game_Manager : MonoBehaviour
     [SerializeField] private int round = 1;
     public bool IsBossRound => (round % (roundToBoss + 1) == 0);
     public int EnemyPerRound => IsBossRound? 1 : enemyPerRound;
-    public float NoteSpeed => noteSpeed * 1.5f;
+    public float NoteSpeed => noteSpeed * noteSpeedSetting;
     public float EnemyHpMultiplier => enemyHpMultiplier;
     public float EnemyDamageMultiplier => enemyDamageMultiplier;
     public Enemy_SO CurrentEnemy => currentEnemy;
@@ -130,7 +131,6 @@ public class Game_Manager : MonoBehaviour
     private void IncreaseDifficulty()
     {
         round++;
-        noteSpeed *= difficultyScaler;
         enemyHpMultiplier *= difficultyScaler;
         enemyDamageMultiplier *= difficultyScaler;
         enemyNoteLevel++;

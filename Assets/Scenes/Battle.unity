@@ -2092,10 +2092,11 @@ MonoBehaviour:
   roundManager: {fileID: 717734310}
   fadeUI: {fileID: 871777017}
   isCombatActive: 0
-  isAutoPlay: 0
+  isAutoPlay: 1
   difficultyScaler: 1.1
   enemyPerRound: 3
   noteSpeed: 1.5
+  noteSpeedSetting: 1.3
   enemyHpMultiplier: 1
   enemyDamageMultiplier: 1
   currentEnemy: {fileID: 0}
