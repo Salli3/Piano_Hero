@@ -34,7 +34,7 @@ public class Note_Level_Tracker : MonoBehaviour
 
     public void PurchaseNote(Note_SO note)
     {
-        if (playerAttackTypes.Contains(note) == false) playerAttackTypes.Add(note);
+        if (playerAttackTypes.Contains(note) == false && note.Name != "") playerAttackTypes.Add(note);
         notesLevel[note] = GetNoteLevel(note) + 1;
     }
 
