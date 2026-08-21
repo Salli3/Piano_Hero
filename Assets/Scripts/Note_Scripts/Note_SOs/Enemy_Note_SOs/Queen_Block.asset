@@ -15,8 +15,9 @@ MonoBehaviour:
   noteName: Dark Throne
   noteDescription: 
   noteUpgradeDescription: 
+  mpGain: 1
   noteSpeed: 10
   isHostile: 1
   noteColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   blockTime: 2
-  upgradeBlockTime: 2
+  upgradeBlockTime: 1

@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noteName: Tackle (Ex)
   noteDescription: Deal 20 damage, take 5 damage
-  noteUpgradeDescription: Deal 20 more damage, take 1 more damage
+  noteUpgradeDescription: Deal 10 more damage, take 1 more damage
+  mpGain: 1
   noteSpeed: 10
   isHostile: 0
   noteColor: {r: 1, g: 0, b: 0, a: 1}
   damage: 20
-  upgradeDamage: 20
+  upgradeDamage: 10
   selfDamage: 5
   upgradeSelfDamage: 1

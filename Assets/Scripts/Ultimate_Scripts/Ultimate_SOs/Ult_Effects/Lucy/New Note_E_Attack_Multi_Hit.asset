@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noteName: 
   noteDescription: 
-  noteUpgradeDescription: 
+  noteUpgradeDescription: Hit 2 more times
   mpGain: 1
   noteSpeed: 10
   isHostile: 0
   noteColor: {r: 1, g: 0, b: 0, a: 1}
   damage: 1
   hitTime: 20
-  upgradeHitTime: 0
+  upgradeHitTime: 2

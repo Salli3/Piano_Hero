@@ -15,10 +15,11 @@ MonoBehaviour:
   noteName: Life Drain
   noteDescription: 
   noteUpgradeDescription: 
+  mpGain: 1
   noteSpeed: 10
   isHostile: 1
   noteColor: {r: 0, g: 1, b: 0, a: 1}
   healAmount: 10
-  upgradeHeal: 10
+  upgradeHeal: 5
   damage: 5
-  upgradeDamage: 5
+  upgradeDamage: 1

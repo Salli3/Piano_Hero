@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: X_Ult
   m_EditorClassIdentifier: 
   ultName: Still Water
-  ultDescription: Heal 50 HP, gain 2 block, 2 boost, remove enemy block
+  ultDescription: Heal 20 HP, gain 2 block, remove 2 enemy block, deal 10% of enemy
+    HP as damage
   mpCost: 50
   effects:
+  - {fileID: 11400000, guid: 4a9918cdcd14b4b4abdc1b9d61d4abe8, type: 2}
   - {fileID: 11400000, guid: 9688ef4a3a442cc4499d69775a11681c, type: 2}
   - {fileID: 11400000, guid: 10e28e7c8ab56d84ea8facd75e8f32ba, type: 2}
-  - {fileID: 11400000, guid: 4a9918cdcd14b4b4abdc1b9d61d4abe8, type: 2}
-  - {fileID: 11400000, guid: 8657c9d9447d2e44a85282cc8286639d, type: 2}
+  - {fileID: 11400000, guid: 5538686bb9e9f1a4cba8fd24841bac00, type: 2}

@@ -19,5 +19,5 @@ MonoBehaviour:
   noteSpeed: 10
   isHostile: 1
   noteColor: {r: 0, g: 1, b: 0, a: 1}
-  healAmount: 100
+  healAmount: 50
   upgradeHeal: 0

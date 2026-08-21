@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noteName: 
   noteDescription: 
-  noteUpgradeDescription: 
+  noteUpgradeDescription: Heal 20 more HP
   mpGain: 1
   noteSpeed: 10
   isHostile: 0
   noteColor: {r: 0, g: 1, b: 0, a: 1}
-  healAmount: 100
-  upgradeHeal: 0
+  healAmount: 50
+  upgradeHeal: 20

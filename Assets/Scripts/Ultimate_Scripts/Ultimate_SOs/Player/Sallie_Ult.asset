@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Sallie_Ult
   m_EditorClassIdentifier: 
   ultName: Wish
-  ultDescription: Heal 20 HP, kill enemy, gain 200 money
-  mpCost: 200
+  ultDescription: Heal 20 HP, Instantly kill enemy, gain 500 money
+  mpCost: 150
   effects:
   - {fileID: 11400000, guid: f1b1ec60bf1152b4eb81df89c13d2595, type: 2}
   - {fileID: 11400000, guid: a9f3e4126c0ad164aac49011a130f96d, type: 2}

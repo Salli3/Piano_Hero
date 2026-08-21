@@ -19,5 +19,5 @@ MonoBehaviour:
   noteSpeed: 10
   isHostile: 1
   noteColor: {r: 0, g: 1, b: 1, a: 1}
-  mpExGain: 20
+  mpExGain: 10
   upgradeMpExGain: 0

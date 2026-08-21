@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Player_Rage
   m_EditorClassIdentifier: 
   noteName: Rage
-  noteDescription: Deal 1 more damage each time you use it, reset at shop
-  noteUpgradeDescription: Deal 1 more damage each time you use it
+  noteDescription: Deal 2 more damage each time you use it, reset at shop
+  noteUpgradeDescription: Deal 2 more damage each time you use it
+  mpGain: 1
   noteSpeed: 10
   isHostile: 0
   noteColor: {r: 1, g: 0, b: 0, a: 1}
-  damage: 1
-  upgradeDamage: 1
+  damage: 2
+  upgradeDamage: 2

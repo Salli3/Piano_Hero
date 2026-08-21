@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Player_Ex_Blood_Blade
   m_EditorClassIdentifier: 
   noteName: Blood Blade (Ex)
-  noteDescription: Deal 5 damage and heal 1HP
-  noteUpgradeDescription: Deal 1 more damage and heal 1 more HP
+  noteDescription: Deal 5 damage and heal 2 HP
+  noteUpgradeDescription: Deal 5 more damage and heal 2 more HP
+  mpGain: 1
   noteSpeed: 10
   isHostile: 0
   noteColor: {r: 0, g: 1, b: 0, a: 1}
-  healAmount: 1
-  upgradeHeal: 1
+  healAmount: 2
+  upgradeHeal: 2
   damage: 5
-  upgradeDamage: 1
+  upgradeDamage: 5

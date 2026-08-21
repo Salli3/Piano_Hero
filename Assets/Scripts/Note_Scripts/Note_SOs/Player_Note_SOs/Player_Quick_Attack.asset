@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Player_Quick_Attack
   m_EditorClassIdentifier: 
   noteName: Quick Attack
-  noteDescription: This attack move 50% faster, deal 10 damage
+  noteDescription: This attack move 50% faster, deal 15 damage
   noteUpgradeDescription: Deal 10 more damage
+  mpGain: 1
   noteSpeed: 15
   isHostile: 0
   noteColor: {r: 1, g: 0, b: 0, a: 1}
   damage: 15
-  upgradeDamage: 15
+  upgradeDamage: 10

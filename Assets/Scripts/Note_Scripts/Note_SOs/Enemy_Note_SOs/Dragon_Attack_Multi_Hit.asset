@@ -15,9 +15,10 @@ MonoBehaviour:
   noteName: Dragon Breath
   noteDescription: 
   noteUpgradeDescription: 
+  mpGain: 1
   noteSpeed: 10
   isHostile: 1
   noteColor: {r: 1, g: 0, b: 0, a: 1}
   damage: 1
-  hitTime: 15
-  upgradeHitTime: 5
+  hitTime: 10
+  upgradeHitTime: 3

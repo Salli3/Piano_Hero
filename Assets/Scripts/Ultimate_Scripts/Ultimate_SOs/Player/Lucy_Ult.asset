@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Lucy_Ult
   m_EditorClassIdentifier: 
   ultName: Fury
-  ultDescription: Heal 100 HP, attack enemy 20 time dealing 1 damge each
+  ultDescription: Heal 50 HP, remove 2 enemy block, deal 1 damage 20 time
   mpCost: 100
   effects:
   - {fileID: 11400000, guid: 155cb33dc6af29b4285dac7f9edf850e, type: 2}
+  - {fileID: 11400000, guid: e7c56ad416d1aea43a0e65d73be1a392, type: 2}
   - {fileID: 11400000, guid: edfb8fe69985fbe43854bbf5b79f753d, type: 2}

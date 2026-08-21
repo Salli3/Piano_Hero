@@ -26,6 +26,7 @@ public class Shop_Manager : MonoBehaviour
     {
         allItems.AddRange(noteItems);
         allItems.AddRange(passiveItems);
+        allItems.AddRange(Game_Manager.instance.statsManager.noteLevelTracker.GetUltimateEffect());
         allItems = allItems.Union(Game_Manager.instance.statsManager.noteLevelTracker.GetNote()).ToList();
 
         GetNewItem();

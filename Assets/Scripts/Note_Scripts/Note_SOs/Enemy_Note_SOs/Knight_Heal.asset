@@ -15,8 +15,9 @@ MonoBehaviour:
   noteName: Revive
   noteDescription: 
   noteUpgradeDescription: 
+  mpGain: 1
   noteSpeed: 10
   isHostile: 1
   noteColor: {r: 0, g: 1, b: 0, a: 1}
-  healAmount: 40
-  upgradeHeal: 20
+  healAmount: 20
+  upgradeHeal: 10

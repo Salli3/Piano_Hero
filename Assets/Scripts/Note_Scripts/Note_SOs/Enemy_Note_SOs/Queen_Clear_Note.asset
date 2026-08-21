@@ -15,8 +15,9 @@ MonoBehaviour:
   noteName: Dominion
   noteDescription: 
   noteUpgradeDescription: 
+  mpGain: 1
   noteSpeed: 10
   isHostile: 1
   noteColor: {r: 1, g: 0, b: 1, a: 1}
   damage: 2
-  upgradeDamage: 2
+  upgradeDamage: 1

@@ -2351,6 +2351,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c5452421284463f4f8e8411e66fbcc27, type: 2}
   - {fileID: 11400000, guid: 69b847ab97aff654886ec36a2d3f58e9, type: 2}
   - {fileID: 11400000, guid: 072a623d48de1d2498133c912f74ea36, type: 2}
+  playerUltimateEffects: []
 --- !u!114 &1809892913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2363,7 +2364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a660bb7ec515d47a80173dae79a85c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 11400000, guid: 1d2602436b70a134aa6a3f7f1b71ede9, type: 2}
+  player: {fileID: 11400000, guid: 61aafd30cd15bc64ea630c8e99e092c0, type: 2}
   noteLevelTracker: {fileID: 1809892912}
   passiveLevelTracker: {fileID: 1809892915}
   damage: 10

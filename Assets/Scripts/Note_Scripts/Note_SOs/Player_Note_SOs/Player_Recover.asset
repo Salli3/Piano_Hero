@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Player_Recover
   m_EditorClassIdentifier: 
   noteName: Recover
-  noteDescription: Heal 2HP
-  noteUpgradeDescription: Heal 2 more HP
+  noteDescription: Heal 3 HP
+  noteUpgradeDescription: Heal 3 more HP
+  mpGain: 1
   noteSpeed: 10
   isHostile: 0
   noteColor: {r: 0, g: 1, b: 0, a: 1}
-  healAmount: 2
-  upgradeHeal: 2
+  healAmount: 3
+  upgradeHeal: 3

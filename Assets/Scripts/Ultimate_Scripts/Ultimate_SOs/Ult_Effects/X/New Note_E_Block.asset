@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noteName: 
   noteDescription: 
-  noteUpgradeDescription: 
+  noteUpgradeDescription: Block 1 more time
   mpGain: 1
   noteSpeed: 10
   isHostile: 0
   noteColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   blockTime: 2
-  upgradeBlockTime: 0
+  upgradeBlockTime: 1

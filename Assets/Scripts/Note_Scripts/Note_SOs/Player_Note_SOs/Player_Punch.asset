@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Player_Punch
   m_EditorClassIdentifier: 
   noteName: Punch
-  noteDescription: Basic attack, deal 5 damage
+  noteDescription: Basic attack, deal 10 damage
   noteUpgradeDescription: Deal 5 more damage
+  mpGain: 1
   noteSpeed: 10
   isHostile: 0
   noteColor: {r: 1, g: 0, b: 0, a: 1}
   damage: 10
-  upgradeDamage: 10
+  upgradeDamage: 5

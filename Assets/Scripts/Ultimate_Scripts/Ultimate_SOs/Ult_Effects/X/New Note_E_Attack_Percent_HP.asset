@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noteName: 
   noteDescription: 
-  noteUpgradeDescription: 
+  noteUpgradeDescription: Deal 1% more of enemy HP as damage
   mpGain: 1
   noteSpeed: 10
   isHostile: 0
   noteColor: {r: 1, g: 0, b: 0, a: 1}
-  percentageDamage: 0
-  upgradeDamage: 0
+  percentageDamage: 10
+  upgradeDamage: 1

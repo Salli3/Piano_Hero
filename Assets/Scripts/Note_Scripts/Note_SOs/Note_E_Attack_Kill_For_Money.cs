@@ -33,7 +33,7 @@ public class Note_E_Attack_Kill_For_Money : Note_SO
         {
             int totalDamage = GetTotalDamage(Level + 1);
             int totalMoneyGain = GetTotalMoneyGain(Level + 1);
-            return $"{noteUpgradeDescription} (damage: {totalDamage}, self damage: {totalMoneyGain})";
+            return $"{noteUpgradeDescription} (damage: {totalDamage}, money gain: {totalMoneyGain})";
         }
     }
 }

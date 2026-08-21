@@ -28,6 +28,18 @@ public class Shop_UI : MonoBehaviour
     {
         itemName.text = item.Name + new string('+', item.Level);
         itemName.color = item.Color;
+        if (item.Name == "")
+        {
+            int level = 1;
+            foreach (var effect in Game_Manager.instance.statsManager.noteLevelTracker.GetUltimateEffect())
+            {
+                level--;
+                level += Game_Manager.instance != null ? Game_Manager.instance.statsManager.noteLevelTracker.GetNoteLevel(effect) : 0;
+            }
+
+            itemName.text = "Ultimate" + new string('+', level);
+            itemName.color = Color.white;
+        }
         itemDescription.text = item.Description;
     }
 
