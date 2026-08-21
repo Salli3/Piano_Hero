@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Shop_Manager : MonoBehaviour
 {
@@ -28,7 +26,8 @@ public class Shop_Manager : MonoBehaviour
     {
         allItems.AddRange(noteItems);
         allItems.AddRange(passiveItems);
-        allItems.AddRange(Game_Manager.instance.statsManager.noteLevelTracker.GetNote());
+        allItems.AddRange(Game_Manager.instance.statsManager.noteLevelTracker.GetUltimateEffect());
+        allItems = allItems.Union(Game_Manager.instance.statsManager.noteLevelTracker.GetNote()).ToList();
 
         GetNewItem();
     }
@@ -37,7 +36,7 @@ public class Shop_Manager : MonoBehaviour
     {
         if (Game_Manager.instance.statsManager.Money >= buyCost)
         {
-            List<IBuy> availableItems = new List<IBuy>(allItems);
+            List<IBuy> availableItems = new List<IBuy>(allItems.Distinct());
             if (currentItem != null)
             {
                 availableItems.Remove(currentItem); // prevent duplicate pick on reroll
@@ -45,6 +44,7 @@ public class Shop_Manager : MonoBehaviour
 
             currentItem = availableItems[Random.Range(0, availableItems.Count)];
             shopUI.ShowItemInfo(currentItem);
+            //Debug.Log($"Showing {currentItem}");
         }
         UpdateUI();
     }
@@ -56,7 +56,6 @@ public class Shop_Manager : MonoBehaviour
         {
             shopUI.ShowItemInfo(empty);
         }
-        shopUI.UpdateResources();
         shopUI.UpdateCost(buyCost, rerollCost, healCost, healAmount);
         shopUI.ShowButton(
             canBuy: Game_Manager.instance.statsManager.Money >= buyCost,
@@ -65,13 +64,17 @@ public class Shop_Manager : MonoBehaviour
             && Game_Manager.instance.statsManager.MaxHP > Game_Manager.instance.statsManager.CurrentHP
             );
     }
+    private void UpdateResources(int money = 0, int heal = 0)
+    {
+        shopUI.UpdateResources(money, heal);
+    }
 
     #region Button press methods
     public void OnBuyButtonPressed()
     {
         currentItem.BuyItem();
         Game_Manager.instance.statsManager.ModifyStat(Stat_Type.Money, -buyCost);
-        shopUI.UpdateResources(-buyCost);
+        UpdateResources(-buyCost);
         currentItem = null;
         GetNewItem();
     }
@@ -79,7 +82,7 @@ public class Shop_Manager : MonoBehaviour
     public void OnRerollButtonPressed()
     {
         Game_Manager.instance.statsManager.ModifyStat(Stat_Type.Money, -rerollCost);
-        shopUI.UpdateResources(-rerollCost);
+        UpdateResources(-rerollCost);
         rerollCost += inflation;
         GetNewItem();
     }
@@ -88,14 +91,14 @@ public class Shop_Manager : MonoBehaviour
     {
         Game_Manager.instance.statsManager.ModifyStat(Stat_Type.CurrentHP, healAmount);
         Game_Manager.instance.statsManager.ModifyStat(Stat_Type.Money, -healCost);
-        shopUI.UpdateResources(-healCost, healAmount);
+        UpdateResources(-healCost, healAmount);
         healCost += inflation;
         UpdateUI();
     }
 
     public void OnExitButtonPressed()
     {
-        Game_Manager.instance.StartCombatScene();
+        Game_Manager.instance.fadeUI.FadeOut();
     }
     #endregion
 }

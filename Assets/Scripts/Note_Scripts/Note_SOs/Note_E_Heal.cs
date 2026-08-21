@@ -6,6 +6,11 @@ public class Note_E_Heal : Note_SO
     [SerializeField] private int healAmount;
     [SerializeField] private int upgradeHeal;
 
+    private void Reset()
+    {
+        noteColor = Color.green;
+    }
+
     public override void Apply(Combat_Manager combatManager)
     {
         combatManager.Heal(isHostile, GetTotalStat(Level));

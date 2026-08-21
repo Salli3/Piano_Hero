@@ -4,20 +4,22 @@ using UnityEngine.UI;
 
 public class Camera_Shake : MonoBehaviour
 {
-    [SerializeField] private Camera mainCamera;
+    [SerializeField] private Transform lanesPosition;
+    [SerializeField] private RectTransform bgPosition;
     [SerializeField] private RectTransform targetPosition;
     [SerializeField] private Image targetImage;
-    [SerializeField] private bool freezeTimeScale;
     [SerializeField] private float duration;
     [SerializeField] private float magnitude;
 
     private Coroutine shakeRoutine;
-    private Vector3 originalCameraPosition;
+    private Vector3 originalLanesPosition;
+    private Vector3 originalBgPosition;
     private Vector3 originalTargetPosition;
 
     private void Awake()
     {
-        originalCameraPosition = mainCamera.transform.position;
+        originalLanesPosition = lanesPosition.position;
+        originalBgPosition = bgPosition.position;
         originalTargetPosition = targetPosition.position;
     }
 
@@ -32,8 +34,6 @@ public class Camera_Shake : MonoBehaviour
 
     private IEnumerator DoShake()
     {
-        if (freezeTimeScale) Time.timeScale = 0;
-
         float elapsed = 0f;
         targetImage.color = Color.red;
 
@@ -42,18 +42,18 @@ public class Camera_Shake : MonoBehaviour
             float x = Random.Range(-1f, 1f) * magnitude;
             float y = Random.Range(-1f, 1f) * magnitude;
 
-            mainCamera.transform.position = originalCameraPosition + new Vector3(x, y, 0f);
-            targetPosition.position = originalTargetPosition + new Vector3(y * 100, x * 100, 0f);
+            lanesPosition.position = originalLanesPosition + new Vector3(x / 100, y / 100, 0f);
+            bgPosition.position = originalBgPosition + new Vector3(x, y, 0f);
+            targetPosition.position = originalTargetPosition + new Vector3(y, x, 0f);
 
             elapsed += Time.unscaledDeltaTime;
             yield return null;
         }
 
-        mainCamera.transform.position = originalCameraPosition;
+        lanesPosition.position = originalLanesPosition;
+        bgPosition.position = originalBgPosition;
         targetPosition.position = originalTargetPosition;
         shakeRoutine = null;
         targetImage.color = Color.white;
-
-        if (freezeTimeScale) Time.timeScale = 1;
     }
 }

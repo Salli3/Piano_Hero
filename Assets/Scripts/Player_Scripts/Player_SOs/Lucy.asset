@@ -19,4 +19,5 @@ MonoBehaviour:
   startingMoney: 0
   attackTypes:
   - {fileID: 11400000, guid: f2764f16329b2e2458ae25d74dc3c412, type: 2}
-  - {fileID: 11400000, guid: 9b86baf0371fe914da4768573fc78ba3, type: 2}
+  - {fileID: 11400000, guid: 16794b889c2732a42b0fe1710562dc8e, type: 2}
+  ultimate: {fileID: 11400000, guid: fbeaa6ada5860ab49a4f7768aed6d376, type: 2}

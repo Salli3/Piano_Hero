@@ -1,11 +1,14 @@
 using System;
 using System.Collections;
+using TMPro;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class Judgement_Box : MonoBehaviour
 {
     [SerializeField] private Collider2D judgeBoxCollider;
     [SerializeField] private SpriteRenderer sr;
+    public TMP_Text inputText;
     [SerializeField] private LayerMask noteLayer;
     private Vector3 originalScale;
 
@@ -14,9 +17,17 @@ public class Judgement_Box : MonoBehaviour
 
     private void Awake()
     {
-        judgeBoxCollider = GetComponent<BoxCollider2D>();
-        sr = GetComponent<SpriteRenderer>();
         originalScale = transform.localScale;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (Game_Manager.instance.IsAutoPlay)
+        {
+            StartCoroutine(hitRespond());
+            collision.GetComponent<Note>().OnNoteHit();
+            OnNoteHit?.Invoke(collision.GetComponent<Note>().noteSO);
+        }
     }
 
     public void TryHitNote()

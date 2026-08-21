@@ -5,6 +5,12 @@ public class Note_E_Block_Remove : Note_SO
 {
     [SerializeField] private int removeAmount;
     [SerializeField] private int upgradeRemoveAmount;
+
+    private void Reset()
+    {
+        noteColor = Color.gray;
+    }
+
     public override void Apply(Combat_Manager combatManager)
     {
         combatManager.RemoveBlock(isHostile, GetTotalStat(Level));

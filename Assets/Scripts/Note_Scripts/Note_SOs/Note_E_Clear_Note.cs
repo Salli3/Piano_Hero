@@ -5,6 +5,12 @@ public class Note_E_Clear_Note : Note_SO
 {
     [SerializeField] private int damage;
     [SerializeField] private int upgradeDamage;
+
+    private void Reset()
+    {
+        noteColor = Color.magenta;
+    }
+
     public override void Apply(Combat_Manager combatManager)
     {
         int cleared = combatManager.ClearNote(isHostile);

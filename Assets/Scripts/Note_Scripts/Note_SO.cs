@@ -5,13 +5,15 @@ public abstract class Note_SO : ScriptableObject, IBuy
     [SerializeField] private string noteName;
     [SerializeField, TextArea] protected string noteDescription;
     [SerializeField, TextArea] protected string noteUpgradeDescription;
+    public int mpGain = 1;
     public float noteSpeed = 10;
     public bool isHostile;
-    public Color noteColor => isHostile ? Color.red : Color.blue;
+    [SerializeField] protected Color noteColor;
 
     public string Name => noteName;
     public string Description => GetDescription();
     public int Level => Game_Manager.instance != null ? Game_Manager.instance.statsManager.noteLevelTracker.GetNoteLevel(this) : 0;
+    public Color Color => noteColor;
 
     public void BuyItem()
     {

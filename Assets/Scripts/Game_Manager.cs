@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,16 +8,37 @@ public class Game_Manager : MonoBehaviour
 
     public Stats_Manager statsManager;
     public Round_Manager roundManager;
+    public UI_Fade fadeUI;
 
     public bool isCombatActive;
 
+    [SerializeField] private bool isAutoPlay;
+    public bool IsAutoPlay => isAutoPlay;
+
     [Header("Difficulty Settings")]
-    public float noteSpeed;
-    public float noteSpeedMultipiler;
-    public int enemyPerRound;
-    public int enemyHpMultiplier;
-    public int enemyDamageMultiplier;
-    public Enemy_SO currentEnemy;
+    [SerializeField] private float difficultyScaler = 1.1f;
+    [SerializeField] private int enemyPerRound;
+    [SerializeField] private float noteSpeed;
+    [SerializeField] private float noteSpeedSetting = 1.5f;
+    [SerializeField] private float enemyHpMultiplier;
+    [SerializeField] private float enemyDamageMultiplier;
+    [SerializeField] private Enemy_SO currentEnemy;
+    [SerializeField] private int enemyNoteLevel = 1;
+    [SerializeField] private int roundToBoss = 3;
+    [SerializeField] private int round = 1;
+    public bool IsBossRound => (round % (roundToBoss + 1) == 0);
+    public int EnemyPerRound => IsBossRound? 1 : enemyPerRound;
+    public float NoteSpeed => noteSpeed * noteSpeedSetting;
+    public float EnemyHpMultiplier => enemyHpMultiplier;
+    public float EnemyDamageMultiplier => enemyDamageMultiplier;
+    public Enemy_SO CurrentEnemy => currentEnemy;
+    public int currentEnemyHP;
+
+    private bool isNotePaused;
+    private float tempNoteSpeed;
+    private Coroutine speedUpRoutine;
+    [SerializeField] private float returnToNormalSpeedDuration = 1;
+
 
     [Header("Persistent Objects")]
     public GameObject[] persistentObjects;
@@ -66,13 +88,40 @@ public class Game_Manager : MonoBehaviour
         statsManager.Initialize(playerSO);
     }
 
-    public void StartCombatScene()
+    public void SetDifficulty(int enemyPerRound, float noteSpeed, float enemyHpMultiplier, float enemyDamageMultiplier)
+    {
+        this.enemyPerRound = enemyPerRound;
+        this.noteSpeed = noteSpeed;
+        this.enemyHpMultiplier = enemyHpMultiplier;
+        this.enemyDamageMultiplier = enemyDamageMultiplier;
+    }
+
+    public void LoadNextScene()
+    {
+        switch (SceneManager.GetActiveScene().buildIndex)
+        {
+            case 0:
+                StartCombatScene();
+                break;
+            case 1:
+                StartShopScene();
+                break;
+            case 2:
+                StartCombatScene();
+                break;
+            default:
+                StartShopScene();
+                break;
+        }
+    }
+
+    private void StartCombatScene()
     {
         roundManager.StartNewRound();
         SceneManager.LoadScene("Battle");
     }
 
-    public void StartShopScene()
+    private void StartShopScene()
     {
         isCombatActive = false;
         IncreaseDifficulty();
@@ -81,6 +130,57 @@ public class Game_Manager : MonoBehaviour
 
     private void IncreaseDifficulty()
     {
-        noteSpeed += noteSpeedMultipiler;
+        round++;
+        enemyHpMultiplier *= difficultyScaler;
+        enemyDamageMultiplier *= difficultyScaler;
+        enemyNoteLevel++;
+    }
+
+    public void SetEnemy(Enemy_SO enemySO)
+    {
+        currentEnemy = enemySO;
+        statsManager.noteLevelTracker.SetEnemyNote(enemySO, enemyNoteLevel);
+    }
+
+    public void PauseNote()
+    {
+        if (isNotePaused) return;
+
+        if (speedUpRoutine != null)
+        {
+            StopCoroutine(speedUpRoutine);
+            speedUpRoutine = null;
+        }
+
+        tempNoteSpeed = noteSpeed;
+        noteSpeed = 0;
+        isNotePaused = true;
+    }
+
+    public void ContinueNote()
+    {
+        if (!isNotePaused) return;
+        isNotePaused = false;
+
+        if (speedUpRoutine != null) StopCoroutine(speedUpRoutine);
+        speedUpRoutine = StartCoroutine(GradualSpeedUp());
+    }
+
+    private IEnumerator GradualSpeedUp()
+    {
+        float startSpeed = noteSpeed;
+        float targetSpeed = tempNoteSpeed;
+        float elapsed = 0f;
+
+        while (elapsed < returnToNormalSpeedDuration)
+        {
+            float t = Mathf.Clamp01(elapsed / returnToNormalSpeedDuration);
+            noteSpeed = Mathf.Lerp(startSpeed, targetSpeed, t);
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        noteSpeed = targetSpeed;
+        speedUpRoutine = null;
     }
 }

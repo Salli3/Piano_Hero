@@ -23,21 +23,17 @@ public class Combat_Event_Handler : MonoBehaviour
     #region Combat methods
     private void OnNoteHit(Note_SO note)
     {
-        if (note.isHostile == true)
-        {
-            //TODO dodge to attack
-            return;
-        }
-        else
+        if (note.isHostile == false)
         {
             note.Apply(combatManager);
         }
+        combatManager.GainMP(note.isHostile, note.mpGain);
     }
 
     private void OnNoteMiss()
     {
-        if (Game_Manager.instance.isCombatActive == false) return;
-
+        if (Game_Manager.instance.isCombatActive == false || Game_Manager.instance.NoteSpeed == 0) return;
+        combatManager.GainMP(true, 1);
         combatManager.DealDamageToPlayer();
     }
 
@@ -46,6 +42,7 @@ public class Combat_Event_Handler : MonoBehaviour
         if (note.isHostile == true)
         {
             note.Apply(combatManager);
+            combatManager.GainMP(note.isHostile, note.mpGain);
         }
     }
     #endregion

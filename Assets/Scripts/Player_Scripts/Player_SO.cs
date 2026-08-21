@@ -9,4 +9,5 @@ public class Player_SO : ScriptableObject
     public int playerDamage;
     public int startingMoney;
     public Note_SO[] attackTypes;
+    public Ultimate_SO ultimate;
 }

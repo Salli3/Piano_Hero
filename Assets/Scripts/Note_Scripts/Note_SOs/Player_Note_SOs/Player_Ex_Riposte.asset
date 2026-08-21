@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Player_Ex_Riposte
   m_EditorClassIdentifier: 
   noteName: Riposte (Ex)
-  noteDescription: Clear all enemy notes, deal 1 damage for each note cleared
+  noteDescription: Clear all enemy notes, deal 5 damage for each note cleared
   noteUpgradeDescription: Deal 1 more damage for each note cleared
+  mpGain: 1
   noteSpeed: 10
   isHostile: 0
-  damage: 1
+  noteColor: {r: 1, g: 0, b: 1, a: 1}
+  damage: 5
   upgradeDamage: 1

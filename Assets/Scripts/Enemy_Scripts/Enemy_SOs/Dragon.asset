@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Dragon
   enemySprite: {fileID: 21300000, guid: 800607afddc7be8488faef19629689fe, type: 3}
-  enemyHP: 200
-  enemyDamage: 10
+  enemyHP: 100
+  enemyDamage: 7
   enemyMoneyReward: 200
   attackTypes:
-  - {fileID: 11400000, guid: 282540b0146e4d4428339c3b8cdf5209, type: 2}
   - {fileID: 11400000, guid: 17d551ee079fa114586c29dcbc50329c, type: 2}
   - {fileID: 11400000, guid: 209e69574ea228449a806851b17b673c, type: 2}
   - {fileID: 11400000, guid: 85b492eac02aa3442a9991eb72f8b07d, type: 2}
+  - {fileID: 11400000, guid: d73ddf4be9ef88d43a86bc00079643fe, type: 2}
+  ultimate: {fileID: 11400000, guid: 554c60747c4214847b33f3a063ac8993, type: 2}

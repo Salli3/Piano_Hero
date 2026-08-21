@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyText: {fileID: 8934340894726542554}
-  floatSpeed: 10
+  floatSpeed: 0.5
   lifeTime: 1
   plusColor: {r: 0, g: 1, b: 0, a: 1}
   minusColor: {r: 1, g: 0, b: 0, a: 1}
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0

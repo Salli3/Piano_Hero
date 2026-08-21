@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -7,6 +8,11 @@ public class Enemy_UI : MonoBehaviour
 {
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private Image enemyImage;
+    [SerializeField] private Animator anim;
+
+    [SerializeField] private CanvasGroup infoCG;
+    [SerializeField] private CanvasGroup hpCG;
+    [SerializeField] private CanvasGroup mpCG;
 
     [SerializeField] private UI_Status uiStatus;
     [SerializeField] private Hit_Number_Pool hitNumberPool;
@@ -24,27 +30,47 @@ public class Enemy_UI : MonoBehaviour
     [SerializeField] private float fallDistance;
     [SerializeField] private float slideDistance;
 
+    public static event Action<Enemy_SO> OnEnemyDefeated;
+
+    #region Event subscribers
     private void OnEnable()
     {
         Combat_Manager.DamageEnemy += hitNumberPool.ShowHitNumber;
         Combat_Manager.EnemyStatusChange += uiStatus.UpdateCombatStatus;
+        Enemy_Manager.SpawnNewEnemy += SetEnemyUI;
     }
 
     private void OnDisable()
     {
         Combat_Manager.DamageEnemy -= hitNumberPool.ShowHitNumber;
         Combat_Manager.EnemyStatusChange -= uiStatus.UpdateCombatStatus;
+        Enemy_Manager.SpawnNewEnemy -= SetEnemyUI;
     }
+    #endregion
 
     private void Awake()
     {
         originalEnemyPosition = enemyPosition.position;
     }
 
-    public void SetEnemyUI(Enemy_SO enemySO)
+    private void Start()
+    {
+        anim.Play("Start");
+        infoCG.alpha = 0;
+        hpCG.alpha = 0;
+        mpCG.alpha = 0;
+    }
+
+    public void DisableAnimator() => anim.enabled = false;
+
+    private void SetEnemyUI(Enemy_SO enemySO)
     {
         enemyImage.sprite = enemySO.enemySprite;
         nameText.text = enemySO.enemyName;
+
+        infoCG.alpha = 1;
+        hpCG.alpha = 1;
+        mpCG.alpha = 1;
     }
 
     //TODO rework enemy appear animation
@@ -60,6 +86,12 @@ public class Enemy_UI : MonoBehaviour
 
         while (elapsed < appearDuration)
         {
+            if (Time.timeScale == 0f)
+            {
+                yield return null;
+                continue;
+            }
+
             float t = elapsed / appearDuration;
 
             enemyPosition.position = Vector3.Lerp(originalEnemyPosition + startOffset, originalEnemyPosition, t);
@@ -68,15 +100,18 @@ public class Enemy_UI : MonoBehaviour
             float alpha = Mathf.Lerp(0f, 1f, t);
             enemyImage.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
 
-            elapsed += Time.unscaledDeltaTime;
+            elapsed += Time.deltaTime;
             yield return null;
         }
 
         enemyPosition.position = originalEnemyPosition;
         enemyImage.color = new Color(startColor.r, startColor.g, startColor.b, 1f);
+        
+        //Start combat
+        Game_Manager.instance.isCombatActive = true;
     }
 
-    public IEnumerator EnemyDefeat()
+    public IEnumerator EnemyDefeat(Enemy_SO enemy_SO)
     {
         float elapsed = 0f;
         Color startColor = Color.white;
@@ -84,15 +119,21 @@ public class Enemy_UI : MonoBehaviour
 
         while (elapsed < defeatShakeDuration)
         {
+            if (Time.timeScale == 0f)
+            {
+                yield return null;
+                continue;
+            }
+
             float t = elapsed / defeatShakeDuration;
 
             //Slide
             Vector3 fallPos = originalEnemyPosition + targetOffset * t;
 
             //Shake
-            float x = Random.Range(-1f, 1f) * defeatShakeMagnitude;
-            float y = Random.Range(-1f, 1f) * defeatShakeMagnitude;
-            Vector3 shakeOffset = new Vector3(x * 100, y * 100, 0f);
+            float x = UnityEngine.Random.Range(-1f, 1f) * defeatShakeMagnitude;
+            float y = UnityEngine.Random.Range(-1f, 1f) * defeatShakeMagnitude;
+            Vector3 shakeOffset = new Vector3(x, y, 0f);
 
             enemyPosition.position = fallPos + shakeOffset;
 
@@ -100,12 +141,19 @@ public class Enemy_UI : MonoBehaviour
             float alpha = Mathf.Lerp(1f, 0f, t);
             enemyImage.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
 
-            elapsed += Time.unscaledDeltaTime;
+            elapsed += Time.deltaTime;
             yield return null;
         }
 
         enemyPosition.position = originalEnemyPosition;
         enemyImage.color = new Color(startColor.r, startColor.g, startColor.b, 0f);
+
+        //End combat
+        Game_Manager.instance.roundManager.IncreaseEnemyCounter();
+        if (Game_Manager.instance.roundManager.IsRoundEnded == false)
+        {
+            OnEnemyDefeated?.Invoke(enemy_SO);
+        }
     }
     #endregion
 }

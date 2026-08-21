@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class Stats_Manager : MonoBehaviour
@@ -14,6 +10,8 @@ public class Stats_Manager : MonoBehaviour
     [SerializeField] private int damage;
     [SerializeField] private int currentHP;
     [SerializeField] private int maxHP;
+    [SerializeField] private int currentMP;
+    [SerializeField] private int maxMP;
     [SerializeField] private int money;
 
     //Public getter
@@ -21,6 +19,8 @@ public class Stats_Manager : MonoBehaviour
     public int Damage => damage;
     public int CurrentHP => currentHP;
     public int MaxHP => maxHP;
+    public int CurrentMP => currentMP;
+    public int MaxMP => maxMP;
     public int Money => money;
 
     private void Awake()
@@ -35,6 +35,8 @@ public class Stats_Manager : MonoBehaviour
         damage = playerSO.playerDamage;
         maxHP = playerSO.playerHP;
         currentHP = maxHP;
+        maxMP = playerSO.ultimate.MpCost;
+        currentMP = 0;
         money = playerSO.startingMoney;
 
         noteLevelTracker.SetPlayerNote(playerSO);
@@ -51,6 +53,12 @@ public class Stats_Manager : MonoBehaviour
             case Stat_Type.MaxHP:
                 maxHP += amount;
                 currentHP += amount;
+                break;
+            case Stat_Type.CurrentMP:
+                currentMP += amount;
+                break;
+            case Stat_Type.MaxMP:
+                maxMP = amount;
                 break;
             case Stat_Type.Damage:
                 damage += amount;
@@ -71,6 +79,8 @@ public class Stats_Manager : MonoBehaviour
             case Stat_Type.Damage: return damage;
             case Stat_Type.CurrentHP: return currentHP;
             case Stat_Type.MaxHP: return maxHP;
+            case Stat_Type.CurrentMP: return currentMP;
+            case Stat_Type.MaxMP: return maxMP;
             case Stat_Type.Money: return money;
             default:
                 return 0;

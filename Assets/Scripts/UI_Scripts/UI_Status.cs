@@ -2,35 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_Status : MonoBehaviour
 {
-    [SerializeField] private GameObject blockStatus;
-    [SerializeField] private TMP_Text blockText;
+    [SerializeField] private Status_Icon[] statusIcons;
+    [SerializeField] private Sprite[] statusSprites;
 
-    [SerializeField] private GameObject damageStackStatus;
-    [SerializeField] private TMP_Text damageStackText;
-
-    [SerializeField] private GameObject attackBoostStatus;
-    [SerializeField] private TMP_Text attackBoostText;
+    private void OnValidate()
+    {
+        if (statusIcons == null) return;
+        if (statusSprites == null || statusSprites.Length != statusIcons.Length)
+        {
+            statusSprites = new Sprite[statusIcons.Length];
+        }
+    }
 
     public void UpdateCombatStatus(Status status)
     {
-        UpdateStatus(blockStatus, blockText, status.block);
-        UpdateStatus(damageStackStatus, damageStackText, status.damageStack);
-        UpdateStatus(attackBoostStatus, attackBoostText, status.attackBoost);
+        UpdateStatus(statusIcons[0], statusSprites[0], status.block);
+        UpdateStatus(statusIcons[1], statusSprites[1], status.damageStack);
+        UpdateStatus(statusIcons[2], statusSprites[2], status.attackBoost);
     }
 
-    private void UpdateStatus(GameObject status, TMP_Text text, int num)
+    private void UpdateStatus(Status_Icon status, Sprite sprite, int num)
     {
         if (num <= 0)
         {
-            status.SetActive(false);
+            status.gameObject.SetActive(false);
         }
         else
         {
-            status.SetActive(true);
-            text.text = num.ToString();
+            status.gameObject.SetActive(true);
+            status.UpdateStatusIcon(sprite, num.ToString());
         }
     }
 }

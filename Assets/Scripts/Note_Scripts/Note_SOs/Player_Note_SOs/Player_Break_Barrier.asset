@@ -17,6 +17,6 @@ MonoBehaviour:
   noteUpgradeDescription: Break 1 more barrier
   noteSpeed: 10
   isHostile: 0
-  hitSound: {fileID: 0}
+  noteColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   removeAmount: 2
   upgradeRemoveAmount: 1

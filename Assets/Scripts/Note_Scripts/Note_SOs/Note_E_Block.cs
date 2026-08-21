@@ -1,10 +1,16 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Notes/Block_Next_Attack")]
+[CreateAssetMenu(menuName = "Notes/Block")]
 public class Note_E_Block : Note_SO
 {
     [SerializeField] private int blockTime;
     [SerializeField] private int upgradeBlockTime;
+
+    private void Reset()
+    {
+        noteColor = Color.yellow;
+    }
+
     public override void Apply(Combat_Manager combatManager)
     {
         combatManager.SetBlock(isHostile, GetTotalStat(Level));

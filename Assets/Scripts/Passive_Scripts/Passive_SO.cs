@@ -11,6 +11,7 @@ public abstract class Passive_SO : ScriptableObject, IBuy
     public string Name => passiveName;
     public string Description => GetDescription();
     public int Level => Game_Manager.instance != null ? Game_Manager.instance.statsManager.passiveLevelTracker.GetPassiveLevel(this) : 0;
+    public Color Color => Color.white;
 
     public void BuyItem()
     {

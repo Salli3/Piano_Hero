@@ -19,14 +19,14 @@ public class Note : MonoBehaviour
             return;
         }
         if (noteSO == null) return;
-        rb.velocity = Vector3.down * noteSO.noteSpeed * Game_Manager.instance.noteSpeed;
+        rb.velocity = Vector3.down * noteSO.noteSpeed * Game_Manager.instance.NoteSpeed;
     }
 
     public void Init(Note_SO chosenNote, Transform spawnPoint)
     {
         noteSO = chosenNote;
         transform.position = spawnPoint.position;
-        sr.color = noteSO.noteColor;
+        sr.color = noteSO.Color;
         noteCollider.enabled = true;
         noteName.text = noteSO.Name;
     }

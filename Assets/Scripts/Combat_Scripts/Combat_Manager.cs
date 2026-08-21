@@ -14,12 +14,14 @@ public class Combat_Manager : MonoBehaviour
 
     public static event Action<int, bool> DamagePlayer;
     public static event Action<Status> PlayerStatusChange;
+    public static event Action<int> PlayerGainMP;
 
     public static event Action<int, bool> DamageEnemy;
     public static event Action<Status> EnemyStatusChange;
+    public static event Action<int> EnemyGainMP;
 
-    private void OnEnable() => Enemy_HP.OnEnemyDefeated += (_) => RefreshEnemyStatus();
-    private void OnDisable() => Enemy_HP.OnEnemyDefeated -= (_) => RefreshEnemyStatus();
+    private void OnEnable() => Enemy_UI.OnEnemyDefeated += OnEnemyDefeat;
+    private void OnDisable() => Enemy_UI.OnEnemyDefeated -= OnEnemyDefeat;
 
     private void Start()
     {
@@ -30,6 +32,11 @@ public class Combat_Manager : MonoBehaviour
     {
         PlayerStatusChange?.Invoke(new Status(playerBlock, playerDamageStack, playerAttackBoost));
         EnemyStatusChange?.Invoke(new Status(enemyBlock, enemyDamageStack, enemyAttackBoost));
+    }
+
+    private void OnEnemyDefeat(Enemy_SO enemySO)
+    {
+        RefreshEnemyStatus();
     }
 
     private void RefreshEnemyStatus()
@@ -48,14 +55,14 @@ public class Combat_Manager : MonoBehaviour
 
     private int EnemyDamage(int damage)
     {
-        return damage * Game_Manager.instance.enemyDamageMultiplier;
+        return Mathf.CeilToInt(damage * Game_Manager.instance.EnemyDamageMultiplier);
     }
 
     public void DealDamageToPlayer()
     {
         if (Block(true)) return;
 
-        DamagePlayer?.Invoke(-EnemyDamage(Game_Manager.instance.currentEnemy.enemyDamage), false);
+        DamagePlayer?.Invoke(-EnemyDamage(Game_Manager.instance.CurrentEnemy.enemyDamage), false);
     }
 
     public void DealDamage(bool isHostile, int damage)
@@ -94,7 +101,7 @@ public class Combat_Manager : MonoBehaviour
     public void SetBlock(bool isHostile, int amount)
     {
         ref int block = ref (isHostile ? ref enemyBlock : ref playerBlock);
-        block = amount;
+        if (block < amount) block = amount;
         UpdateCombatStatus();
     }
     public bool Block(bool isHostile)
@@ -122,7 +129,7 @@ public class Combat_Manager : MonoBehaviour
     public void SetAttackBoost(bool isHostile, int amount)
     {
         ref int boost = ref (isHostile ? ref enemyAttackBoost : ref playerAttackBoost);
-        boost = amount;
+        if (boost < amount) boost = amount;
         UpdateCombatStatus();
     }
     public bool BoostAttack(bool isHostile)
@@ -175,7 +182,41 @@ public class Combat_Manager : MonoBehaviour
         for (int i = 0; i < hitTime; i++)
         {
             DealDamage(isHostile, damage);
-            yield return new WaitForSecondsRealtime(0.1f);
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+    #endregion
+
+    #region Target HP
+    public int GetTargetCurrentHP(bool isHostile)
+    {
+        int targetCurrentHP = isHostile ? 
+            Game_Manager.instance.statsManager.CurrentHP : 
+            Game_Manager.instance.currentEnemyHP;
+        return targetCurrentHP;
+    }
+
+    public void KillForMoney(bool isHostile, int damage, int moneyGain)
+    {
+        if(isHostile) return;
+        if (PlayerDamage(damage) >= Game_Manager.instance.currentEnemyHP && Block(isHostile) == false)
+        {
+            Game_Manager.instance.statsManager.ModifyStat(Stat_Type.Money, moneyGain);
+        }
+        DealDamage(isHostile, damage);
+    }
+    #endregion
+
+    #region Gain mp
+    public void GainMP(bool isHostile, int amount)
+    {
+        if (isHostile)
+        {
+            EnemyGainMP?.Invoke(amount);
+        }
+        else
+        {
+            PlayerGainMP?.Invoke(amount);
         }
     }
     #endregion

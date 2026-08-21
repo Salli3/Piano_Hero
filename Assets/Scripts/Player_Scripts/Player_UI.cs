@@ -8,6 +8,7 @@ public class Player_UI : MonoBehaviour
 {
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private Image playerImage;
+    [SerializeField] private Animator anim;
 
     [SerializeField] private UI_Status uiStatus;
     [SerializeField] private Hit_Number_Pool hitNumberPool;
@@ -27,7 +28,10 @@ public class Player_UI : MonoBehaviour
     private void Start()
     {
         SetPlayerUI();
+        anim.Play("Start");
     }
+
+    public void DisableAnimator() => anim.enabled = false;
 
     private void SetPlayerUI()
     {

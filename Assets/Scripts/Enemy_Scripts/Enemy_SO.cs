@@ -9,5 +9,5 @@ public class Enemy_SO : ScriptableObject
     public int enemyDamage;
     public int enemyMoneyReward;
     public Note_SO[] attackTypes;
-
+    public Ultimate_SO ultimate;
 }
