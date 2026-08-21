@@ -190,6 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAttackTypes: []
+  playerUltimateEffects: []
 --- !u!114 &118649067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -786,11 +787,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 1
-  m_ReferencePixelsPerUnit: 100
+  m_ReferencePixelsPerUnit: 64
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1690,6 +1691,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4366051413610640161, guid: c1c31f6de3abadd4f86cb21e4d548f4c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 14.999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 5505711716806110577, guid: c1c31f6de3abadd4f86cb21e4d548f4c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 14.999998
+      objectReference: {fileID: 0}
     - target: {fileID: 5671640031741512744, guid: c1c31f6de3abadd4f86cb21e4d548f4c, type: 3}
       propertyPath: m_text
       value: 'HP: 50
@@ -2096,11 +2105,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 1
-  m_ReferencePixelsPerUnit: 100
+  m_ReferencePixelsPerUnit: 64
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -3102,6 +3111,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4366051413610640161, guid: c1c31f6de3abadd4f86cb21e4d548f4c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 14.999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 5505711716806110577, guid: c1c31f6de3abadd4f86cb21e4d548f4c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 14.999998
+      objectReference: {fileID: 0}
     - target: {fileID: 5671640031741512744, guid: c1c31f6de3abadd4f86cb21e4d548f4c, type: 3}
       propertyPath: m_text
       value: 'HP: 200
@@ -3450,40 +3467,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5671640031741512744, guid: c1c31f6de3abadd4f86cb21e4d548f4c, type: 3}
-      propertyPath: m_text
-      value: 'HP: 100
-
-        Damage: 0
-
-        Money: 200
-
-        Attack move(s):'
+    - target: {fileID: 4366051413610640161, guid: c1c31f6de3abadd4f86cb21e4d548f4c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 14.999998
       objectReference: {fileID: 0}
-    - target: {fileID: 5727450092316509624, guid: c1c31f6de3abadd4f86cb21e4d548f4c, type: 3}
-      propertyPath: m_text
-      value: '
-
-        -Punch:
-
-        Basic attack, deal 5 damage
-
-
-        -Recover:
-
-        Heal
-        2HP
-
-'
+    - target: {fileID: 5505711716806110577, guid: c1c31f6de3abadd4f86cb21e4d548f4c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 14.999998
       objectReference: {fileID: 0}
-    - target: {fileID: 5933868306439497577, guid: c1c31f6de3abadd4f86cb21e4d548f4c, type: 3}
-      propertyPath: m_text
-      value: Sallie
-      objectReference: {fileID: 0}
-    - target: {fileID: 8382739429837321972, guid: c1c31f6de3abadd4f86cb21e4d548f4c, type: 3}
-      propertyPath: playerSO
-      value: 
-      objectReference: {fileID: 11400000, guid: 61aafd30cd15bc64ea630c8e99e092c0, type: 2}
     - target: {fileID: 8382739429837321972, guid: c1c31f6de3abadd4f86cb21e4d548f4c, type: 3}
       propertyPath: menuManager
       value: 

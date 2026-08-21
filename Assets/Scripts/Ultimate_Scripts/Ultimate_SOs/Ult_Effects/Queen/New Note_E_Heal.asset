@@ -20,4 +20,4 @@ MonoBehaviour:
   isHostile: 1
   noteColor: {r: 0, g: 1, b: 0, a: 1}
   healAmount: 200
-  upgradeHeal: 0
+  upgradeHeal: 20

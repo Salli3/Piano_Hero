@@ -20,4 +20,4 @@ MonoBehaviour:
   isHostile: 1
   noteColor: {r: 0, g: 0, b: 1, a: 1}
   boostTime: 2
-  upgradeBoostTime: 0
+  upgradeBoostTime: 1
